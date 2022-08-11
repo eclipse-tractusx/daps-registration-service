@@ -1,0 +1,29 @@
+---
+- attributes:
+  - key: idsc
+    value: IDS_CONNECTOR_ATTRIBUTES_ALL
+  - key: omejdn
+    value: admin
+  - key: "@type"
+    value: ids:DatPayload
+  - key: "@context"
+    value: https://w3id.org/idsa/contexts/context.jsonld
+    dynamic: true
+  client_id: example
+  name: omejdn admin ui
+  client_secret: secret
+  token_endpoint_auth_method: client_secret_post
+  redirect_uris:
+  - https://example.org/callback01
+  - https://example.org/callback02
+  - https://oauth.pstmn.io/v1/callback
+  - "/"
+  scope:
+  - openid
+  - omejdn:admin
+  - profile
+  - idsc:IDS_CONNECTOR_ATTRIBUTES_ALL
+  - email
+  grant_types:
+  - client_credentials
+  - authorization_code

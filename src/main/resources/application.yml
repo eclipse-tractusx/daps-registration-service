@@ -1,0 +1,19 @@
+keycloak:
+  auth-server-url: https://centralidp.demo.catena-x.net/auth
+  realm: CX-Central
+  resource: Cl2-CX-Portal
+  bearer-only: true
+  use-resource-role-mappings: true
+  principal-attribute: preferred_username
+app:
+  build:
+    version: ^project.version^
+  daps:
+    apiUri: http://localhost:4567/api/v1
+    tokenUri: http://localhost:4567/token
+    clientId: example
+    clientSecret: secret
+  security:
+    createRole: create_daps_client
+    updateRole: update_daps_client
+    deleteRole: delete_daps_client

@@ -1,0 +1,5 @@
+plugins:
+  admin_api:
+  token_user_attributes:
+    skip_access_token: false
+    skip_id_token: false

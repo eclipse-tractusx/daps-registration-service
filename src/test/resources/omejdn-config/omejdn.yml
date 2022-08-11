@@ -1,0 +1,19 @@
+---
+issuer: http://localhost:4567
+front_url: http://localhost:4567
+bind_to: 0.0.0.0:4567
+environment: development
+openid: true
+default_audience: idsc:IDS_CONNECTORS_ALL
+accept_audience:
+- http://localhost:4567
+- http://localhost:4567/token
+- idsc:IDS_CONNECTORS_ALL
+access_token:
+  expiration: 3600
+  algorithm: RS256
+id_token:
+  expiration: 3600
+  algorithm: RS256
+user_backend:
+- yaml

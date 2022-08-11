@@ -1,0 +1,19 @@
+---
+- username: exa
+  attributes:
+  - key: email
+    value: admin@example.com
+  - key: omejdn
+    value: admin
+  - key: exampleKey
+    value: exampleValue
+  - key: name
+    value: dima
+  password: "$2a$12$YstvdsNuR3zFelMo42r1R.rA5PNQXGZYJhx1GcBu39VQvt1RF.Vyy"
+  backend: yaml
+  consent:
+    example:
+    - openid
+    - omejdn:admin
+    - email
+    - profile
