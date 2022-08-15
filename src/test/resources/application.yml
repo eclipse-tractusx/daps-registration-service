@@ -13,6 +13,7 @@ app:
     tokenUri: http://localhost:4567/token
     clientId: example
     clientSecret: secret
+    imageName: my-omejdn-server:latest
   security:
     createRole: create_daps_client
     updateRole: update_daps_client
