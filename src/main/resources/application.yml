@@ -1,7 +1,7 @@
 keycloak:
-  auth-server-url: https://centralidp.demo.catena-x.net/auth
-  realm: CX-Central
-  resource: Cl2-CX-Portal
+  auth-server-url: https://keycloak.cx.dih-cloud.com//auth
+  realm: orchestrator
+  resource: orchestratorservice
   bearer-only: true
   use-resource-role-mappings: true
   principal-attribute: preferred_username
