@@ -1,0 +1,88 @@
+---
+name: "Trivy"
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Build"]
+    branches:
+      - main
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
+
+jobs:
+  git-sha7:
+    name: Determine short git sha
+    runs-on: ubuntu-latest
+    outputs:
+      value: ${{ steps.git-sha7.outputs.SHA7 }}
+    steps:
+      -
+        name: Resolve git 7-chars sha
+        id: git-sha7
+        run: |
+          echo "::set-output name=SHA7::${GITHUB_SHA::7}"
+
+  trivy-analyze-config:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    steps:
+      -
+        name: Checkout repository
+        uses: actions/checkout@v2
+      -
+        name: Run Trivy vulnerability scanner in repo mode
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: "config"
+          # ignore-unfixed: true
+          exit-code: "1"
+          hide-progress: false
+          format: "sarif"
+          output: "trivy-results-config.sarif"
+          severity: "CRITICAL,HIGH"
+      -
+        name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v2
+        if: always()
+        with:
+          sarif_file: "trivy-results-config.sarif"
+
+  trivy:
+    needs: [ git-sha7 ]
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false # continue scanning other images although if the other has been vulnerable
+      matrix:
+        image:
+          - dapsreg
+
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v3
+      -
+        name: Run Trivy vulnerability scanner
+        if: always()
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: "docker pull ghcr.io/catenax-ng/product-daps-registration-service/dapsreg:latest"
+          format: "sarif"
+          output: "trivy-results-${{ matrix.image }}.sarif"
+          exit-code: "1"
+          severity: "CRITICAL,HIGH"
+      -
+        name: Upload Trivy scan results to GitHub Security tab
+        if: always()
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: "trivy-results-${{ matrix.image }}.sarif"
