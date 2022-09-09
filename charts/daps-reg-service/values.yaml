@@ -56,6 +56,11 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
+drs:
+  secret:
+    clientId: "<path:essential-services/data/daps#clientId>"
+    clientSecret: "<path:essential-services/data/daps#clientSecret>"
+    
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
