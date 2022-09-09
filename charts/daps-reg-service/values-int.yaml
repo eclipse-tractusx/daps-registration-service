@@ -8,7 +8,7 @@ ingress:
     - host: drs.int.demo.catena-x.net
       paths:
         - path: /
-          pathType: ImplementationSpecific
+          pathType: Prefix
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
