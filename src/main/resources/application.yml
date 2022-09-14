@@ -11,8 +11,8 @@ app:
   daps:
     apiUri: https://daps-pen.int.demo.catena-x.net/api/v1
     tokenUri: https://daps-pen.int.demo.catena-x.net/token
-    clientId: admin
-    clientSecret: secret@catenax!
+    clientId:
+    clientSecret:
   security:
     createRole: create_daps_client
     updateRole: update_daps_client
