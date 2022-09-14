@@ -14,6 +14,6 @@ app:
     clientId: 
     clientSecret:
   security:
-    createRole: create_daps_client
+    createRole: add_self_descriptions
     updateRole: update_daps_client
     deleteRole: delete_daps_client
