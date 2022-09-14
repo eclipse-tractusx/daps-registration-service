@@ -1,5 +1,5 @@
 keycloak:
-  auth-server-url: https://keycloak.cx.dih-cloud.com//auth
+  auth-server-url: https://keycloak.cx.dih-cloud.com
   realm: orchestrator
   resource: orchestratorservice
   bearer-only: true
