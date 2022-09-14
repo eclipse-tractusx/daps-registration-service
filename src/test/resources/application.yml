@@ -1,7 +1,7 @@
 keycloak:
-  auth-server-url: https://centralidp.demo.catena-x.net/auth
-  realm: CX-Central
-  resource: Cl2-CX-Portal
+  auth-server-url: https://keycloak.cx.dih-cloud.com
+  realm: orchestrator
+  resource: orchestratorservice
   bearer-only: true
   use-resource-role-mappings: true
   principal-attribute: preferred_username
@@ -9,11 +9,10 @@ app:
   build:
     version: ^project.version^
   daps:
-    apiUri: http://localhost:4567/api/v1
-    tokenUri: http://localhost:4567/token
-    clientId: example
-    clientSecret: secret
-    imageName: my-omejdn-server:latest
+    apiUri: https://daps-pen.int.demo.catena-x.net/api/v1
+    tokenUri: https://daps-pen.int.demo.catena-x.net/token
+    clientId: 
+    clientSecret:
   security:
     createRole: create_daps_client
     updateRole: update_daps_client
