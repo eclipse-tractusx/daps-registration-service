@@ -38,12 +38,12 @@ spec:
               containerPort: 80
               protocol: TCP
           env:
-          - name: CLIENTID
+          - name: APP_DAPS_CLIENTID
             valueFrom: 
               secretKeyRef:
                 name: avp-drs-secret
                 key: ClientID
-          - name: CLIENTSECRET
+          - name: APP_DAPS_CLIENTSECRET
             valueFrom: 
               secretKeyRef:
                 name: avp-drs-secret
