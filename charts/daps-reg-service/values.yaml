@@ -28,7 +28,7 @@ image:
   repository: "ghcr.io/catenax-ng/product-daps-registration-service/dapsreg" 
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "latest"
+  tag: "1.0.3"
 
 imagePullSecrets: []
 nameOverride: ""
