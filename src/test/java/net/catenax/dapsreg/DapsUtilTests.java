@@ -29,6 +29,7 @@ import net.catenax.dapsreg.util.JsonUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
@@ -37,6 +38,7 @@ import java.security.cert.CertificateException;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
+@TestPropertySource(properties = {"spring.config.location=classpath:application-test.yml"})
 class DapsUtilTests {
 
 	@Autowired

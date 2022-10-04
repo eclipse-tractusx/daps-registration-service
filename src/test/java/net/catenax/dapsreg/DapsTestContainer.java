@@ -25,6 +25,7 @@ import net.catenax.dapsreg.service.DapsClient;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.test.context.TestPropertySource;
 import org.testcontainers.containers.BindMode;
 import org.testcontainers.containers.GenericContainer;
 
@@ -32,6 +33,7 @@ import javax.annotation.PostConstruct;
 
 @Component
 @RequiredArgsConstructor
+@TestPropertySource(properties = {"spring.config.location=classpath:application-test.yml"})
 public class DapsTestContainer implements DisposableBean {
 
     private final DapsClient dapsClient;

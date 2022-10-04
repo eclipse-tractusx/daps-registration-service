@@ -80,11 +80,6 @@ public class DapsClient {
     }
 
     public String fetchDapsAdminToken() {
-        System.out.println("dapsTokenUri:" + dapsTokenUri);
-        System.out.println("client_id: " + adminClientId);
-        System.out.println("client_secret: " + adminClientSecret);
-
-
         var token = WebClient.create(dapsTokenUri).post()
                 .body(BodyInserters.fromFormData("grant_type", "client_credentials")
                         .with("client_id", adminClientId)

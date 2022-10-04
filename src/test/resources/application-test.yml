@@ -29,10 +29,11 @@ app:
   build:
     version: ^project.version^
   daps:
-    apiUri: https://daps-pen.int.demo.catena-x.net/api/v1
-    tokenUri: https://daps-pen.int.demo.catena-x.net/token
-    clientId: 
-    clientSecret:
+    apiUri: http://localhost:4567/api/v1
+    tokenUri: http://localhost:4567/token
+    clientId: example
+    clientSecret: secret
+    imageName: my-omejdn-server:latest
   security:
     createRole: create_daps_client
     updateRole: update_daps_client
