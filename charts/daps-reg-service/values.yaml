@@ -78,8 +78,8 @@ ingress:
 
 drs:
   secret:
-    clientId: "<path:essential-services/data/daps#clientId>"
-    clientSecret: "<path:essential-services/data/daps#clientSecret>"
+    clientId: ""
+    clientSecret: ""
     
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
