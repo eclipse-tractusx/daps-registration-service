@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-package net.catenax.dapsreg.config;
+package org.eclipse.tractusx.dapsreg.config;
 
 import lombok.Getter;
 import lombok.Setter;

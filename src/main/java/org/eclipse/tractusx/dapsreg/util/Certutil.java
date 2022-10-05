@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-package net.catenax.dapsreg.util;
+package org.eclipse.tractusx.dapsreg.util;
 
 import com.google.common.base.Charsets;
 import com.google.common.io.BaseEncoding;

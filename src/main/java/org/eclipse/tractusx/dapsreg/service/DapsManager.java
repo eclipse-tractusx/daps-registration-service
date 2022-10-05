@@ -18,16 +18,14 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-package net.catenax.dapsreg.service;
+package org.eclipse.tractusx.dapsreg.service;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import net.catenax.dapsreg.util.Certutil;
-import net.catenax.dapsreg.util.JsonUtil;
+import org.eclipse.tractusx.dapsreg.util.Certutil;
+import org.eclipse.tractusx.dapsreg.util.JsonUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 

@@ -18,37 +18,44 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-package net.catenax.dapsreg;
+package org.eclipse.tractusx.dapsreg;
 
-import net.catenax.dapsreg.service.DapsClient;
-import org.checkerframework.checker.units.qual.A;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import lombok.RequiredArgsConstructor;
+import org.eclipse.tractusx.dapsreg.service.DapsClient;
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import org.springframework.test.context.TestPropertySource;
 import org.testcontainers.containers.BindMode;
 import org.testcontainers.containers.GenericContainer;
-import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
 
 import javax.annotation.PostConstruct;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-@SpringBootTest
+@Component
+@RequiredArgsConstructor
 @TestPropertySource(properties = {"spring.config.location=classpath:application-test.yml"})
-public class DapsClientTests {
-    @Autowired
-    private DapsClient dapsClient;
-    @Autowired
-    private DapsTestContainer dapsTestContainer;
+public class DapsTestContainer implements DisposableBean {
 
-    @Test
-    public void getAdminTokenTest() {
-        var adminToken = dapsClient.getDapsAdminToken();
-        assertThat(adminToken).isNotNull();
-        assertThat(adminToken).isEqualTo(dapsClient.getDapsAdminToken());
-        assertThat(adminToken).isNotEqualTo(dapsClient.fetchDapsAdminToken());
+    private final DapsClient dapsClient;
+
+    @Value("${app.daps.imageName}")
+    private String imageName;
+    private GenericContainer<?> myDapsServer;
+
+    @PostConstruct
+    private void init() {
+        myDapsServer = new GenericContainer<>(imageName)
+                .withClasspathResourceMapping("omejdn-config", "/opt/config", BindMode.READ_WRITE)
+                .withClasspathResourceMapping("omejdn-keys", "/opt/keys", BindMode.READ_WRITE)
+                .withEnv("OMEJDN_PLUGINS", "/opt/config/plugins.yml")
+                .withExposedPorts(4567);
+        myDapsServer.start();
+        dapsClient.setDapsTokenUri("http://localhost:" + myDapsServer.getMappedPort(4567) + "/token");
+        dapsClient.setDapsApiUri("http://localhost:" + myDapsServer.getMappedPort(4567) + "/api/v1");
     }
 
+    @Override
+    public void destroy() {
+        myDapsServer.stop();
+    }
 }
