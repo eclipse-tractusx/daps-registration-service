@@ -80,6 +80,11 @@ drs:
   secret:
     clientId: ""
     clientSecret: ""
+    authServerUrl: ""
+    realm: ""
+    resource: ""
+    apiUri: ""
+    tokenUri: ""
     
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
