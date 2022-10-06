@@ -52,7 +52,7 @@ spec:
             valueFrom: 
               secretKeyRef:
                 name: avp-drs-secret
-                key: auth-server-url
+                key: authServerUrl
           - name: KEYCLOACK_REALM
             valueFrom: 
               secretKeyRef:
