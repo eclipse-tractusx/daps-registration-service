@@ -1,5 +1,8 @@
 FROM openjdk:17 as build
 
+RUN addgroup -g 1001 -S user && adduser -u 1001 -S -s /bin/false -G user user
+USER user
+
 COPY . /drs/
 
 WORKDIR /drs
