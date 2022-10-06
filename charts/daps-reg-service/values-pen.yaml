@@ -38,7 +38,7 @@ drs:
   secret:
     clientId: "<path:essential-services/data/daps#clientId>"
     clientSecret: "<path:essential-services/data/daps#clientSecret>"
-    auth-server-url: "<path:essential-services/data/daps-register-svc-pen#auth-server-url>"
+    authServerUrl: "<path:essential-services/data/daps-register-svc-pen#auth-server-url>"
     realm: "<path:essential-services/data/daps-register-svc-pen#realm>"
     resource: "<path:essential-services/data/daps-register-svc-pen#resource>"
     apiUri: "<path:essential-services/data/daps-register-svc-pen#apiUri>"
