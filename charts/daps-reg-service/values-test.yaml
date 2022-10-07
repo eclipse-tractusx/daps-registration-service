@@ -25,7 +25,7 @@ ingress:
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: drs-pen1.int.demo.catena-x.net
+    - host: drs-test.int.demo.catena-x.net
       paths:
         - path: /
           pathType: ImplementationSpecific
@@ -33,18 +33,13 @@ ingress:
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
-#ingress:
-#  enabled: true
-#  className: "nginx"
-#  annotations: {}
-    #  kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-#  hosts:
-#    - host: drs.int.demo.catena-x.net
-#      paths:
-#        - path: /
-#          pathType: Prefix
-#  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+
+drs:
+  secret:
+    clientId: "<path:essential-services/data/daps#clientId>"
+    clientSecret: "<path:essential-services/data/daps#clientSecret>"
+    authServerUrl: "<path:essential-services/data/daps-register-svc-pen#auth-server-url>"
+    realm: "<path:essential-services/data/daps-register-svc-pen#realm>"
+    resource: "<path:essential-services/data/daps-register-svc-pen#resource>"
+    apiUri: "<path:essential-services/data/daps-register-svc-pen#apiUri>"
+    tokenUri: "<path:essential-services/data/daps-register-svc-pen#tokenUri>"
