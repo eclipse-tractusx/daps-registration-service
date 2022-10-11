@@ -39,40 +39,19 @@ spec:
               protocol: TCP
           env:
           - name: APP_DAPS_CLIENTID
-            valueFrom: 
-              secretKeyRef:
-                name: avp-drs-secret
-                key: ClientID
+            value: admin
           - name: APP_DAPS_CLIENTSECRET
-            valueFrom: 
-              secretKeyRef:
-                name: avp-drs-secret
-                key: ClientSecret
+            value: secret@catenax!
           - name: KEYCLOACK_AUTH-SERVER-URL
-            valueFrom: 
-              secretKeyRef:
-                name: avp-drs-secret
-                key: authServerUrl
+            value: https://centralidp.demo.catena-x.net/auth
           - name: KEYCLOACK_REALM
-            valueFrom: 
-              secretKeyRef:
-                name: avp-drs-secret
-                key: realm
+            value: CX-Central
           - name: KEYCLOACK_RESOURCE
-            valueFrom: 
-              secretKeyRef:
-                name: avp-drs-secret
-                key: resource
+            value: sa3
           - name: APP_DAPS_APIURI
-            valueFrom: 
-              secretKeyRef:
-                name: avp-drs-secret
-                key: apiUri
+            value: https://daps-pen.int.demo.catena-x.net/api/v1
           - name: APP_DAPS_TOKENURI
-            valueFrom: 
-              secretKeyRef:
-                name: avp-drs-secret
-                key: tokenUri
+            value: https://daps-pen.int.demo.catena-x.net/token
                 
           #livenessProbe:
           #  httpGet:
