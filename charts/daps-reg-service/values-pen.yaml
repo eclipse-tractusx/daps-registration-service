@@ -36,8 +36,8 @@ ingress:
   
 drs:
   secret:
-    clientId: "<path:essential-services/data/daps#clientId>"
-    clientSecret: "<path:essential-services/data/daps#clientSecret>"
+    clientId: "admin"
+    clientSecret: "secret@catenax!"
     authServerUrl: "https://centralidp.demo.catena-x.net/auth"
     realm: "CX-Central"
     resource: "sa3"
