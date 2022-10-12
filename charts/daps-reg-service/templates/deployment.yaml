@@ -39,19 +39,19 @@ spec:
               protocol: TCP
           env:
           - name: APP_DAPS_CLIENTID
-            value: admin
+            value: "admin"
           - name: APP_DAPS_CLIENTSECRET
-            value: secret@catenax!
+            value: "secret@catenax!"
           - name: KEYCLOACK_AUTH-SERVER-URL
-            value: https://centralidp.demo.catena-x.net/auth
+            value: "https://centralidp.demo.catena-x.net/auth"
           - name: KEYCLOACK_REALM
-            value: CX-Central
+            value: "CX-Central"
           - name: KEYCLOACK_RESOURCE
-            value: sa3
+            value: "sa3"
           - name: APP_DAPS_APIURI
-            value: https://daps-pen.int.demo.catena-x.net/api/v1
+            value: "https://daps-pen.int.demo.catena-x.net/api/v1"
           - name: APP_DAPS_TOKENURI
-            value: https://daps-pen.int.demo.catena-x.net/token
+            value: "https://daps-pen.int.demo.catena-x.net/token"
                 
           #livenessProbe:
           #  httpGet:
