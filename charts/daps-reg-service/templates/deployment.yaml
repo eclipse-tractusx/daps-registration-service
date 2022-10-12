@@ -38,21 +38,31 @@ spec:
               containerPort: 80
               protocol: TCP
           env:
-          - name: APP_DAPS_CLIENTID
-            value: "admin"
-          - name: APP_DAPS_CLIENTSECRET
-            value: "secret@catenax!"
-          - name: KEYCLOACK_AUTH-SERVER-URL
-            value: "https://centralidp.demo.catena-x.net/auth"
-          - name: KEYCLOACK_REALM
-            value: "CX-Central"
-          - name: KEYCLOACK_RESOURCE
-            value: "sa3"
-          - name: APP_DAPS_APIURI
-            value: "https://daps-pen.int.demo.catena-x.net/api/v1"
-          - name: APP_DAPS_TOKENURI
-            value: "https://daps-pen.int.demo.catena-x.net/token"
-                
+            - name: KEYCLOACK_AUTH-SERVER-URL
+              valueFrom: 
+               secretKeyRef:
+                name: avp-drs-secret
+                key: auth-server-url
+            - name: KEYCLOACK_REALM
+              valueFrom: 
+               secretKeyRef:
+                name: avp-drs-secret
+                key: realm
+            - name: KEYCLOACK_RESOURCE
+              valueFrom: 
+               secretKeyRef:
+                name: avp-drs-secret
+                key: resource
+           - name: APP_DAPS_APIURI
+             valueFrom: 
+              secretKeyRef:
+                name: avp-drs-secret
+                key: apiUri
+           - name: APP_DAPS_TOKENURI
+             valueFrom: 
+              secretKeyRef:
+                name: avp-drs-secret
+                key: tokenUri
           #livenessProbe:
           #  httpGet:
           #    path: /
