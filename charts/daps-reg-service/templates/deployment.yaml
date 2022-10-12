@@ -53,14 +53,14 @@ spec:
                secretKeyRef:
                 name: avp-drs-secret
                 key: resource
-           - name: APP_DAPS_APIURI
-             valueFrom: 
-              secretKeyRef:
+            - name: APP_DAPS_APIURI
+              valueFrom: 
+               secretKeyRef:
                 name: avp-drs-secret
                 key: apiUri
-           - name: APP_DAPS_TOKENURI
-             valueFrom: 
-              secretKeyRef:
+            - name: APP_DAPS_TOKENURI
+              valueFrom: 
+               secretKeyRef:
                 name: avp-drs-secret
                 key: tokenUri
           #livenessProbe:
