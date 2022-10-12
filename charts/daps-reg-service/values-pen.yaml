@@ -44,10 +44,3 @@ drs:
     apiUri: "<path:essential-services/data/daps-register-svc-pen#apiUri>"
     tokenUri: "<path:essential-services/data/daps-register-svc-pen#tokenUri>"
     
-#    clientId: "admin"
-#    clientSecret: "secret@catenax!"
-#    authServerUrl: "https://centralidp.demo.catena-x.net/auth"
-#    realm: "CX-Central"
-#    resource: "sa3"
-#    apiUri: "https://daps-pen.int.demo.catena-x.net/api/v1"
-#    tokenUri: "https://daps-pen.int.demo.catena-x.net/token"
