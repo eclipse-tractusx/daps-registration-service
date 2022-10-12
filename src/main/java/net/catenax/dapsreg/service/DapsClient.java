@@ -71,12 +71,15 @@ public class DapsClient {
     private final JsonUtil jsonUtil;
     private final ObjectMapper mapper;
 
+    @Value("${keycloak.resource}")
+    private String resource;
     @Autowired
     private SecurityRoles securityRoles;
     @PostConstruct
     public void init() {
         log.info("In init DapsClient {}, {}, {}, {}", adminClientId, adminClientSecret, dapsTokenUri, dapsApiUri);
         log.info("Roless {},{},{}", securityRoles.getCreateRole(), securityRoles.getDeleteRole(),securityRoles.getUpdateRole());
+        log.info("Resource {}", resource);
     }
 
 
