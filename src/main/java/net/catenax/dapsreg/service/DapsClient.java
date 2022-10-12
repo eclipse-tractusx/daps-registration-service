@@ -26,7 +26,10 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
+import net.catenax.dapsreg.config.SecurityRoles;
 import net.catenax.dapsreg.util.JsonUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -35,6 +38,7 @@ import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.util.UriBuilder;
 
+import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.security.cert.X509Certificate;
 import java.time.Instant;
@@ -45,6 +49,7 @@ import static java.util.Objects.isNull;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class DapsClient {
 
     private final static long refreshGap = 100L;
@@ -65,6 +70,14 @@ public class DapsClient {
 
     private final JsonUtil jsonUtil;
     private final ObjectMapper mapper;
+
+    @Autowired
+    private SecurityRoles securityRoles;
+    @PostConstruct
+    public void init() {
+        log.info("In init DapsClient {}, {}, {}, {}", adminClientId, adminClientSecret, dapsTokenUri, dapsApiUri);
+        log.info("Roless {},{},{}", securityRoles.getCreateRole(), securityRoles.getDeleteRole(),securityRoles.getUpdateRole());
+    }
 
 
     @SneakyThrows
