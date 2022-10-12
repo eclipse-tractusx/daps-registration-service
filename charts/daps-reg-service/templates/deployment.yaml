@@ -48,17 +48,17 @@ spec:
               secretKeyRef:
                 name: avp-drs-secret
                 key: ClientSecret
-          - name: KEYCLOACK_AUTH-SERVER-URL
+          - name: KEYCLOAK_AUTH-SERVER-URL
             valueFrom: 
               secretKeyRef:
                 name: avp-drs-secret
                 key: authServerUrl
-          - name: KEYCLOACK_REALM
+          - name: KEYCLOAK_REALM
             valueFrom: 
               secretKeyRef:
                 name: avp-drs-secret
                 key: realm
-          - name: KEYCLOACK_RESOURCE
+          - name: KEYCLOAK_RESOURCE
             valueFrom: 
               secretKeyRef:
                 name: avp-drs-secret
