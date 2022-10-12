@@ -1,7 +1,7 @@
 keycloak:
-  auth-server-url:
-  realm:
-  resource:
+  #auth-server-url:
+  #realm:
+  #resource:
   bearer-only: true
   use-resource-role-mappings: true
   principal-attribute: preferred_username
@@ -9,8 +9,8 @@ app:
   build:
     version: ^project.version^
   daps:
-    apiUri:
-    tokenUri:
+    #apiUri:
+    #tokenUri:
     #clientId:
     #clientSecret:
   security:
