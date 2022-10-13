@@ -41,37 +41,37 @@ spec:
           - name: APP_DAPS_CLIENTID
             valueFrom: 
               secretKeyRef:
-                name: avp-drs-secret
+                name: secret-daps-reg-svc-pen
                 key: ClientID
           - name: APP_DAPS_CLIENTSECRET
             valueFrom: 
               secretKeyRef:
-                name: avp-drs-secret
+                name: secret-daps-reg-svc-pen
                 key: ClientSecret
           - name: KEYCLOAK_AUTH-SERVER-URL
             valueFrom: 
               secretKeyRef:
-                name: avp-drs-secret
+                name: secret-daps-reg-svc-pen
                 key: authServerUrl
           - name: KEYCLOAK_REALM
             valueFrom: 
               secretKeyRef:
-                name: avp-drs-secret
+                name: secret-daps-reg-svc-pen
                 key: realm
           - name: KEYCLOAK_RESOURCE
             valueFrom: 
               secretKeyRef:
-                name: avp-drs-secret
+                name: secret-daps-reg-svc-pen
                 key: resource
           - name: APP_DAPS_APIURI
             valueFrom: 
               secretKeyRef:
-                name: avp-drs-secret
+                name: secret-daps-reg-svc-pen
                 key: apiUri
           - name: APP_DAPS_TOKENURI
             valueFrom: 
               secretKeyRef:
-                name: avp-drs-secret
+                name: secret-daps-reg-svc-pen
                 key: tokenUri
           #livenessProbe:
           #  httpGet:
