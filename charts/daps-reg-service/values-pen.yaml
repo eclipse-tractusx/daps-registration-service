@@ -36,6 +36,7 @@ ingress:
   
 drs:
   secret:
+    secretName: "secret-daps-reg-svc-pen"
     clientId: "<path:essential-services/data/daps#clientId>"
     clientSecret: "<path:essential-services/data/daps#clientSecret>"
     authServerUrl: "<path:essential-services/data/daps-register-svc-pen#auth-server-url>"
@@ -44,3 +45,15 @@ drs:
     apiUri: "<path:essential-services/data/daps-register-svc-pen#apiUri>"
     tokenUri: "<path:essential-services/data/daps-register-svc-pen#tokenUri>"
     
+
+resources:
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  limits:
+    cpu: 400m
+     memory: 512Mi
+  requests:
+    cpu: 400m
+    memory: 512Mi

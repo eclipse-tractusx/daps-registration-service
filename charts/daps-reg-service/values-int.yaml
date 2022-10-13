@@ -36,11 +36,12 @@ ingress:
   
 drs:
   secret:
+    secretName: "secret-daps-reg-svc"
     clientId: "<path:essential-services/data/daps#clientId>"
     clientSecret: "<path:essential-services/data/daps#clientSecret>"
-    #authServerUrl: "<path:essential-services/data/daps-register-svc-pen#auth-server-url>"
-    #realm: "<path:essential-services/data/daps-register-svc-pen#realm>"
-    #resource: "<path:essential-services/data/daps-register-svc-pen#resource>"
-    #apiUri: "<path:essential-services/data/daps-register-svc-pen#apiUri>"
-    #tokenUri: "<path:essential-services/data/daps-register-svc-pen#tokenUri>"
+    #authServerUrl: "<path:essential-services/data/daps-register-svc#auth-server-url>"
+    #realm: "<path:essential-services/data/daps-register-svc#realm>"
+    #resource: "<path:essential-services/data/daps-register-svc#resource>"
+    #apiUri: "<path:essential-services/data/daps-register-svc#apiUri>"
+    #tokenUri: "<path:essential-services/data/daps-register-svc#tokenUri>"
 
