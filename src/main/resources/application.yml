@@ -5,6 +5,11 @@ keycloak:
   bearer-only: true
   use-resource-role-mappings: true
   principal-attribute: preferred_username
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    url: /DapsRegApi.yaml
 app:
   build:
     version: ^project.version^

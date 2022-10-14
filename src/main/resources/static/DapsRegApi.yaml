@@ -1,0 +1,44 @@
+openapi: 3.0.3
+info:
+  title: DAPS Registration Service API
+  description: An admin interface to the Omeijdn DAPS Server
+  version: 0.0.0
+paths:
+  /api/v1/daps:
+    post:
+      summary: Creates a Client at DAPS
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                clientName:
+                  type: string
+                  description: Name of a client we create a record for
+                securityProfile:
+                  type: string
+                  description: The profile. Default value is idsc:BASE_SECURITY_PROFILE
+                referringConnector:
+                  type: string
+                  format: uri
+                  description: URL of a connector with BPN at the end
+                file:
+                  type: string
+                  format: binary
+                  description: Certificate of a Connector in PEM format
+              required:
+                - clientName
+                - file
+      responses:
+        '201':
+          description: Created
+components:
+  securitySchemes:
+    bearerAuth: # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
+security:
+  - bearerAuth: []
