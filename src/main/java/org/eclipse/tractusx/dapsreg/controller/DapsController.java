@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 Catena-X
+ * Copyright (c) 2021,2022 T-Systems International GmbH
  * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,13 +18,13 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-package net.catenax.dapsreg.controller;
+package org.eclipse.tractusx.dapsreg.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import net.catenax.dapsreg.service.DapsClient;
-import net.catenax.dapsreg.service.DapsManager;
+import org.eclipse.tractusx.dapsreg.service.DapsClient;
+import org.eclipse.tractusx.dapsreg.service.DapsManager;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

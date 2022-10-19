@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 Catena-X
+ * Copyright (c) 2021,2022 T-Systems International GmbH
  * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-package net.catenax.dapsreg.service;
+package org.eclipse.tractusx.dapsreg.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -26,6 +26,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.SneakyThrows;
+import org.eclipse.tractusx.dapsreg.util.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import net.catenax.dapsreg.config.SecurityRoles;
 import net.catenax.dapsreg.util.JsonUtil;

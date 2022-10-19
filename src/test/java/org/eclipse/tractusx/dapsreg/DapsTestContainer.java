@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 Catena-X
+ * Copyright (c) 2021,2022 T-Systems International GmbH
  * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,10 +18,10 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-package net.catenax.dapsreg;
+package org.eclipse.tractusx.dapsreg;
 
 import lombok.RequiredArgsConstructor;
-import net.catenax.dapsreg.service.DapsClient;
+import org.eclipse.tractusx.dapsreg.service.DapsClient;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

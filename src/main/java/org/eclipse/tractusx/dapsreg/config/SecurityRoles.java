@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021,2022 Catena-X
+ * Copyright (c) 2021,2022 T-Systems International GmbH
  * Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -18,17 +18,18 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-package net.catenax.dapsreg;
+package org.eclipse.tractusx.dapsreg.config;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
 
-@SpringBootApplication(exclude = {SecurityAutoConfiguration.class })
-public class DapsregApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(DapsregApplication.class, args);
-	}
-
+@Configuration
+@ConfigurationProperties(prefix = "app.security")
+@Getter @Setter
+public class SecurityRoles {
+    private String createRole;
+    private String updateRole;
+    private String deleteRole;
 }
