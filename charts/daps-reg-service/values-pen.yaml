@@ -33,7 +33,18 @@ ingress:
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
-  
+
+
+# -- Pod resources requests and limits configuration
+resources:
+  limits:
+    cpu: 200m
+    memory: 300Mi
+  requests:
+    cpu: 200m
+    memory: 300Mi
+
+
 drs:
   secret:
     secretName: "secret-daps-reg-svc-pen"
