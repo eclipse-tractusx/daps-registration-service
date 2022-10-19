@@ -36,7 +36,7 @@ ingress:
 
 drs:
   secret:
-    secretName: "secret-daps-reg-svc-pen"
+    secretName: "secret-daps-reg-svc-test"
     clientId: "<path:essential-services/data/daps#clientId>"
     clientSecret: "<path:essential-services/data/daps#clientSecret>"
     authServerUrl: "<path:essential-services/data/daps-register-svc-pen#auth-server-url>"
