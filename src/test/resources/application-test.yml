@@ -25,6 +25,11 @@ keycloak:
   bearer-only: true
   use-resource-role-mappings: true
   principal-attribute: preferred_username
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    url: /DapsRegApi.yaml
 app:
   build:
     version: ^project.version^
@@ -33,7 +38,7 @@ app:
     tokenUri: http://localhost:4567/token
     clientId: example
     clientSecret: secret
-    imageName: my-omejdn-server:latest
+    imageName: ghcr.io/fraunhofer-aisec/omejdn-server:1.7.1
   security:
     createRole: create_daps_client
     updateRole: update_daps_client
