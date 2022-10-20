@@ -72,10 +72,15 @@ ingress:
       paths:
         - path: /
           pathType: ImplementationSpecific
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+  tls:
+    # -- If `true` daps will be exposed with https
+    enabled: false
+
+    certMgr:
+      # -- If `true` cert-manager will be used to issue a certificate with ingress.host CN name
+      enabled: false
+      # -- Cert-manager issuer name
+      issuer: "letsencrypt-prod"
 
 drs:
   secret:
