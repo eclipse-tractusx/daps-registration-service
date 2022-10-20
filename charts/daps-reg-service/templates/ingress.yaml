@@ -29,7 +29,7 @@ spec:
   tls:
     - hosts:
         - {{ .Values.ingress.host }}
-      secretName: "{{ include "daps-reg-service.fullname" . }}-tls"
+      secretName: "{{ .Values.ingress.host }}-tls"
   #tls:
   #  {{- range .Values.ingress.tls }}
   #  - hosts:
