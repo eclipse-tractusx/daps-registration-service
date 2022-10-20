@@ -83,7 +83,8 @@ ingress:
       issuer: "letsencrypt-prod"
 
 drs:
-  secret:
+  secret:    
+    secretName: ""
     clientId: ""
     clientSecret: ""
     authServerUrl: ""
