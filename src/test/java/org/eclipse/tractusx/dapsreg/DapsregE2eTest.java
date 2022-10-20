@@ -62,7 +62,7 @@ public class DapsregE2eTest {
     }
 
     @Test
-    @WithMockUser(username = "fulladmin", roles={"create_daps_client", "update_daps_client", "delete_daps_client"})
+    @WithMockUser(username = "fulladmin", roles={"create_daps_client", "update_daps_client", "delete_daps_client", "retrieve_daps_client"})
     public void createRetrieveChangeDeleteTest() throws Exception {
         String clientId = null;
         try (var pemStream = Resources.getResource("cx-preprod-edc-aws.crt").openStream()) {

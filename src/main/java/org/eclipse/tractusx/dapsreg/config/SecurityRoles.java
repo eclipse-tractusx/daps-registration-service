@@ -32,4 +32,5 @@ public class SecurityRoles {
     private String createRole;
     private String updateRole;
     private String deleteRole;
+    private String retrieveRole;
 }

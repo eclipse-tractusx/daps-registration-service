@@ -22,3 +22,4 @@ app:
     createRole: create_daps_client
     updateRole: update_daps_client
     deleteRole: delete_daps_client
+    retrieveRole: retrieve_daps_client

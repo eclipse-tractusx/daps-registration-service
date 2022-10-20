@@ -2,11 +2,14 @@ openapi: 3.0.3
 info:
   title: DAPS Registration Service API
   description: An admin interface to the Omeijdn DAPS Server
-  version: 0.0.0
+  version: 0.0.1
+servers:
+  - url: /api/v1
 paths:
-  /api/v1/daps:
+  /daps:
     post:
       summary: Creates a Client at DAPS
+      operationId: createClientPost
       security:
         - bearerAuth: []
       requestBody:
@@ -36,6 +39,66 @@ paths:
       responses:
         '201':
           description: Created
+
+  /daps/{client_id}:
+    get:
+      summary: Gets a client by ID.
+      operationId: getClientGet
+      security:
+        - bearerAuth: [ ]
+      parameters:
+        - name: client_id
+          in: path
+          description: Client ID
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Client details
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+    put:
+      summary: Updates a client by ID.
+      operationId: updateClientPut
+      security:
+        - bearerAuth: [ ]
+      parameters:
+        - name: client_id
+          in: path
+          description: Client ID
+          required: true
+          schema:
+            type: string
+        - name: newAttr
+          in: query
+          description: Attributes to add
+          required: true
+          schema:
+            type: object
+            additionalProperties:
+              type: string
+      responses:
+        '200':
+          description: Client updated
+    delete:
+      summary: Delete a client by ID.
+      operationId: deleteClientDelete
+      security:
+        - bearerAuth: [ ]
+      parameters:
+        - name: client_id
+          in: path
+          description: Client ID
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Client deleted
 components:
   securitySchemes:
     bearerAuth: # arbitrary name for the security scheme
