@@ -30,15 +30,7 @@ ingress:
         - path: /
           pathType: ImplementationSpecific
 
-  tls:
-    # -- If `true` daps will be exposed with https
-    enabled: true
-
-    certMgr:
-      # -- If `true` cert-manager will be used to issue a certificate with ingress.host CN name
-      enabled: true
-      # -- Cert-manager issuer name
-      issuer: "letsencrypt-prod"
+  tls {}:
 
 
 # -- Pod resources requests and limits configuration
