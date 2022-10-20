@@ -39,7 +39,7 @@ Other parameters are optional:
 - referringConnector: url of the Connector. By convention, we add BPN number at the
   end of the URL to keep reference to the BPN inside of DAT token
 
-## Example:
+## Example:#
 ```http request
 POST api/v1/daps?clientName=MyCompany HTTP/1.1
 Content-Type: multipart/form-data; boundary=---------------------------9051914041544843365972754266
