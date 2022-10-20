@@ -30,7 +30,7 @@ ingress:
         - path: /
           pathType: ImplementationSpecific
 
-  tls {}:
+  tls: []
 
 
 # -- Pod resources requests and limits configuration
