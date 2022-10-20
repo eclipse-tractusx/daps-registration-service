@@ -28,7 +28,7 @@ image:
   repository: "ghcr.io/catenax-ng/product-daps-registration-service/dapsreg" 
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "1.0.3"
+  tag: "1.0.4"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -72,13 +72,19 @@ ingress:
       paths:
         - path: /
           pathType: ImplementationSpecific
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+  tls:
+    # -- If `true` daps will be exposed with https
+    enabled: false
+
+    certMgr:
+      # -- If `true` cert-manager will be used to issue a certificate with ingress.host CN name
+      enabled: false
+      # -- Cert-manager issuer name
+      issuer: "letsencrypt-prod"
 
 drs:
-  secret:
+  secret:    
+    secretName: ""
     clientId: ""
     clientSecret: ""
     authServerUrl: ""
