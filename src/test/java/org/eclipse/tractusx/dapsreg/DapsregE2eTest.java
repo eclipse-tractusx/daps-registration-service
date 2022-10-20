@@ -45,7 +45,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @TestPropertySource(properties = {"spring.config.location=classpath:application-test.yml"})
-public class DapsregE2eTest {
+class DapsregE2eTest {
     @Autowired
     private DapsTestContainer dapsTestContainer;
     @Autowired
@@ -63,7 +63,7 @@ public class DapsregE2eTest {
 
     @Test
     @WithMockUser(username = "fulladmin", roles={"create_daps_client", "update_daps_client", "delete_daps_client", "retrieve_daps_client"})
-    public void createRetrieveChangeDeleteTest() throws Exception {
+    void createRetrieveChangeDeleteTest() throws Exception {
         String clientId = null;
         try (var pemStream = Resources.getResource("cx-preprod-edc-aws.crt").openStream()) {
             var pem = new String(pemStream.readAllBytes());

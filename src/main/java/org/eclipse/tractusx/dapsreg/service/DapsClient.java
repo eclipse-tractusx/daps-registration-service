@@ -26,11 +26,10 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.SneakyThrows;
-import org.eclipse.tractusx.dapsreg.config.SecurityRoles;
 import org.eclipse.tractusx.dapsreg.util.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
@@ -38,7 +37,6 @@ import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.util.UriBuilder;
 
-import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.security.cert.X509Certificate;
 import java.time.Instant;
@@ -52,7 +50,8 @@ import static java.util.Objects.isNull;
 @Slf4j
 public class DapsClient {
 
-    private final static long refreshGap = 100L;
+    private static final long REFRESH_GAP = 100L;
+    private static final String PATH = "config/clients";
 
     @Value("${app.daps.apiUri}")
     @Setter
@@ -67,32 +66,23 @@ public class DapsClient {
 
     private String dapsAdminToken = null;
 
-
     private final JsonUtil jsonUtil;
     private final ObjectMapper mapper;
-
-    @Value("${keycloak.resource}")
-    private String resource;
-    @Autowired
-    private SecurityRoles securityRoles;
-    @PostConstruct
-    public void init() {
-        log.info("In init DapsClient {}, {}, {}, {}", adminClientId, adminClientSecret, dapsTokenUri, dapsApiUri);
-        log.info("Roless {},{},{}", securityRoles.getCreateRole(), securityRoles.getDeleteRole(),securityRoles.getUpdateRole());
-        log.info("Resource {}", resource);
-    }
-
 
     @SneakyThrows
     public String getDapsAdminToken() {
         if (!isNull(dapsAdminToken)) {
             var json = mapper.readValue(Base64.getDecoder().decode(dapsAdminToken.split("\\.")[1]), ObjectNode.class);
-            if (json.get("exp").asLong() - Instant.now().getEpochSecond() > refreshGap){
+            if (json.get("exp").asLong() - Instant.now().getEpochSecond() > REFRESH_GAP){
                 return dapsAdminToken;
             }
         }
         dapsAdminToken = fetchDapsAdminToken();
         return dapsAdminToken;
+    }
+
+    private void headersSetter(HttpHeaders headers) {
+        headers.add("Authorization", "Bearer ".concat(getDapsAdminToken()));
     }
 
     public String fetchDapsAdminToken() {
@@ -110,8 +100,8 @@ public class DapsClient {
 
     public HttpStatus createClient(JsonNode json) {
         return WebClient.create(dapsApiUri).post()
-                .uri(uriBuilder -> uriBuilder.pathSegment("config", "clients").build())
-                .header("Authorization", "Bearer ".concat(getDapsAdminToken()))
+                .uri(uriBuilder -> uriBuilder.pathSegment(PATH).build())
+                .headers(this::headersSetter)
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(json)
                 .retrieve()
@@ -121,8 +111,8 @@ public class DapsClient {
 
     public HttpStatus updateClient(JsonNode json, String clientId) {
         return WebClient.create(dapsApiUri).put()
-                .uri(uriBuilder -> uriBuilder.pathSegment("config", "clients", clientId).build())
-                .header("Authorization", "Bearer ".concat(getDapsAdminToken()))
+                .uri(uriBuilder -> uriBuilder.pathSegment(PATH, clientId).build())
+                .headers(this::headersSetter)
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(json)
                 .retrieve()
@@ -132,8 +122,8 @@ public class DapsClient {
 
     public JsonNode getClient(String clientId) {
         return WebClient.create(dapsApiUri).get()
-                .uri(uriBuilder -> uriBuilder.pathSegment("config", "clients", clientId).build())
-                .header("Authorization", "Bearer ".concat(getDapsAdminToken()))
+                .uri(uriBuilder -> uriBuilder.pathSegment(PATH, clientId).build())
+                .headers(this::headersSetter)
                 .accept(MediaType.APPLICATION_JSON)
                 .retrieve()
                 .bodyToMono(JsonNode.class)
@@ -141,17 +131,17 @@ public class DapsClient {
     }
 
     public HttpStatus deleteClient(String clientId) {
-        return deleteSomething(uriBuilder -> uriBuilder.pathSegment("config", "clients", clientId));
+        return deleteSomething(uriBuilder -> uriBuilder.pathSegment(PATH, clientId));
     }
 
     public HttpStatus deleteCert(String clientId) {
-        return deleteSomething(uriBuilder -> uriBuilder.pathSegment("config", "clients", clientId, "keys"));
+        return deleteSomething(uriBuilder -> uriBuilder.pathSegment(PATH, clientId, "keys"));
     }
 
     private HttpStatus deleteSomething(UnaryOperator<UriBuilder> pathBuilder) {
         return WebClient.create(dapsApiUri).delete()
                 .uri(pathBuilder.andThen(UriBuilder::build))
-                .header("Authorization", "Bearer ".concat(getDapsAdminToken()))
+                .headers(this::headersSetter)
                 .retrieve()
                 .toBodilessEntity()
                 .blockOptional().orElseThrow().getStatusCode();
@@ -160,8 +150,8 @@ public class DapsClient {
     public HttpStatus uploadCert(X509Certificate certificate, String clientId) throws IOException {
         var body = jsonUtil.getCertificateJson(certificate);
         return WebClient.create(dapsApiUri).post()
-                .uri(uriBuilder -> uriBuilder.pathSegment("config", "clients", "{client_id}", "keys").build(clientId))
-                .header("Authorization", "Bearer ".concat(getDapsAdminToken()))
+                .uri(uriBuilder -> uriBuilder.pathSegment(PATH, "{client_id}", "keys").build(clientId))
+                .headers(this::headersSetter)
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(body)
                 .retrieve()

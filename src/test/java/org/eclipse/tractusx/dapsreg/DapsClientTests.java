@@ -30,18 +30,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @TestPropertySource(properties = {"spring.config.location=classpath:application-test.yml"})
-public class DapsClientTests {
+class DapsClientTests {
     @Autowired
     private DapsClient dapsClient;
     @Autowired
     private DapsTestContainer dapsTestContainer;
 
     @Test
-    public void getAdminTokenTest() {
+    void getAdminTokenTest() {
         var adminToken = dapsClient.getDapsAdminToken();
-        assertThat(adminToken).isNotNull();
-        assertThat(adminToken).isEqualTo(dapsClient.getDapsAdminToken());
-        assertThat(adminToken).isNotEqualTo(dapsClient.fetchDapsAdminToken());
+        assertThat(adminToken).isNotNull()
+                .isEqualTo(dapsClient.getDapsAdminToken())
+                .isNotEqualTo(dapsClient.fetchDapsAdminToken());
     }
 
 }

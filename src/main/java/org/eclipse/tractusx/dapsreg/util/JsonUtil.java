@@ -38,6 +38,8 @@ import java.util.function.Predicate;
 @RequiredArgsConstructor
 public class JsonUtil {
     private final ObjectMapper mapper;
+    private static final String KEY = "key";
+    private static final String VALUE = "value";
 
     public JsonNode getCertificateJson(X509Certificate x509Certificate) throws IOException {
         return mapper.createObjectNode().put("certificate", Certutil.getCertificate(x509Certificate));
@@ -59,21 +61,21 @@ public class JsonUtil {
         objectNode.putArray("grant_types").add("client_credentials");
         var attr =  objectNode.putArray("attributes");
         attr.addObject()
-                .put("key", "idsc")
-                .put("value", "IDS_CONNECTOR_ATTRIBUTES_ALL");
+                .put(KEY, "idsc")
+                .put(VALUE, "IDS_CONNECTOR_ATTRIBUTES_ALL");
         attr.addObject()
-                .put("key", "@type")
-                .put("value", "ids:DatPayload");
+                .put(KEY, "@type")
+                .put(VALUE, "ids:DatPayload");
         attr.addObject()
-                .put("key", "@context")
-                .put("value", "https://w3id.org/idsa/contexts/context.jsonld");
+                .put(KEY, "@context")
+                .put(VALUE, "https://w3id.org/idsa/contexts/context.jsonld");
         attr.addObject()
-                .put("key", "securityProfile")
-                .put("value", Optional.ofNullable(securityProfile).orElse("idsc:BASE_SECURITY_PROFILE"));
+                .put(KEY, "securityProfile")
+                .put(VALUE, Optional.ofNullable(securityProfile).orElse("idsc:BASE_SECURITY_PROFILE"));
         if (!Objects.isNull(referringConnector)) {
             attr.addObject()
-                    .put("key", "referringConnector")
-                    .put("value", referringConnector);
+                    .put(KEY, "referringConnector")
+                    .put(VALUE, referringConnector);
         }
 
         return objectNode;
