@@ -42,9 +42,6 @@ ingress:
       # -- Cert-manager issuer name
       issuer: "letsencrypt-prod"
 
-service:
-  type: ClusterIP
-  port: 8080
 
 # -- Pod resources requests and limits configuration
 resources:
