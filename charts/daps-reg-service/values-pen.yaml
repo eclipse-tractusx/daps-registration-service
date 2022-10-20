@@ -21,6 +21,7 @@
 ingress:
   enabled: true
   className: ""
+  host: drs-pen.int.demo.catena-x.net
   annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
