@@ -30,16 +30,9 @@ ingress:
         - path: /
           pathType: ImplementationSpecific
 
-  #tls: []    
-  tls: 
-     enabled: true    
-     secretName: ""
-      # -- If present overwrites the default secret name
-    certManager:
-      # -- If preset enables certificate generation via cert-manager namespace scoped issuer
-      #issuer: ""
-      # -- If preset enables certificate generation via cert-manager cluster-wide issuer
-      clusterIssuer: "letsencrypt-prod
+  tls:
+    enabled: true
+
 
 # -- Pod resources requests and limits configuration
 resources:
