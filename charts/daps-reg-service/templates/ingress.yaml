@@ -30,7 +30,6 @@ spec:
     - hosts:
         - {{ .Values.ingress.host }}
       secretName: "{{ include "daps-reg-service.fullname" . }}-tls"
-  #{{- if .Values.ingress.tls }}
   #tls:
   #  {{- range .Values.ingress.tls }}
   #  - hosts:
@@ -39,7 +38,6 @@ spec:
   #      {{- end }}
   #    secretName: {{ .secretName }}
   #  {{- end }}
-  #{{- end }}
   rules:
     {{- range .Values.ingress.hosts }}
     - host: {{ .host | quote }}
