@@ -19,18 +19,19 @@
 ################################################################################
 
 ingress:
-  # -- If set to `true`, DAPS will be exposed with ingress controller at http(s)://(ingress.host)/(ingress.pathPrefix)
   enabled: true
-  # -- Additional ingress annotations
+  className: ""
+  host: drs-pen.int.demo.catena-x.net
   annotations: {}
-  #  kubernetes.io/ingress.class: nginx
-  #  kubernetes.io/tls-acme: "true"
-  # -- Ingress host name
-  host: drs.beta.demo.catena-x.net
-  # -- Path prefix to be added to DAPS URI. Regex can be used
-  pathPrefix: "/"
-  # -- Root prefix without regex rules that used to configure daps host name in configuration
-  rootPath: "/"
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: drs-pen.int.demo.catena-x.net
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+
+  #tls: []
   tls:
     # -- If `true` daps will be exposed with https
     enabled: true
@@ -40,28 +41,17 @@ ingress:
       enabled: true
       # -- Cert-manager issuer name
       issuer: "letsencrypt-prod"
-      
-#ingress:
-#  enabled: true
-#  className: ""
-#  annotations: {}
-#    # kubernetes.io/ingress.class: nginx
-#    # kubernetes.io/tls-acme: "true"
-#  hosts:
-#    - host: drs.beta.demo.catena-x.net
-#      paths:
-#        - path: /
-#          pathType: ImplementationSpecific
-#  #tls: []
-#  tls:
-#    # -- If `true` daps will be exposed with https
-#    enabled: true
-#    certMgr:
-#      # -- If `true` cert-manager will be used to issue a certificate with ingress.host CN name
-#      enabled: true
-#      # -- Cert-manager issuer name
-#      issuer: "letsencrypt-prod"
-  
+
+
+# -- Pod resources requests and limits configuration
+resources:
+  limits:
+    cpu: 200m
+    memory: 300Mi
+  requests:
+    cpu: 200m
+    memory: 300Mi
+
 drs:
   secret:
     secretName: "secret-daps-reg-svc-beta"
@@ -74,14 +64,3 @@ drs:
     tokenUri: "<path:essential-services/data/daps-register-svc-beta#tokenUri>"
     
   
-resources:
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  limits:
-    cpu: 400m
-     memory: 512Mi
-  requests:
-    cpu: 400m
-    memory: 512Mi
