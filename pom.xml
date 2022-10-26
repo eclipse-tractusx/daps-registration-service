@@ -10,11 +10,11 @@
 	</parent>
 	<groupId>org.eclipse.tractusx</groupId>
 	<artifactId>dapsreg</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.4-SNAPSHOT</version>
 	<name>dapsreg</name>
 	<description>client registration to the DAPS</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 		<resource.delimiter>^</resource.delimiter>
 	</properties>
 	<dependencies>
@@ -81,13 +81,13 @@
 		<dependency>
 			<groupId>org.testcontainers</groupId>
 			<artifactId>junit-jupiter</artifactId>
-			<version>1.17.4</version>
+			<version>1.17.5</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.testcontainers</groupId>
 			<artifactId>testcontainers</artifactId>
-			<version>1.17.4</version>
+			<version>1.17.5</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -160,8 +160,8 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>17</source>
-					<target>17</target>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
 					<debug>true</debug>
 					<debuglevel>lines,vars,source</debuglevel>
 				</configuration>
