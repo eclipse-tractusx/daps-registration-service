@@ -38,7 +38,7 @@ app:
     tokenUri: http://localhost:4567/token
     clientId: example
     clientSecret: secret
-    imageName: ghcr.io/fraunhofer-aisec/omejdn-server:1.7.1
+    imageName: ghcr.io/fraunhofer-aisec/omejdn-server:1.7.1@sha256:e0f27a15229ef0dc50d3199b212fb891b2b1a011f0fbd34a720897504f2d76e9
   security:
     createRole: create_daps_client
     updateRole: update_daps_client
