@@ -121,3 +121,24 @@ java -jar target/dapsreg-0.0.1-SNAPSHOT.jar
 ```
 Please note the name of jar-file as it may differ if version is changed.
 
+
+## Installation Steps:-
+
+Helm charts are provided inside https://github.com/catenax-ng/product-daps-registration-service
+
+There are diffrent ways to do the installation.
+
+
+1. Using helm commands:-  
+
+    a.) git clone https://github.com/catenax-ng/product-daps-registration-service.git  <br />
+    b.) Modify values file according to your requirement.  <br />
+    c.) Deploy in a kubernetes cluster  <br />
+        helm install daps-reg-svc charts/daps-reg-service/ -n NameSpace  <br />
+
+2. Using ArgoCD. 
+
+To see how to deploy an application on 'Hotel Budapest': 
+[How to deploy](https://catenax-ng.github.io/docs/guides/how-to-deploy-an-application)
+
+- - -
