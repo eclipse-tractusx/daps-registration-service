@@ -9,5 +9,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 - Moved helm charts from `deployment/helm` to `charts`
 
-## [1.0.1] - 2022-09-09
-Created new helm charts for DAPS registration service
+## [1.0.4] - 2022-10-21
+- Created new helm charts for DAPS registration service
+
+### Added
+- Registration in DAPS
+- Adding BPN number in DAT token
+- Provide CRUD operations to EDC connnector registration to the DAPS
+
+### Changed
+- Generate the controller from the openAPI description
+- Update all the used libraries to the latest version
+
+### Removed
+- Controller has been removed
+
+### Known knowns
+- Cross side scripting (XSS) shall be mitigated (low risk)
+- Improving the validation of the input parameters (low risk)
