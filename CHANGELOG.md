@@ -5,9 +5,6 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 
-### Changed
-- Moved helm charts from `deployment/helm` to `charts`
-
 ## [2.0.0] - 2022-11-09
 - Created new helm charts for DAPS registration service
 - The latest version for daps registration service is 2.0.0
@@ -22,6 +19,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Generate the controller from the openAPI description
 - Update all the used libraries to the latest version
 - All smells from SonarQube were fixed
+- Moved helm charts from `deployment/helm` to `charts`
 
 ### Removed
 - Controller has been removed
