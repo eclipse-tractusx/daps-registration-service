@@ -5,9 +5,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 
-## [2.0.0] - 2022-11-09
+## [1.0.4] - 2022-11-09
 - Created new helm charts for DAPS registration service
-- The latest version for daps registration service is 2.0.0
+- The latest version for daps registration service is 1.0.4
 
 ### Added
 - Registration in DAPS
