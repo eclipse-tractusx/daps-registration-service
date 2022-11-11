@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: DAPS Registration Service API
   description: An admin interface to the Omeijdn DAPS Server
-  version: 2.0.0
+  version: 1.0.4
 servers:
   - url: /api/v1
 paths:
