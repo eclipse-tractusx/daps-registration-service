@@ -28,7 +28,7 @@ spec:
         - {{ .Values.ingress.host }}
       secretName: "{{ include "daps-reg-service.fullname" . }}-tls"
   {{- end }}
-  ingressClassName: nginx
+  ingressClassName: {{ .Values.ingress.className }}
   rules:
   - host: {{ .Values.ingress.host }}
     http:
