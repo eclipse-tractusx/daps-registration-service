@@ -30,7 +30,7 @@ spec:
   {{- end }}
   ingressClassName: {{ .Values.ingress.className }}
   rules:
-  - host: {{ .Values.ingress.host }}
+  - host: {{ .Values.ingress.tls.host }}
     http:
       paths:
       - path: {{ default "/" .Values.ingress.pathPrefix | quote }}
