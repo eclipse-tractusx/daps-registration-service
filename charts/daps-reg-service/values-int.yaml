@@ -20,7 +20,7 @@
 
 ingress:
   enabled: true
-  className: ""
+  className: "nginx"
   host: drs.int.demo.catena-x.net
   annotations: {}
     # kubernetes.io/ingress.class: nginx
