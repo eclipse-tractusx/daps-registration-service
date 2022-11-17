@@ -23,6 +23,7 @@
 ingress:
   # -- If set to `true`, DAPS will be exposed with ingress controller at http(s)://(ingress.host)/(ingress.pathPrefix)
   enabled: true
+  className: "nginx"
   # -- Additional ingress annotations
   annotations: {}
   #  kubernetes.io/ingress.class: nginx
