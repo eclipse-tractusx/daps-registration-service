@@ -86,8 +86,8 @@ ingress:
   #    issuer: "letsencrypt-prod"
   tls:
     enabled: false
-    - secretName: tls-secret
-      hosts: ""
+    secretName: tls-secret
+    hosts: ""
 
 drs:
   secret:    
