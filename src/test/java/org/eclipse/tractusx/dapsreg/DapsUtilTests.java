@@ -54,11 +54,11 @@ class DapsUtilTests {
 
 	@Test
 	void utilTest() throws IOException, CertificateException {
-		try (var pemStream = Resources.getResource("cx-preprod-edc-aws.crt").openStream()) {
+		try (var pemStream = Resources.getResource("test.crt").openStream()) {
 			var pem = new String(pemStream.readAllBytes());
 			var cert = Certutil.loadCertificate(pem);
 			var clientId = Certutil.getClientId(cert);
-			assertThat(clientId).isEqualTo("A0:BE:B6:A7:BD:E1:AD:06:51:9B:D1:30:11:BD:B0:27:DB:1F:08:44:keyid:A0:BE:B6:A7:BD:E1:AD:06:51:9B:D1:30:11:BD:B0:27:DB:1F:08:44");
+			assertThat(clientId).isEqualTo("65:FA:DE:C2:6A:58:98:D8:EA:FC:70:27:76:A0:75:D5:A1:C4:89:F9:keyid:65:FA:DE:C2:6A:58:98:D8:EA:FC:70:27:76:A0:75:D5:A1:C4:89:F9");
 			var certPem = Certutil.getCertificate(cert);
 			System.out.println(certPem);
 			var certJson = jsonUtil.getCertificateJson(cert);
