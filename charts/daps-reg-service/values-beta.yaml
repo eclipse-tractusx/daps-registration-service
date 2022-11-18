@@ -47,8 +47,8 @@ ingress:
   enabled: true
   # -- Additional ingress annotations
   annotations: {}
-  #  kubernetes.io/ingress.class: nginx
-  #  kubernetes.io/tls-acme: "true"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
   # -- Ingress host name
   host: drs.beta.demo.catena-x.net
   # -- Path prefix to be added to DAPS URI. Regex can be used
@@ -56,14 +56,15 @@ ingress:
   # -- Root prefix without regex rules that used to configure daps host name in configuration
   rootPath: "/"
   tls:
-    # -- If `true` daps will be exposed with https
     enabled: true
-
-    certMgr:
+    secretName: tls-secret
+    host: "drs.beta.demo.catena-x.net"
+ 
+    #certMgr:
       # -- If `true` cert-manager will be used to issue a certificate with ingress.host CN name
-      enabled: true
+      #enabled: true
       # -- Cert-manager issuer name
-      issuer: "letsencrypt-prod"
+      #issuer: "letsencrypt-prod"
 # -- Pod resources requests and limits configuration
 resources:
   limits:
