@@ -20,28 +20,35 @@
 
 ingress:
   enabled: true
+  annotations:
+    #kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
   className: "nginx"
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
+  host: "drs1.int.demo.catena-x.net"
   hosts:
-    - host: drs.int.demo.catena-x.net
+    - host: drs1.int.demo.catena-x.net
       paths:
         - path: /
           pathType: ImplementationSpecific
-  tls: []
+  #tls: []
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
-  
+  tls:
+    enabled: true
+    secretName: tls-secret
+    host: "drs1.int.demo.catena-x.net"
+      
 drs:
   secret:
     secretName: "secret-daps-reg-svc"
     clientId: "<path:essential-services/data/daps#clientId>"
     clientSecret: "<path:essential-services/data/daps#clientSecret>"
-    #authServerUrl: "<path:essential-services/data/daps-register-svc#auth-server-url>"
-    #realm: "<path:essential-services/data/daps-register-svc#realm>"
-    #resource: "<path:essential-services/data/daps-register-svc#resource>"
-    #apiUri: "<path:essential-services/data/daps-register-svc#apiUri>"
-    #tokenUri: "<path:essential-services/data/daps-register-svc#tokenUri>"
+    authServerUrl: "<path:essential-services/data/daps-register-svc#auth-server-url>"
+    realm: "<path:essential-services/data/daps-register-svc#realm>"
+    resource: "<path:essential-services/data/daps-register-svc#resource>"
+    apiUri: "<path:essential-services/data/daps-register-svc#apiUri>"
+    tokenUri: "<path:essential-services/data/daps-register-svc#tokenUri>"
+
 
