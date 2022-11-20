@@ -64,23 +64,19 @@ service:
 ingress:
   enabled: false
   className: ""
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
+  annotations:
+    #kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
   hosts:
     - host: ""
       paths:
         - path: /
           pathType: ImplementationSpecific
   tls:
-    # -- If `true` daps will be exposed with https
     enabled: false
-
-    certMgr:
-      # -- If `true` cert-manager will be used to issue a certificate with ingress.host CN name
-      enabled: false
-      # -- Cert-manager issuer name
-      issuer: "letsencrypt-prod"
+    secretName: tls-secret
+    hosts: ""
 
 drs:
   secret:    
