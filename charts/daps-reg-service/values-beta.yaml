@@ -18,21 +18,20 @@
 # SPDX-License-Identifier: Apache-2.0
 ################################################################################
 
-
 ingress:
-  # -- If set to `true`, DAPS will be exposed with ingress controller at http(s)://(ingress.host)/(ingress.pathPrefix)
   enabled: true
-  className: "nginx"
-  # -- Additional ingress annotations
-  annotations: {}
+  annotations:
+    #kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/use-regex: "true"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
-  # -- Ingress host name
-  host: drs.beta.demo.catena-x.net
-  # -- Path prefix to be added to DAPS URI. Regex can be used
-  pathPrefix: "/"
-  # -- Root prefix without regex rules that used to configure daps host name in configuration
-  rootPath: "/"
+  className: "nginx"
+  host: "drs.beta.demo.catena-x.net"
+  hosts:
+    - host: drs.beta.demo.catena-x.net
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+
   tls:
     enabled: true
     secretName: tls-secret
