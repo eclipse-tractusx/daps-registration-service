@@ -15,22 +15,20 @@ metadata:
   name: {{ $fullName }}
   labels:
     {{- include "daps-reg-service.labels" . | nindent 4 }}
+  {{- with .Values.ingress.annotations }}
   annotations:
-    # nginx.ingress.kubernetes.io/rewrite-target: /$2
-    nginx.ingress.kubernetes.io/use-regex: "true"
-    {{- if .Values.ingress.tls.certMgr.enabled }}
-    cert-manager.io/cluster-issuer: {{ .Values.ingress.tls.certMgr.issuer }}
-    {{- end }}
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
   {{- if .Values.ingress.tls.enabled }}
   tls:
     - hosts:
-        - {{ .Values.ingress.host }}
+        - {{ .Values.ingress.tls.host }}
       secretName: "{{ include "daps-reg-service.fullname" . }}-tls"
   {{- end }}
   ingressClassName: {{ .Values.ingress.className }}
   rules:
-  - host: {{ .Values.ingress.host }}
+  - host: {{ .Values.ingress.tls.host }}
     http:
       paths:
       - path: {{ default "/" .Values.ingress.pathPrefix | quote }}
