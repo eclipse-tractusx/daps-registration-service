@@ -128,26 +128,25 @@ Helm charts are provided inside https://github.com/catenax-ng/product-daps-regis
 
 There are diffrent ways to do the installation.
 
-
 1. Using helm commands:-  
 
     a.) git clone https://github.com/catenax-ng/product-daps-registration-service.git  <br />
     b.) Modify values file according to your requirement.  <br />
     c.) You need to define the secrets as well in values.yaml
-        secret:    
-          secretName: ""
-          clientId: ""
-          clientSecret: ""
-          authServerUrl: ""
-          realm: ""
-          resource: ""
-          apiUri: ""
-          tokenUri: ""
+        secret:     
+          secretName:   -> Name of the secret  <br />
+          clientId:  -> Client id for DAPS.   
+          clientSecret:   -> Client id for DAPS  <br />
+          authServerUrl:   -> Auth URL for keycloak. <br />
+          realm:   -> Realm for keycloak    <br />
+          resource:   -> Realm for keycloak.   <br />
+          apiUri:  ->   DAPS API URL.  
+          tokenUri:   -> DAPS token URL. 
 
-    d.) These secrets should be defined in Hashicorp vault
+    d.) These secrets should be defined in Hashicorp vault. <br />
     e.) Deploy in a kubernetes cluster  <br />
-  
         helm install daps-reg-svc charts/daps-reg-service/ -n NameSpace  <br />
+
 
 2. Using ArgoCD. 
 
