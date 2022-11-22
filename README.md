@@ -139,7 +139,7 @@ There are diffrent ways to do the installation.
           clientSecret:   -> Client id for DAPS  <br />
           authServerUrl:   -> Auth URL for keycloak. <br />
           realm:   -> Realm for keycloak    <br />
-          resource:   -> Realm for keycloak.   <br />
+          resource:   -> Resource for keycloak.   <br />
           apiUri:  ->   DAPS API URL.  
           tokenUri:   -> DAPS token URL. 
 
