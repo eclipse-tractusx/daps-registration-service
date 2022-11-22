@@ -79,8 +79,7 @@ ingress:
     hosts: ""
 
 drs:
-  secret:    
-    secretName: ""
+  secret:
     clientId: ""
     clientSecret: ""
     authServerUrl: ""

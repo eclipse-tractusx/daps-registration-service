@@ -49,7 +49,6 @@ resources:
     
 drs:
   secret:
-    secretName: "secret-daps-reg-svc"
     clientId: "<path:essential-services/data/daps#clientId>"
     clientSecret: "<path:essential-services/data/daps#clientSecret>"
     authServerUrl: "<path:essential-services/data/daps-register-svc#auth-server-url>"
