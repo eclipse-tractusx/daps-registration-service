@@ -135,12 +135,12 @@ There are diffrent ways to do the installation.
     b.) Modify values file according to your requirement.  <br />
     c.) You need to define the secrets as well in values.yaml
         secret:     
-          secretName:   -> Name of the secret  
-          clientId:  -> Client id for DAPS. 
-          clientSecret:   -> Client id for DAPS. 
-          authServerUrl:   -> Auth URL for keycloak. 
-          realm:   -> Realm for keycloak    
-          resource:   -> Realm for keycloak.  
+          secretName:   -> Name of the secret  <br />
+          clientId:  -> Client id for DAPS.   
+          clientSecret:   -> Client id for DAPS  <br />
+          authServerUrl:   -> Auth URL for keycloak. <br />
+          realm:   -> Realm for keycloak    <br />
+          resource:   -> Realm for keycloak.   <br />
           apiUri:  ->   DAPS API URL.  
           tokenUri:   -> DAPS token URL. 
 
