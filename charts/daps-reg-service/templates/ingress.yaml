@@ -24,7 +24,8 @@ spec:
   tls:
     - hosts:
         - {{ .Values.ingress.tls.host }}
-      secretName: "{{ include "daps-reg-service.fullname" . }}-tls"
+      #secretName: "{{ include "daps-reg-service.fullname" . }}-tls"
+      secretName: "{{ .Values.ingress.tls.secretName }}"
   {{- end }}
   ingressClassName: {{ .Values.ingress.className }}
   rules:
