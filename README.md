@@ -134,8 +134,8 @@ There are diffrent ways to do the installation.
     a.) git clone https://github.com/catenax-ng/product-daps-registration-service.git  <br />
     b.) Modify values file according to your requirement.  <br />
     c.) You need to define the secrets as well in values.yaml
-        secret:    
-          secretName:   -> Name of the secret. 
+        secret:     
+          secretName:   -> Name of the secret.    
           clientId:  -> Client id for DAPS. 
           clientSecret:   -> Client id for DAPS. 
           authServerUrl:   -> Auth URL for keycloak. 
