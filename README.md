@@ -144,7 +144,7 @@ There are diffrent ways to do the installation.
           apiUri:  ->   DAPS API URL.  
           tokenUri:   -> DAPS token URL. 
 
-    d.) These secrets should be defined in Hashicorp vault
+    d.) These secrets should be defined in Hashicorp vault. <br />
     e.) Deploy in a kubernetes cluster  <br />
         helm install daps-reg-svc charts/daps-reg-service/ -n NameSpace  <br />
 
