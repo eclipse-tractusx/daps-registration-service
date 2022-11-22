@@ -135,14 +135,15 @@ There are diffrent ways to do the installation.
     b.) Modify values file according to your requirement.  <br />
     c.) You need to define the secrets as well in values.yaml
         secret:    
-          secretName: ""
-          clientId: ""
-          clientSecret: ""
-          authServerUrl: ""
-          realm: ""
-          resource: ""
-          apiUri: ""
-          tokenUri: ""
+          secretName: ""   -> Name of the secret
+          
+          clientId:  -> Client id for DAPS. 
+          clientSecret:   -> Client id for DAPS. 
+          authServerUrl:   -> Auth URL for keycloak. 
+          realm:   -> Realm for keycloak    
+          resource:   -> Realm for keycloak.  
+          apiUri:    DAPS API URL.  
+          tokenUri:   -> DAPS token URL. 
 
     d.) These secrets should be defined in Hashicorp vault
     e.) Deploy in a kubernetes cluster  <br />
