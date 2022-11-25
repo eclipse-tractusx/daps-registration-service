@@ -41,7 +41,7 @@ spec:
           - name: APP_DAPS_CLIENTID
             valueFrom: 
               secretKeyRef:
-                name: {{ .Values.drs.secret.secretName }}
+                name: {{ include "daps-reg-service.fullname" . }}
                 key: ClientID
           - name: APP_DAPS_CLIENTSECRET
             valueFrom: 
