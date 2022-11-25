@@ -51,6 +51,13 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
+Create name of application secret
+*/}}
+{{- define "daps-reg-service.name" -}}
+{{- printf "%s-application" (include "daps-reg-service.fullname" .) }}
+{{- end }}
+
+{{/*
 Create the name of the service account to use
 */}}
 {{- define "daps-reg-service.serviceAccountName" -}}
