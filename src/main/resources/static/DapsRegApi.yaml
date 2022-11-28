@@ -35,6 +35,7 @@ paths:
                   description: Certificate of a Connector in PEM format
               required:
                 - clientName
+                - referringConnector
                 - file
       responses:
         '201':
