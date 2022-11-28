@@ -41,37 +41,37 @@ spec:
           - name: APP_DAPS_CLIENTID
             valueFrom: 
               secretKeyRef:
-                name: {{ .Values.drs.secret.secretName }}
+                name: {{ include "daps-reg-service.applicationSecret.name" . }}
                 key: ClientID
           - name: APP_DAPS_CLIENTSECRET
             valueFrom: 
               secretKeyRef:
-                name: {{ .Values.drs.secret.secretName }}
+                name: {{ include "daps-reg-service.applicationSecret.name" . }}
                 key: ClientSecret
           - name: KEYCLOAK_AUTH-SERVER-URL
             valueFrom: 
               secretKeyRef:
-                name: {{ .Values.drs.secret.secretName }}
+                name: {{ include "daps-reg-service.applicationSecret.name" . }}
                 key: authServerUrl
           - name: KEYCLOAK_REALM
             valueFrom: 
               secretKeyRef:
-                name: {{ .Values.drs.secret.secretName }}
+                name: {{ include "daps-reg-service.applicationSecret.name" . }}
                 key: realm
           - name: KEYCLOAK_RESOURCE
             valueFrom: 
               secretKeyRef:
-                name: {{ .Values.drs.secret.secretName }}
+                name: {{ include "daps-reg-service.applicationSecret.name" . }}
                 key: resource
           - name: APP_DAPS_APIURI
             valueFrom: 
               secretKeyRef:
-                name: {{ .Values.drs.secret.secretName }}
+                name: {{ include "daps-reg-service.applicationSecret.name" . }}
                 key: apiUri
           - name: APP_DAPS_TOKENURI
             valueFrom: 
               secretKeyRef:
-                name: {{ .Values.drs.secret.secretName }}
+                name: {{ include "daps-reg-service.applicationSecret.name" . }}
                 key: tokenUri
           #livenessProbe:
           #  httpGet:

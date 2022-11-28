@@ -60,13 +60,13 @@ java -jar dapsreg-0.0.1-SNAPSHOT.jar --spring.config.location=file:./custom-conf
 ```
 Here application.yaml will be searched in custom-config dir.
 
-## Self-Description Factory Property file
-An example of `application.yaml` for SD-Factory is given bellow:
+## DAPS Registration service Property file
+An example of `application.yaml` for Daps registration service is given bellow:
 ```yaml
 keycloak:
-  auth-server-url: https://keycloak.cx.dih-cloud.com
-  realm: orchestrator
-  resource: orchestratorservice
+  auth-server-url: https://centralidp.demo.catena-x.net/auth
+  realm: CX-Central
+  resource: Cl2-CX-Portal
   bearer-only: true
   use-resource-role-mappings: true
   principal-attribute: preferred_username
@@ -102,10 +102,10 @@ clients at DAPS side.
 
 
 # Building
-SD-Factory use Maven for building process. To build a service from sources one
+Daps registration service use Maven for building process. To build a service from sources one
 need to go to the project directory and trigger building process:
 ```shell
-cd SDFactory
+cd tx-daps-registration-service
 ./mvnw clean install
 ```
 Please note, the test process uses Docker for performing the tests. 
@@ -117,7 +117,7 @@ of the test configuration file (`application-test.yml`) located at
 Then fat jar file can be found in `target` folder as well as in local Maven repository.
 it can be run with this command:
 ```shell
-java -jar target/dapsreg-0.0.1-SNAPSHOT.jar
+java -jar target/dapsreg-2.0.0.jar
 ```
 Please note the name of jar-file as it may differ if version is changed.
 
@@ -128,7 +128,6 @@ Helm charts are provided inside https://github.com/catenax-ng/product-daps-regis
 
 There are diffrent ways to do the installation.
 
-
 1. Using helm commands:-  
 
     a.) git clone https://github.com/catenax-ng/product-daps-registration-service.git  <br />
@@ -138,14 +137,15 @@ There are diffrent ways to do the installation.
           clientId:  -> Client id for DAPS.   
           clientSecret:   -> Client id for DAPS  <br />
           authServerUrl:   -> Auth URL for keycloak. <br />
-          realm:   -> Realm for keycloak    <br />
-          resource:   -> Resource for keycloak.   <br />
+          realm:   -> Realm for portal keycloak    <br />
+          resource:   -> Resource for portal keycloak.   <br />
           apiUri:  ->   DAPS API URL.  
           tokenUri:   -> DAPS token URL. 
 
     d.) These secrets should be defined in Hashicorp vault. <br />
     e.) Deploy in a kubernetes cluster  <br />
         helm install daps-reg-svc charts/daps-reg-service/ -n NameSpace  <br />
+
 
 2. Using ArgoCD. 
 

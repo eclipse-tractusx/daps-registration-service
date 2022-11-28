@@ -44,25 +44,13 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - name: Checkout
       uses: actions/checkout@v2
-
-#    - name: Clone public product-sd-hub PUBLIC repository
-#      uses: GuillaumeFalourd/clone-github-repo-action@v1
-#      with:
-#       owner: 'catenax-ng'
-#       repository: 'product-sd-hub'
-#    - name: Bump release version
-#      id: bump_version
-#      uses: christian-draeger/increment-semantic-version@1.0.2
-#      with:
-#        current-version: '1.0.5'
-#        version-fragment: 'bug'
      
     - name: Docker meta
       id: meta
       uses: docker/metadata-action@v4
       with:
         images: |
-          ghcr.io/catenax-ng/product-daps-registration-service/dapsreg
+          ghcr.io/catenax-ng/tx-daps-registration-service/dapsreg
         tags: |
           type=raw,value=latest,enable={{is_default_branch}}
           type=semver,pattern={{version}},value=1.0.4

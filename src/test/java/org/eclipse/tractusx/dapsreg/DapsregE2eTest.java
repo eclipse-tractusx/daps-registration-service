@@ -65,11 +65,11 @@ class DapsregE2eTest {
     @WithMockUser(username = "fulladmin", roles={"create_daps_client", "update_daps_client", "delete_daps_client", "retrieve_daps_client"})
     void createRetrieveChangeDeleteTest() throws Exception {
         String clientId = null;
-        try (var pemStream = Resources.getResource("cx-preprod-edc-aws.crt").openStream()) {
+        try (var pemStream = Resources.getResource("test.crt").openStream()) {
             var pem = new String(pemStream.readAllBytes());
             var cert = Certutil.loadCertificate(pem);
             clientId = Certutil.getClientId(cert);
-            MockMultipartFile pemFile = new MockMultipartFile("file", "cx-preprod-edc-aws.crt", "text/plain", pem.getBytes());
+            MockMultipartFile pemFile = new MockMultipartFile("file", "test.crt", "text/plain", pem.getBytes());
             mockMvc.perform(MockMvcRequestBuilders.multipart("/api/v1/daps")
                     .file(pemFile)
                     .param("clientName", "bmw preprod")

@@ -25,21 +25,28 @@ ingress:
     nginx.ingress.kubernetes.io/use-regex: "true"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
   className: "nginx"
-  host: "drs1.int.demo.catena-x.net"
+  host: "drs.int.demo.catena-x.net"
   hosts:
-    - host: drs1.int.demo.catena-x.net
+    - host: drs.int.demo.catena-x.net
       paths:
         - path: /
           pathType: ImplementationSpecific
-  #tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+
+
   tls:
     enabled: true
     secretName: tls-secret
-    host: "drs1.int.demo.catena-x.net"
+    host: "drs.int.demo.catena-x.net"
       
+# -- Pod resources requests and limits configuration
+resources:
+  limits:
+    cpu: 200m
+    memory: 300Mi
+  requests:
+    cpu: 200m
+    memory: 300Mi
+    
 drs:
   secret:
     clientId: "<path:essential-services/data/daps#clientId>"
@@ -49,5 +56,4 @@ drs:
     resource: "<path:essential-services/data/daps-register-svc#resource>"
     apiUri: "<path:essential-services/data/daps-register-svc#apiUri>"
     tokenUri: "<path:essential-services/data/daps-register-svc#tokenUri>"
-
 
