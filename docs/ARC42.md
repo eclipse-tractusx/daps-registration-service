@@ -2,7 +2,7 @@
 
 Copied from Template Page ARC42
 
-![Arc42 logo](docs/images/image1.png)**Template**<br/>
+![Arc42 logo](images/image1.png)**Template**<br/>
 2021-02-22<br/>
 **About arc42**<br/>
 arc42, the Template for documentation of software and system
@@ -67,7 +67,7 @@ Registration service can be running  only under the Catena-X domain
 
 # System Scope and Context
 
-## ![](docs/images/image2.png)
+## ![](images/image2.png)
 
 ## Business Context
 
@@ -260,7 +260,7 @@ plugin of the DAPS. 
 
 ## Building Block View
 
-![](docs/images/image3.png) 
+![](images/image3.png) 
 
 ## Whitebox Overall System
 
@@ -278,7 +278,7 @@ plugin of the DAPS. 
 
 ## Runtime View
 
-![](docs/images/image4.png)
+![](images/image4.png)
 
 ## Deployment View
 
