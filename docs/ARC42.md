@@ -42,12 +42,12 @@ service configuration file.
 
 The following table describes the key quality objectives of SDE.
 
-| **Priority** | **Quality-Goal**  | **Scenario**                                                    |
-| ------------ | ----------------- | --------------------------------------------------------------- |
-| 1            | Security          | Protecting API against unauthorized access. Protecting the Keys.|
-| 1            | Integrity         | Authorized recipients/Users can only register a connector.      |
-| 2            | Reliability       | The microservices are available 99.9999%.                       |
-| 2            | Ease-of-use       | The DAPS registration service will provide ease-of-use API.     |
+| **Priority** | **Quality-Goal** | **Scenario**                                                     |
+|--------------|------------------|------------------------------------------------------------------|
+| 1            | Security         | Protecting API against unauthorized access. Protecting the Keys. |
+| 1            | Integrity        | Authorized recipients/Users can only register a connector.       |
+| 2            | Reliability      | The microservices are available 99.9999%.                        |
+| 2            | Ease-of-use      | The DAPS registration service will provide ease-of-use API.      |
 
 
 ## Stakeholders
@@ -55,15 +55,16 @@ The following table describes the key quality objectives of SDE.
 The following table illustrates the stakeholders of SDE and their
 respective intentions.
 
-|  **Role/Name**                  | **Contact**                                                       |     **Expectations** |
-| ------------------------------- | ----------------------------------------------------------------- | -------------------- |
-| System Architect / Werner       | [*werner.jost@t-systems.com*](mailto:werner.jost@t-systems.com)   |                      |
-|  Architect / Nizar Msadek       | [*nizar.msadek@t-systems.com*](mailto:nizar.msadek@t-systems.com) |                      |  
-| System Architect / Felix Gerbik | [*Felix.Gerbik@bmw.de*](mailto:Felix.Gerbik@bmw.de)               |                      |
-| PO Portal                       | [*Julia.Jeroch@bmw.de*](mailto:Julia.Jeroch@bmw.de)               |                      |
+| **Role/Name**                   | **Contact**                                                       | **Expectations** |
+|---------------------------------|-------------------------------------------------------------------|------------------|
+| System Architect / Werner       | [*werner.jost@t-systems.com*](mailto:werner.jost@t-systems.com)   |                  |
+| Architect / Nizar Msadek        | [*nizar.msadek@t-systems.com*](mailto:nizar.msadek@t-systems.com) |                  |
+| System Architect / Felix Gerbik | [*Felix.Gerbik@bmw.de*](mailto:Felix.Gerbik@bmw.de)               |                  |
+| PO Portal                       | [*Julia.Jeroch@bmw.de*](mailto:Julia.Jeroch@bmw.de)               |                  |
+
 # Architecture Constraints
 
-Registration service can be running  only under the Catena-X domain
+Registration service can be running only under the Catena-X domain
 
 # System Scope and Context
 
@@ -91,7 +92,7 @@ unregistered at DAPS, and their registration details can be updated.
 
 -   The endpoint of the connector (possible BPN of the connector if need
     to include it in the DAT. In this case, BPN is added at the end of
-    referringConnector )
+    referringConnector)
 
 ## How to create a certificate:
 
@@ -106,18 +107,18 @@ To create self signed certificate, please follow the below steps.
 -   ```openssl rsa -in connector-example.key -pubout -out connector-example.pub```
 
 -   Send us the .crt file, url and fqdn name to process for registration
-    in DAPS.  
+    in DAPS.
 
 ## DAPS Registration API:
 
 To register a Certificate to the DAPS an authenticated client (known
 client with an appropriate role, a concrete role can be configured in
 the configuration file) sends POST multipart request to the DAPS
-registration service endpoint 
+registration service endpoint
 
 Media Type: multipart/form-data
 
-POST /api/v1/daps 
+POST /api/v1/daps
 
 here is the interface definition in java:
 
@@ -141,7 +142,7 @@ openapi: 3.0.3
 info:
   title: DAPS Registration Service API
   description: An admin interface to the Omeijdn DAPS Server
-  version: 1.0.4-SNAPSHOT
+  version: 1.0.4
 servers:
   - url: /api/v1
 paths:
@@ -174,6 +175,7 @@ paths:
                   description: Certificate of a Connector in PEM format
               required:
                 - clientName
+                - referringConnector
                 - file
       responses:
         '201':
@@ -248,15 +250,15 @@ security:
   - bearerAuth: []
 ```
 
-Human readable render of that documentation is available at
-<https://drs-pen.int.demo.catena-x.net/swagger-ui/index.html>  
+Human-readable render of that documentation is available at
+https://drs-pen.int.demo.catena-x.net/swagger-ui/index.html
 
 ## Solution Strategy
 
 For user authentication, Connector Registration Service relies on the
 Catena-X identity provider (keycloak). Connector Registration Service
 has access to a secret that allows using the remote administration
-plugin of the DAPS. 
+plugin of the DAPS.
 
 ## Building Block View
 
@@ -274,7 +276,7 @@ plugin of the DAPS. 
 
 -   DAPS secret allows the query adapter to call DAPS and perform admin
     operations on it. Thus, we keep this secret on the Registration
-    Service side and do not disclose it to the Actor 
+    Service side and do not disclose it to the Actor
 
 ## Runtime View
 
@@ -282,12 +284,10 @@ plugin of the DAPS. 
 
 ## Deployment View
 
-In Catena-X we
-use [ARGO-CD](https://confluence.catena-x.net/display/ARTI/ArgoCD+deployment+tool) for
-deployment
+In Catena-X we use [ARGO-CD](https://confluence.catena-x.net/display/ARTI/ArgoCD+deployment+tool)
+for deployment
 
-[README.md](https://github.com/catenax-ng/tx-daps-registration-service/blob/main/README.md)
-describe the deployment process
+[README.md](README.md) describe the deployment process
 
 # Quality Requirements
 
@@ -295,25 +295,25 @@ See Quality Gates 4
 
 # Glossary
 
-| Term         | Description                                           |
-| ------------ | ----------------------------------------------------- |
-| Gaia-X       | Gaia-X represents the next generation of data infrastructure ecosystem: an open,transparent, and secure digital ecosystem, where data and services can be made available, collated and  shared in an environment of trust.|
-| Catalogue    | A Catalogue presents a list of available Service Offerings. Catalogues are the main building blocks for the publication and discovery of Self-Descriptions for Service Offerings by the Participants. |
-| (Catena-X Data Space) | A Data Space is a virtual data integration concept defined as a set of participants and a set of relationships among them, where participants provide their data resources and computing services.|
-| Catena-X  Portal /  Onboarding Process | The portal is used for the registration/onboarding process in Catena-X and includes the login, user management and the initial registration.  |
-| Claim        | An assertion made about a subject.                    |
-| [Custodian Wallet](https://confluence.catena-x.net/display/CORE/Registration-Service) / Catena-X wallet | interface which is used to share the company name as The Custodian Wallet interface is a cross product well as the company bpn to the custodian service. The service is using those data to create a new wallet for the company. The wallet will hold the company name and bpn. |
-| Decentralized Identifier (DID) | Decentralized Identifiers are a new type of identifiers that enables verifiable, decentralized digital identity.  |
-| Federated Services | Federation Services are services required for the operational implementation of a Gaia-X Data Ecosystem. |
-| Federation   | A Federation refers to a loose set of interacting actors that directly or indirectly consume, produce, or provide resources. |
-| Holder       | Is the user that holds the verifiable credentials.    |
-| Issuer       | Is an instance that can issue verifiable  credentials.|                                          
-| Keycloak     | Keycloack is an open-source Identity Management and Access management solution that allows Single Sign-On.                                   |
-| Self-Description | A machine-readable File (json-lD) that contains description about Participants and Services. |
-| [Self-Description Factory](https://confluence.catena-x.net/display/ARTI/ARC42-+Self+Description+Factory) | SD-Factory creates a Verifiable Credential based on the information taken from OS, unlocks Private Key from CX-wallet and signs it with Catena-X key. |
-| Self-Description Graph | The Self-Description Graph contains the information imported from the Self-Descriptions that are known to the Catalogue and have an "active" lifecycle state.   |
-| [Self-Description Hub](https://confluence.catena-x.net/display/ARTI/Self+Description+Hub) | The Self-Description Hub\'s (SD Hub) store Self Descriptions in order to provide a flat catalogue of SDs. |                                                  
-| [Self-Description Validator](https://confluence.catena-x.net/display/ARTI/ARC42-+Self+Description+Hub) | The Self-Description validator is provided by Gaia-X. With that any Self Descriptions can be checked against an instance of the validator. |
-| (Verifiable)  Credential | A set of one or more Claims made and asserted by an issuer. |
-| Verifiable Presentation  | The expression of a subset of one\'s persona is called a verifiable presentation. |
-| Verifier     | Is an instance that verifies the verifiable credentials of the holder. |                            
+| Term                                                                                                     | Description                                                                                                                                                                                                                                                                     |
+|----------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Gaia-X                                                                                                   | Gaia-X represents the next generation of data infrastructure ecosystem: an open,transparent, and secure digital ecosystem, where data and services can be made available, collated and  shared in an environment of trust.                                                      |
+| Catalogue                                                                                                | A Catalogue presents a list of available Service Offerings. Catalogues are the main building blocks for the publication and discovery of Self-Descriptions for Service Offerings by the Participants.                                                                           |
+| (Catena-X Data Space)                                                                                    | A Data Space is a virtual data integration concept defined as a set of participants and a set of relationships among them, where participants provide their data resources and computing services.                                                                              |
+| Catena-X  Portal /  Onboarding Process                                                                   | The portal is used for the registration/onboarding process in Catena-X and includes the login, user management and the initial registration.                                                                                                                                    |
+| Claim                                                                                                    | An assertion made about a subject.                                                                                                                                                                                                                                              |
+| [Custodian Wallet](https://confluence.catena-x.net/display/CORE/Registration-Service)/ Catena-X wallet   | interface which is used to share the company name as The Custodian Wallet interface is a cross product well as the company bpn to the custodian service. The service is using those data to create a new wallet for the company. The wallet will hold the company name and bpn. |
+| Decentralized Identifier (DID)                                                                           | Decentralized Identifiers are a new type of identifiers that enables verifiable, decentralized digital identity.                                                                                                                                                                |
+| Federated Services                                                                                       | Federation Services are services required for the operational implementation of a Gaia-X Data Ecosystem.                                                                                                                                                                        |
+| Federation                                                                                               | A Federation refers to a loose set of interacting actors that directly or indirectly consume, produce, or provide resources.                                                                                                                                                    |
+| Holder                                                                                                   | Is the user that holds the verifiable credentials.                                                                                                                                                                                                                              |
+| Issuer                                                                                                   | Is an instance that can issue verifiable  credentials.                                                                                                                                                                                                                          |
+| Keycloak                                                                                                 | Keycloack is an open-source Identity Management and Access management solution that allows Single Sign-On.                                                                                                                                                                      |
+| Self-Description                                                                                         | A machine-readable File (json-lD) that contains description about Participants and Services.                                                                                                                                                                                    |
+| [Self-Description Factory](https://confluence.catena-x.net/display/ARTI/ARC42-+Self+Description+Factory) | SD-Factory creates a Verifiable Credential based on the information taken from OS, unlocks Private Key from CX-wallet and signs it with Catena-X key.                                                                                                                           |
+| Self-Description Graph                                                                                   | The Self-Description Graph contains the information imported from the Self-Descriptions that are known to the Catalogue and have an "active" lifecycle state.                                                                                                                   |
+| [Self-Description Hub](https://confluence.catena-x.net/display/ARTI/Self+Description+Hub)                | The Self-Description Hub\'s (SD Hub) store Self Descriptions in order to provide a flat catalogue of SDs.                                                                                                                                                                       |                                                  
+| [Self-Description Validator](https://confluence.catena-x.net/display/ARTI/ARC42-+Self+Description+Hub)   | The Self-Description validator is provided by Gaia-X. With that any Self Descriptions can be checked against an instance of the validator.                                                                                                                                      |
+| (Verifiable)  Credential                                                                                 | A set of one or more Claims made and asserted by an issuer.                                                                                                                                                                                                                     |
+| Verifiable Presentation                                                                                  | The expression of a subset of one\'s persona is called a verifiable presentation.                                                                                                                                                                                               |
+| Verifier                                                                                                 | Is an instance that verifies the verifiable credentials of the holder.                                                                                                                                                                                                          |                         

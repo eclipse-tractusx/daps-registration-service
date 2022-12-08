@@ -57,9 +57,9 @@ public class DapsManager implements DapsApiDelegate {
     @Override
     @PreAuthorize("hasRole(@securityRoles.createRole)")
     public ResponseEntity<Void> createClientPost(String clientName,
-                                          MultipartFile file,
-                                          String securityProfile,
-                                          URI referringConnector) {
+                                                 URI referringConnector,
+                                                 MultipartFile file,
+                                                 String securityProfile) {
         var cert = Certutil.loadCertificate(new String(file.getBytes()));
         var clientId = Certutil.getClientId(cert);
         var clientJson = jsonUtil.getClientJson(clientId, clientName, securityProfile, referringConnector.toString());
