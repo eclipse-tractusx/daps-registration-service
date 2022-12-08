@@ -19,11 +19,15 @@
 # SPDX-License-Identifier: Apache-2.0
 ################################################################################
 
-name: "Trivy Scan"
+name: "Trivy"
 on:
   push:
-    branches: 
-     - main
+    branches: [main]
+  pull_request:
+    branches: [ main ]
+    paths-ignore:
+     - "**/*.md"
+     - "**/*.txt"
   schedule:
     # Once a day
     - cron: "0 0 * * *"
@@ -47,7 +51,7 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           scan-type: "config"
-#          exit-code: "1"
+          exit-code: "1"
           hide-progress: false
           format: "sarif"
           output: "trivy-results1.sarif"
@@ -75,13 +79,13 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: "ghcr.io/catenax-ng/tx-daps-registration-service/dapsreg:latest"
-          format: "json"
-#          output: "trivy-results2.sarif"
+          format: "sarif"
+          output: "trivy-results2.sarif"
           exit-code: "1"
           severity: "CRITICAL,HIGH"
 
-#      - name: Upload Trivy scan results to GitHub Security tab
-#        if: always()
-#        uses: github/codeql-action/upload-sarif@v2
-#        with:
-#          sarif_file: "trivy-results2.sarif"
+      - name: Upload Trivy scan results to GitHub Security tab
+        if: always()
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: "trivy-results2.sarif"
