@@ -121,6 +121,8 @@ java -jar target/dapsreg-2.0.0.jar
 ```
 Please note the name of jar-file as it may differ if version is changed.
 
+## DAPS Registration service version
+Th current version is v1.0.4
 
 ## Installation Steps:-
 

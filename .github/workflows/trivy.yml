@@ -1,6 +1,5 @@
----
 #################################################################################
-# Copyright (c) 2021,2022 T-Systems International GmbH
+# Copyright (c) 2021,2022 Catena-X
 # Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
 #
 # See the NOTICE file(s) distributed with this work for additional
@@ -17,21 +16,15 @@
 # under the License.
 #
 # SPDX-License-Identifier: Apache-2.0
-################################################################################
+#################################################################################
 
 name: "Trivy"
 on:
   push:
     branches: [main]
-  pull_request:
-    branches: [ main ]
-    paths-ignore:
-     - "**/*.md"
-     - "**/*.txt"
   schedule:
     # Once a day
     - cron: "0 0 * * *"
-    
   workflow_dispatch:
   # Trigger manually
 
@@ -63,7 +56,7 @@ jobs:
         with:
           sarif_file: "trivy-results1.sarif"
 
-  analyze-product-daps-registration-service:
+  analyze-product-dapsreg:
     runs-on: ubuntu-latest
     permissions:
       actions: read
