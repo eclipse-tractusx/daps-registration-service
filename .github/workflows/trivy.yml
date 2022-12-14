@@ -56,7 +56,7 @@ jobs:
         with:
           sarif_file: "trivy-results1.sarif"
 
-  analyze-product-sd-hub:
+  analyze-product-dapsreg:
     runs-on: ubuntu-latest
     permissions:
       actions: read
