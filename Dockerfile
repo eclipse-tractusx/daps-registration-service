@@ -4,7 +4,7 @@ COPY . /drs/
 
 WORKDIR /drs
 
-RUN microdnf install dos2unix
+RUN microdnf install dos2unix && dnf clean all
 
 RUN dos2unix mvnw
 RUN chmod +x mvnw
