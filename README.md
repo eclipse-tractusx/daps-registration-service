@@ -115,7 +115,7 @@ of the test configuration file (`application-test.yml`) located at
 `test/resources` directory.
 
 Then fat jar file can be found in `target` folder as well as in local Maven repository.
-it can be run with this command:
+it can be run with this command:-
 ```shell
 java -jar target/dapsreg-2.0.0.jar
 ```
