@@ -29,7 +29,7 @@ Here is definition of the interface in Java:
     public void createClient(@RequestParam String clientName, @RequestParam(required = false) String securityProfile,
                              @RequestParam(required = false) String referringConnector, @RequestPart("file") MultipartFile file);
 ```
-Two parameters are mandatory:
+Two parameters are mandatory:-
 - clientName:  name of client
 - file: Connector's certificate (public part)
 
