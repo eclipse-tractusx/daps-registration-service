@@ -61,7 +61,7 @@ java -jar dapsreg-0.0.1-SNAPSHOT.jar --spring.config.location=file:./custom-conf
 Here application.yaml will be searched in custom-config dir.
 
 ## DAPS Registration service Property file
-An example of `application.yaml` for Daps registration service is given bellow:
+An example of `application.yaml` for Daps registration service is given bellow:-
 ```yaml
 keycloak:
   auth-server-url: https://centralidp.demo.catena-x.net/auth
