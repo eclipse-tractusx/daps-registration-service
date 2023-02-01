@@ -5,7 +5,7 @@ between DAPS service and an admin user responsible for registering
 new clients (EDCs) to the DAPS. The admin user is protected with
 keycloak bearer token and shall have appropriate role to create 
 records at DAPS side. Therefore, the secrets for admin interface
-of the DAPS are not disclosed to the requester.
+of the DAPS are not disclosed to the requester..
 
 # Solution Strategy 
 For user authentication, Connector Registration Service relies 
