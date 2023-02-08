@@ -21,8 +21,9 @@
 package org.eclipse.tractusx.dapsreg.config;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
-import org.springdoc.core.SpringDocConfigProperties;
-import org.springdoc.core.SpringDocConfiguration;
+
+import org.springdoc.core.configuration.SpringDocConfiguration;
+import org.springdoc.core.properties.SpringDocConfigProperties;
 import org.springdoc.core.providers.ObjectMapperProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
