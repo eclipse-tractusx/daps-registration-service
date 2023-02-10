@@ -122,17 +122,17 @@ java -jar target/dapsreg-2.0.0.jar
 Please note the name of jar-file as it may differ if version is changed.
 
 ## DAPS Registration service version
-Th current version is v1.0.4
+Th current version is v1.0.5
 
 ## Installation Steps:-
 
-Helm charts are provided inside https://github.com/catenax-ng/product-daps-registration-service
+Helm charts are provided inside  https://github.com/catenax-ng/tx-daps-registration-service
 
 There are diffrent ways to do the installation.
 
 1. Using helm commands:-  
 
-    a.) git clone https://github.com/catenax-ng/product-daps-registration-service.git  <br />
+    a.) git clone https://github.com/catenax-ng/tx-daps-registration-service.git  <br />
     b.) Modify values file according to your requirement.  <br />
     c.) You need to define the secrets as well in values.yaml
         secret:
@@ -152,7 +152,7 @@ There are diffrent ways to do the installation.
 2. Using ArgoCD. 
 
 
-To see how to deploy an application on 'Hotel Budapest': 
+To see how to deploy an application : 
 [How to deploy](https://catenax-ng.github.io/docs/guides/ArgoCD/how-to-deploy-an-application)
 
 - - -
