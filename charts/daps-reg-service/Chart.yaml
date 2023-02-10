@@ -33,7 +33,7 @@ description: A Helm chart for Kubernetes
 type: application
 
 sources:
-  - https://github.com/catenax-ng/tx-daps-registration-service
+  -  https://github.com/eclipse-tractusx/daps-registration-service
 
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
