@@ -122,7 +122,8 @@ java -jar target/dapsreg-2.0.0.jar
 Please note the name of jar-file as it may differ if version is changed.
 
 ## DAPS Registration service version
-Th current version is v1.0.5
+Current Helm version is v1.0.6
+Current App version is v1.0.6
 
 ## Installation Steps:-
 
