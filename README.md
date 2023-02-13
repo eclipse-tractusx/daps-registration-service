@@ -122,18 +122,18 @@ java -jar target/dapsreg-2.0.0.jar
 Please note the name of jar-file as it may differ if version is changed.
 
 ## DAPS Registration service version
-Current Helm version is v1.0.6
-Current App version is v1.0.6
+Current Helm version is v1.0.4
+Current App version is v1.0.4
 
 ## Installation Steps:-
 
-Helm charts are provided inside  https://github.com/catenax-ng/tx-daps-registration-service
+Helm charts are provided inside https://github.com/eclipse-tractusx/daps-registration-service
 
 There are diffrent ways to do the installation.
 
 1. Using helm commands:-  
 
-    a.) git clone https://github.com/catenax-ng/tx-daps-registration-service.git  <br />
+    a.) git clone https://github.com/eclipse-tractusx/daps-registration-service.git  <br />
     b.) Modify values file according to your requirement.  <br />
     c.) You need to define the secrets as well in values.yaml
         secret:
