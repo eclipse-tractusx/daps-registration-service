@@ -1,18 +1,16 @@
-#FROM openjdk:17 as build
-FROM maven:3.8.5-openjdk-18-slim as build
+FROM openjdk:17 as build
 
 COPY . /drs/
 
 WORKDIR /drs
 
-#RUN microdnf install dos2unix && microdnf clean all
-#RUN dos2unix mvnw
-#RUN chmod +x mvnw
-#RUN dos2unix .mvn/wrapper/maven-wrapper.properties
+RUN microdnf install dos2unix
 
-#RUN ./mvnw clean install -Dmaven.test.skip=true
+RUN dos2unix mvnw
+RUN chmod +x mvnw
+RUN dos2unix .mvn/wrapper/maven-wrapper.properties
 
-RUN mvn clean install -Dmaven.test.skip=true
+RUN ./mvnw clean install -Dmaven.test.skip=true
 
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
@@ -28,4 +26,3 @@ USER drs
 
 ENTRYPOINT ["java", "-cp", "app:app/lib/*", "org.eclipse.tractusx.dapsreg.DapsregApplication"]
 EXPOSE 8080
-
