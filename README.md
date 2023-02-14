@@ -7,6 +7,12 @@ keycloak bearer token and shall have appropriate role to create
 records at DAPS side. Therefore, the secrets for admin interface
 of the DAPS are not disclosed to the requester.
 
+### Software Version
+```shell
+Helm version is v1.0.4
+Application version is v1.0.4
+```
+
 # Solution Strategy 
 For user authentication, Connector Registration Service relies 
 on the Catena-X identity provider (keycloak). Connector 
@@ -121,39 +127,41 @@ java -jar target/dapsreg-2.0.0.jar
 ```
 Please note the name of jar-file as it may differ if version is changed.
 
-## DAPS Registration service version
-Current Helm version is v1.0.4
-Current App version is v1.0.4
+
 
 ## Installation Steps:-
 
-Helm charts are provided inside https://github.com/eclipse-tractusx/daps-registration-service
+Helm charts are provided inside https://github.com/catenax-ng/product-daps-registration-service
 
-There are diffrent ways to do the installation.
+1.) Using helm commands:- <br />
 
-1. Using helm commands:-  
+How to install application using helm:-
+    helm install ReleaseName ChartName
+    
+    a.) Add helm repository in tractusx:-
+           helm repo add daps-reg-service https://eclipse-tractusx.github.io/charts/dev
+    b.) To search the specific repo in helm repositories 
+           helm search repo tractusx-dev
+    c.) To install using helm command:-   
+           helm install daps-reg-service tractusx-dev/daps-reg-service
 
-    a.) git clone https://github.com/eclipse-tractusx/daps-registration-service.git  <br />
+
+2.) Local installation:
+
+    a.) git clone https://github.com/catenax-ng/product-daps-registration-service.git  <br />
     b.) Modify values file according to your requirement.  <br />
-    c.) You need to define the secrets as well in values.yaml
-        secret:
+    c.) You need to define the secrets as well in values.yaml  <br />
+        secret:  <br />
           clientId:  -> Client id for DAPS.   
           clientSecret:   -> Client id for DAPS  <br />
           authServerUrl:   -> Auth URL for keycloak. <br />
           realm:   -> Realm for portal keycloak    <br />
           resource:   -> Resource for portal keycloak.   <br />
-          apiUri:  ->   DAPS API URL.  
-          tokenUri:   -> DAPS token URL. 
+          apiUri:  ->   DAPS API URL.  <br />
+          tokenUri:   -> DAPS token URL.  <br /> 
 
     d.) These secrets should be defined in Hashicorp vault. <br />
     e.) Deploy in a kubernetes cluster  <br />
         helm install daps-reg-svc charts/daps-reg-service/ -n NameSpace  <br />
-
-
-2. Using ArgoCD. 
-
-
-To see how to deploy an application : 
-[How to deploy](https://catenax-ng.github.io/docs/guides/ArgoCD/how-to-deploy-an-application)
 
 - - -
