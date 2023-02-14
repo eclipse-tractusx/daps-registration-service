@@ -128,9 +128,10 @@ java -jar target/dapsreg-2.0.0.jar
 Please note the name of jar-file as it may differ if version is changed.
 
 
+
 ## Installation Steps:-
 
-Helm charts are provided inside https://github.com/eclipse-tractusx/daps-registration-service
+Helm charts are provided inside https://github.com/catenax-ng/product-daps-registration-service
 
 1.) Using helm commands:- <br />
 
@@ -147,7 +148,7 @@ How to install application using helm:-
 
 2.) Local installation:
 
-    a.) git clone https://github.com/eclipse-tractusx/daps-registration-service.git  <br />
+    a.) git clone https://github.com/catenax-ng/product-daps-registration-service.git  <br />
     b.) Modify values file according to your requirement.  <br />
     c.) You need to define the secrets as well in values.yaml  <br />
         secret:  <br />
@@ -162,6 +163,7 @@ How to install application using helm:-
     d.) These secrets should be defined in Hashicorp vault. <br />
     e.) Deploy in a kubernetes cluster  <br />
         helm install daps-reg-svc charts/daps-reg-service/ -n NameSpace  <br />
+
 
 
 - - -
