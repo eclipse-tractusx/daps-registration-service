@@ -33,12 +33,12 @@ description: A Helm chart for Kubernetes
 type: application
 
 sources:
-  - https://github.com/catenax-ng/tx-daps-registration-service
+  -  https://github.com/eclipse-tractusx/daps-registration-service
 
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 1.0.6
+version: 1.0.4
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application. Versions are not expected to

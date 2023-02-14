@@ -13,6 +13,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Created new helm charts for DAPS registration service
 - The latest version for daps registration service is 1.0.4
 
+## [1.0.4] - 2022-02-13
+- The latest version for daps registration service is 1.0.4
+- Fixes for quality gate 5
+
 ### Added
 - Registration in DAPS
 - Adding BPN number in DAT token
