@@ -132,7 +132,7 @@ Please note the name of jar-file as it may differ if version is changed.
 
 ## Installation Steps:-
 
-Helm charts are provided inside https://github.com/catenax-ng/product-daps-registration-service
+Helm charts are provided inside https://github.com/eclipse-tractusx/daps-registration-service
 
 1.) Using helm commands:- <br />
 
