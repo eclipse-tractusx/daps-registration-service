@@ -149,7 +149,7 @@ How to install application using helm:-
 
 2.) Local installation:
 
-    a.) git clone https://github.com/catenax-ng/product-daps-registration-service.git  <br />
+    a.) git clone https://github.com/eclipse-tractusx/daps-registration-service.git <br />
     b.) Modify values file according to your requirement.  <br />
     c.) You need to define the secrets as well in values.yaml  <br />
         secret:  <br />
