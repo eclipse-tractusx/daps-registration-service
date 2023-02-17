@@ -1,48 +1,30 @@
 keycloak:
-  #auth-server-url:
-  #realm:
-  #resource:
-  bearer-only: true
-  use-resource-role-mappings: true
-  principal-attribute: preferred_username
+  resource:
+    clientid: CL2-CX-Portal
 springdoc:
   api-docs:
-    enabled: false
+    enabled: true
   swagger-ui:
     url: /DapsRegApi.yaml
 app:
   build:
     version: ^project.version^
   daps:
-    #apiUri:
-    #tokenUri:
-    #clientId:
-    #clientSecret:
+    apiUri:
+    tokenUri:
+    clientId:
+    clientSecret:
   security:
     createRole: create_daps_client
     updateRole: update_daps_client
     deleteRole: delete_daps_client
     retrieveRole: retrieve_daps_client
-management:
-  endpoint:
-    health:
-      probes:
-        enabled: true
-  health:
-    readinessstate:
-      enabled: true
-    livenessstate:
-      enabled: true
-  endpoints:
-    web:
-      exposure:
-        include: *
 spring:
   security:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri:
+          jwk-set-uri: https://centralidp.int.demo.catena-x.net/auth/realms/CX-Central/protocol/openid-connect/certs
   lifecycle:
     timeout-per-shutdown-phase: 30s
 logging:

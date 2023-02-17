@@ -19,15 +19,11 @@
 ################################################################################
 
 keycloak:
-  auth-server-url: https://keycloak.cx.dih-cloud.com
-  realm: orchestrator
-  resource: orchestratorservice
-  bearer-only: true
-  use-resource-role-mappings: true
-  principal-attribute: preferred_username
+  resource:
+    clientid: CL2-CX-Portal
 springdoc:
   api-docs:
-    enabled: false
+    enabled: true
   swagger-ui:
     url: /DapsRegApi.yaml
 app:
@@ -44,3 +40,19 @@ app:
     updateRole: update_daps_client
     deleteRole: delete_daps_client
     retrieveRole: retrieve_daps_client
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: https://centralidp.int.demo.catena-x.net/auth/realms/CX-Central/protocol/openid-connect/certs
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+logging:
+  level:
+    org:
+      springframework:
+        security:
+          web:
+            csrf: INFO
+
