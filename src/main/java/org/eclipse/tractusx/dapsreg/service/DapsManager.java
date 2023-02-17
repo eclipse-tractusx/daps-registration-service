@@ -55,7 +55,7 @@ public class DapsManager implements DapsApiDelegate {
 
     @SneakyThrows
     @Override
-    @PreAuthorize("hasAuthority('create_daps_client')")
+    @PreAuthorize("hasRole('create_daps_client')")
     public ResponseEntity<Void> createClientPost(String clientName,
                                                  URI referringConnector,
                                                  MultipartFile file,
@@ -71,7 +71,7 @@ public class DapsManager implements DapsApiDelegate {
     }
 
     @Override
-    @PreAuthorize("hasAuthority('retrieve_daps_client')")
+    @PreAuthorize("hasRole('retrieve_daps_client')")
     public ResponseEntity<Map<String, Object>> getClientGet(String clientId) {
         var jsonNode = dapsClient.getClient(clientId);
         Map<String, Object> result = mapper.convertValue(jsonNode, new TypeReference<>() {});
@@ -79,7 +79,7 @@ public class DapsManager implements DapsApiDelegate {
     }
 
     @Override
-    @PreAuthorize("hasAuthority('update_daps_client')")
+    @PreAuthorize("hasRole('update_daps_client')")
     public ResponseEntity<Void> updateClientPut(String clientId, Map<String, String> newAttr) {
     var clientAttr = dapsClient.getClient(clientId).get("attributes");
         var keys = new HashSet<>();
@@ -97,7 +97,7 @@ public class DapsManager implements DapsApiDelegate {
     }
 
     @Override
-    @PreAuthorize("hasAuthority('delete_daps_client')")
+    @PreAuthorize("hasRole('delete_daps_client')")
     public ResponseEntity<Void> deleteClientDelete(String clientId) {
         dapsClient.deleteCert(clientId);
         dapsClient.deleteClient(clientId);
