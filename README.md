@@ -5,7 +5,13 @@ between DAPS service and an admin user responsible for registering
 new clients (EDCs) to the DAPS. The admin user is protected with
 keycloak bearer token and shall have appropriate role to create 
 records at DAPS side. Therefore, the secrets for admin interface
-of the DAPS are not disclosed to the requester..
+of the DAPS are not disclosed to the requester.
+
+### Software Version
+```shell
+Helm version is v1.0.6
+Application version is v1.0.5
+```
 
 # Solution Strategy 
 For user authentication, Connector Registration Service relies 
@@ -29,7 +35,7 @@ Here is definition of the interface in Java:
     public void createClient(@RequestParam String clientName, @RequestParam(required = false) String securityProfile,
                              @RequestParam(required = false) String referringConnector, @RequestPart("file") MultipartFile file);
 ```
-Two parameters are mandatory:-
+Two parameters are mandatory:
 - clientName:  name of client
 - file: Connector's certificate (public part)
 
@@ -61,7 +67,7 @@ java -jar dapsreg-0.0.1-SNAPSHOT.jar --spring.config.location=file:./custom-conf
 Here application.yaml will be searched in custom-config dir.
 
 ## DAPS Registration service Property file
-An example of `application.yaml` for Daps registration service is given bellow:-
+An example of `application.yaml` for Daps registration service is given bellow:
 ```yaml
 keycloak:
   auth-server-url: https://centralidp.demo.catena-x.net/auth
@@ -115,44 +121,17 @@ of the test configuration file (`application-test.yml`) located at
 `test/resources` directory.
 
 Then fat jar file can be found in `target` folder as well as in local Maven repository.
-it can be run with this command:-
+it can be run with this command:
 ```shell
 java -jar target/dapsreg-2.0.0.jar
 ```
 Please note the name of jar-file as it may differ if version is changed.
 
-## DAPS Registration service version
-Th current version is v1.0.4
-
-## Installation Steps:-
-
-Helm charts are provided inside https://github.com/catenax-ng/product-daps-registration-service
-
-There are diffrent ways to do the installation.
-
-1. Using helm commands:-  
-
-    a.) git clone https://github.com/catenax-ng/product-daps-registration-service.git  <br />
-    b.) Modify values file according to your requirement.  <br />
-    c.) You need to define the secrets as well in values.yaml
-        secret:
-          clientId:  -> Client id for DAPS.   
-          clientSecret:   -> Client id for DAPS  <br />
-          authServerUrl:   -> Auth URL for keycloak. <br />
-          realm:   -> Realm for portal keycloak    <br />
-          resource:   -> Resource for portal keycloak.   <br />
-          apiUri:  ->   DAPS API URL.  
-          tokenUri:   -> DAPS token URL. 
-
-    d.) These secrets should be defined in Hashicorp vault. <br />
-    e.) Deploy in a kubernetes cluster  <br />
-        helm install daps-reg-svc charts/daps-reg-service/ -n NameSpace  <br />
 
 
-2. Using ArgoCD. 
+## Installation Steps
 
+https://github.com/eclipse-tractusx/daps-registration-service/blob/main/INSTALL.md
 
-To see how to deploy an application on 'Hotel Budapest': 
-[How to deploy](https://catenax-ng.github.io/docs/guides/ArgoCD/how-to-deploy-an-application)
 
 - - -
