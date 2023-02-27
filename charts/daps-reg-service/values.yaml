@@ -106,6 +106,8 @@ drs:
     apiUri: ""
     # -- DAPS token URL
     tokenUri: ""
+    # -- JWK Set URI
+    jwkSetUri: ""
     
 resources:
   limits:

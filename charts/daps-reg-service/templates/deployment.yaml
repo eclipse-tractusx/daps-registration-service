@@ -73,6 +73,13 @@ spec:
               secretKeyRef:
                 name: {{ include "daps-reg-service.applicationSecret.name" . }}
                 key: tokenUri
+          - name: SPRING_SECURITY_OUATH2_RESOURCESERVER_JWT_JWK-SET-URI
+            valueFrom: 
+              secretKeyRef:
+                name: {{ include "daps-reg-service.applicationSecret.name" . }}
+                key: jwkSetUri
+                
+
           #livenessProbe:
           #  httpGet:
           #    path: /

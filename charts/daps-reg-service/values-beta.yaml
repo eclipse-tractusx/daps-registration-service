@@ -60,5 +60,6 @@ drs:
     resource: "<path:essential-services/data/daps-reg-svc-beta#resource>"
     apiUri: "<path:essential-services/data/daps-reg-svc-beta#apiUri>"
     tokenUri: "<path:essential-services/data/daps-reg-svc-beta#tokenUri>"
+    jwkSetUri: "<path:essential-services/data/daps-register-svc-beta#jwk-set-uri>"
 
   

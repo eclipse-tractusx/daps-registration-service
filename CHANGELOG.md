@@ -6,10 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
-### Changed
-- Make referringConnector parameter (which contains BPN number in suffix) be mandatory
+NA
+
 
 ## [1.0.6] - 2023-02-22
+
 ### Added
  - Added AUTHORS.md, INSTALL.md file
  - Added service port to values.yaml
@@ -21,6 +22,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
  - Upgrade the springboot Library
  - Modified .helmignore file
  - Referring the tag from values.yaml to deployment.yaml
+ - Make referringConnector parameter (which contains BPN number in suffix) be mandatory
 
 
 ## [1.0.5] - 2023-02-05
