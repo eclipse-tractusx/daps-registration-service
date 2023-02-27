@@ -6,12 +6,30 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
-### Changed
-- Make referringConnector parameter (which contains BPN number in suffix) be mandatory
+NA
 
-## [1.0.4] - 2022-11-09
+
+## [1.0.6] - 2023-02-27
+
+### Added
+ - Added AUTHORS.md, INSTALL.md file
+ - Added service port to values.yaml
+ - Added comments in values.yaml
+ - Created README.md inside charts/dapsreg-svc/
+ 
+
+### Changed
+ - Modified .helmignore file
+ - Referring the tag from values.yaml to deployment.yaml
+
+
+## [1.0.5] - 2023-02-05
+
+### Added
 - Created new helm charts for DAPS registration service
 - The latest version for daps registration service is 1.0.4
+
+## [1.0.4] - 2022-02-13
 
 ### Added
 - Registration in DAPS
