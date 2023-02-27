@@ -33,6 +33,7 @@ image:
     # -- Image tage is defined in chart appVersion.
   tag: ""
 
+
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
