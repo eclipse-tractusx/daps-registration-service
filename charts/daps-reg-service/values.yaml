@@ -22,13 +22,17 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+    # -- Number of Replicas for pods
 replicaCount: 1
 
 image:
-  repository: "ghcr.io/catenax-ng/tx-daps-registration-service/dapsreg" 
+    # -- Image to use for deploying an application
+  repository: "ghcr.io/catenax-ng/tx-daps-registration-service/dapsreg"
+    # -- Set the Image Pull Policy
   pullPolicy: Always
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: "1.0.4"
+    # -- Image tage is defined in chart appVersion.
+  tag: ""
+
 
 imagePullSecrets: []
 nameOverride: ""
@@ -49,6 +53,7 @@ podSecurityContext: {}
   # fsGroup: 2000
 
 securityContext:
+    # -- Controls whether a process can gain more privileges
   allowPrivilegeEscalation: false
   capabilities:
     drop:
@@ -58,20 +63,28 @@ securityContext:
   # runAsUser: 1000
 
 service:
+    # -- Type of service
   type: ClusterIP
-  port: 8080
+    # -- Port details for sevice
+  port: 80
+    # -- Container Port details for sevice
   targetPort: 8080
+  
 ingress:
+    # -- If you want to enable or disable the ingress
   enabled: false
+    # -- a reference to an Ingress Class resource that contains additional configuration including the name of the controller that should implement the class.
   className: ""
   annotations:
     #kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/use-regex: "true"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
   hosts:
+    # -- Host of the application on which application runs
     - host: ""
       paths:
         - path: /
+    # -- ImplementationSpecific path type matching is up to the IngressClass. Implementations can treat this as a separate pathType or treat it identically to Prefix or Exact path types.
           pathType: ImplementationSpecific
   tls:
     enabled: false
@@ -80,13 +93,21 @@ ingress:
 
 drs:
   secret:
+    # -- Client id for DAPS
     clientId: ""
+    # -- Client Secret for DAPS
     clientSecret: ""
+    # -- Auth URL for keycloak
     authServerUrl: ""
+    # -- Realm for portal keycloak 
     realm: ""
+    # -- Resource for portal keycloak
     resource: ""
+    # -- DAPS API URL
     apiUri: ""
+    # -- DAPS token URL
     tokenUri: ""
+
     
 resources:
   limits:
