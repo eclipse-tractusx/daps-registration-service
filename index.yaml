@@ -3,6 +3,18 @@ entries:
   daps-reg-service:
   - apiVersion: v2
     appVersion: 1.0.4
+    created: "2023-02-28T07:35:01.326589403Z"
+    description: A Helm chart for Kubernetes
+    digest: 2dda3a602901c70fd1588e738b0e1ef3647139af0ea88d2ca45b41407e23bad9
+    name: daps-reg-service
+    sources:
+    - https://github.com/eclipse-tractusx/daps-registration-service
+    type: application
+    urls:
+    - https://github.com/eclipse-tractusx/daps-registration-service/releases/download/daps-reg-service-1.0.6/daps-reg-service-1.0.6.tgz
+    version: 1.0.6
+  - apiVersion: v2
+    appVersion: 1.0.4
     created: "2022-12-14T10:38:54.121814124Z"
     description: A Helm chart for Kubernetes
     digest: c8d05da06770ffc06fa09d697b99530b7f69d852f46c72de071fbaa0c0706539
@@ -11,4 +23,4 @@ entries:
     urls:
     - https://github.com/eclipse-tractusx/daps-registration-service/releases/download/daps-reg-service-1.0.5/daps-reg-service-1.0.5.tgz
     version: 1.0.5
-generated: "2022-12-14T10:38:54.121818324Z"
+generated: "2023-02-28T07:35:01.326596603Z"
