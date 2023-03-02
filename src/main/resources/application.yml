@@ -1,6 +1,6 @@
 keycloak:
   resource:
-    clientid: CL2-CX-Portal
+    clientid: Cl6-CX-DAPS
 springdoc:
   api-docs:
     enabled: true
