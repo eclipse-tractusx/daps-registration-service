@@ -28,3 +28,4 @@ USER drs
 
 ENTRYPOINT ["java", "-cp", "app:app/lib/*", "org.eclipse.tractusx.dapsreg.DapsregApplication"]
 EXPOSE 8080
+
