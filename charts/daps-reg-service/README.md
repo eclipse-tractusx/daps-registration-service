@@ -27,7 +27,7 @@ A Helm chart for Kubernetes
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"Always"` | Set the Image Pull Policy |
 | image.repository | string | `"ghcr.io/catenax-ng/tx-daps-registration-service/dapsreg"` | Image to use for deploying an application |
-| image.tag | string | `""` | Image tage is defined in chart appVersion. |
+| image.tag | string | `"1.0.4"` | Image tage is defined in chart appVersion. |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations."cert-manager.io/cluster-issuer" | string | `"letsencrypt-prod"` |  |
 | ingress.annotations."nginx.ingress.kubernetes.io/use-regex" | string | `"true"` |  |
