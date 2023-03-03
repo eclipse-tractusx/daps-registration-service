@@ -131,7 +131,7 @@ Please note the name of jar-file as it may differ if version is changed.
 
 ## Installation Steps
 
-https://github.com/eclipse-tractusx/daps-registration-service/blob/main/INSTALL.md
+[INSTALL.md](INSTALL.md)
 
 
 - - -
