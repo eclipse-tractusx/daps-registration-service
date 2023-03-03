@@ -16,9 +16,9 @@ app:
     clientSecret:
   security:
     createRole: create_daps_client
-    updateRole: update_daps_client
-    deleteRole: delete_daps_client
-    retrieveRole: retrieve_daps_client
+    updateRole: create_daps_client
+    deleteRole: create_daps_client
+    retrieveRole: create_daps_client
 spring:
   security:
     oauth2:
