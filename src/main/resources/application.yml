@@ -10,10 +10,10 @@ app:
   build:
     version: ^project.version^
   daps:
-    apiUri:
-    tokenUri:
-    clientId:
-    clientSecret:
+    #apiUri:
+    #tokenUri:
+    #clientId:
+    #clientSecret:
   security:
     createRole: create_daps_client
     updateRole: create_daps_client
