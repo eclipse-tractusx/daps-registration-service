@@ -6,26 +6,31 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
- - sprint boot upgrade
- - keycloak upgrade
+NA
+
+## [2.0.0] - 2023-03-07
+
+### Changed
+- upgrade Spring Boot to 3.0.3
+- upgrade Snakeyaml to 2.0 as 1.33 has security issue
+- New application.properties changes
+- sprint boot upgrade, keycloak upgrade
 
 
-## [1.0.6] - 2023-02-27
+## [1.0.6] - 2023-02-22
 
 ### Added
  - Added AUTHORS.md, INSTALL.md file
  - Added service port to values.yaml
  - Added comments in values.yaml
  - Created README.md inside charts/dapsreg-svc/
-
-This Version of DAPS-Registration Service faces several Security Issues. Those were evaluated at time of Release and will be fixed in the next version.
-Recommended mitigation action for Operating Companies is to enforce appropriate firewall rules so that the service cannot be accessed externally. (note: within the intended purpose, autosetup shall only be called from Portal)
-Changed
  
 
 ### Changed
+ - Upgrade the springboot Library
  - Modified .helmignore file
  - Referring the tag from values.yaml to deployment.yaml
+ - Make referringConnector parameter (which contains BPN number in suffix) be mandatory
 
 
 ## [1.0.5] - 2023-02-05
@@ -33,6 +38,7 @@ Changed
 ### Added
 - Created new helm charts for DAPS registration service
 - The latest version for daps registration service is 1.0.4
+
 
 ## [1.0.4] - 2022-02-13
 
@@ -50,7 +56,3 @@ Changed
 
 ### Removed
 - Controller has been removed
-
-### Known knowns
-- Cross side scripting (XSS) shall be mitigated (low risk)
-- Improving the validation of the input parameters (low risk)

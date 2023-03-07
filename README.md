@@ -10,8 +10,8 @@ of the DAPS are not disclosed to the requester.
 
 ### Software Version
 ```shell
-Helm version is v1.0.6
-Application version is v1.0.4
+Helm version is v2.0.0
+Application version is v2.0.0
 ```
 
 # Solution Strategy 
@@ -132,6 +132,8 @@ Please note the name of jar-file as it may differ if version is changed.
 
 ## Installation Steps
 
-https://github.com/eclipse-tractusx/daps-registration-service/blob/main/INSTALL.md
+<<<<<<< HEAD
+[INSTALL.md](INSTALL.md)
+
 
 - - -

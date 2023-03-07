@@ -99,7 +99,7 @@ public class DapsClient {
     }
 
     public HttpStatus createClient(JsonNode json) {
-        return WebClient.create(dapsApiUri).post()
+        return (HttpStatus) WebClient.create(dapsApiUri).post()
                 .uri(uriBuilder -> uriBuilder.pathSegment(PATH).build())
                 .headers(this::headersSetter)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -110,7 +110,7 @@ public class DapsClient {
     }
 
     public HttpStatus updateClient(JsonNode json, String clientId) {
-        return WebClient.create(dapsApiUri).put()
+        return (HttpStatus) WebClient.create(dapsApiUri).put()
                 .uri(uriBuilder -> uriBuilder.pathSegment(PATH, clientId).build())
                 .headers(this::headersSetter)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -139,7 +139,7 @@ public class DapsClient {
     }
 
     private HttpStatus deleteSomething(UnaryOperator<UriBuilder> pathBuilder) {
-        return WebClient.create(dapsApiUri).delete()
+        return (HttpStatus) WebClient.create(dapsApiUri).delete()
                 .uri(pathBuilder.andThen(UriBuilder::build))
                 .headers(this::headersSetter)
                 .retrieve()
@@ -149,7 +149,7 @@ public class DapsClient {
 
     public HttpStatus uploadCert(X509Certificate certificate, String clientId) throws IOException {
         var body = jsonUtil.getCertificateJson(certificate);
-        return WebClient.create(dapsApiUri).post()
+        return (HttpStatus) WebClient.create(dapsApiUri).post()
                 .uri(uriBuilder -> uriBuilder.pathSegment(PATH, "{client_id}", "keys").build(clientId))
                 .headers(this::headersSetter)
                 .contentType(MediaType.APPLICATION_JSON)

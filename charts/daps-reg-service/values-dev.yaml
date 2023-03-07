@@ -1,6 +1,6 @@
 #################################################################################
-# Copyright (c) 2021,2022 T-Systems International GmbH
-# Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+# Copyright (c) 2022,2023 T-Systems International GmbH
+# Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
 #
 # See the NOTICE file(s) distributed with this work for additional
 # information regarding copyright ownership.
@@ -25,20 +25,19 @@ ingress:
     nginx.ingress.kubernetes.io/use-regex: "true"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
   className: "nginx"
-  host: "drs-pen.int.demo.catena-x.net"
+  host: "drs.dev.demo.catena-x.net"
   hosts:
     - host: drs.dev.demo.catena-x.net
       paths:
         - path: /
           pathType: ImplementationSpecific
-          
+
 
   tls:
     enabled: true
     secretName: tls-secret
     host: "drs.dev.demo.catena-x.net"
-
-
+      
 # -- Pod resources requests and limits configuration
 resources:
   limits:
@@ -47,8 +46,7 @@ resources:
   requests:
     cpu: 200m
     memory: 300Mi
-
-
+    
 drs:
   secret:
     clientId: "<path:essential-services/data/daps#clientId>"
@@ -58,5 +56,4 @@ drs:
     resource: "<path:essential-services/data/daps-register-svc#resource>"
     apiUri: "<path:essential-services/data/daps-register-svc#apiUri>"
     tokenUri: "<path:essential-services/data/daps-register-svc#tokenUri>"
-    
-
+    jwkSetUri: "<path:essential-services/data/daps-register-svc#jwk-set-uri>"
