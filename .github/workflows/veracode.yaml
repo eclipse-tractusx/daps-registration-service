@@ -57,4 +57,4 @@ jobs:
           filepath: "./target/*.jar"
           vid: "${{ secrets.VERACODE_API_ID }}"
           vkey: "${{ secrets.VERACODE_API_KEY }}"
-          
+

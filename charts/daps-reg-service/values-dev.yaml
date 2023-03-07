@@ -57,4 +57,3 @@ drs:
     apiUri: "<path:essential-services/data/daps-register-svc#apiUri>"
     tokenUri: "<path:essential-services/data/daps-register-svc#tokenUri>"
     jwkSetUri: "<path:essential-services/data/daps-register-svc#jwk-set-uri>"
-

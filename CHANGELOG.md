@@ -56,7 +56,3 @@ NA
 
 ### Removed
 - Controller has been removed
-
-### Known knowns
-- Cross side scripting (XSS) shall be mitigated (low risk)
-- Improving the validation of the input parameters (low risk)

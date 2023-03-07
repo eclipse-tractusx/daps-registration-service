@@ -7,6 +7,7 @@ keycloak bearer token and shall have appropriate role to create
 records at DAPS side. Therefore, the secrets for admin interface
 of the DAPS are not disclosed to the requester.
 
+
 ### Software Version
 ```shell
 Helm version is v2.0.0
@@ -131,6 +132,7 @@ Please note the name of jar-file as it may differ if version is changed.
 
 ## Installation Steps
 
+<<<<<<< HEAD
 [INSTALL.md](INSTALL.md)
 
 
