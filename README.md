@@ -9,8 +9,8 @@ of the DAPS are not disclosed to the requester.
 
 ### Software Version
 ```shell
-Helm version is v1.0.6
-Application version is v1.0.5
+Helm version is v2.0.0
+Application version is v2.0.0
 ```
 
 # Solution Strategy 
