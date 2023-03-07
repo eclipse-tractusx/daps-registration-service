@@ -8,6 +8,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 NA
 
+## [2.0.0] - 2023-03-07
+
+### Changed
+- upgrade Spring Boot to 3.0.3
+- upgrade Snakeyaml to 2.0 as 1.33 has security issue
+- New application.properties changes
+- sprint boot upgrade, keycloak upgrade
+
 
 ## [1.0.6] - 2023-02-22
 
@@ -16,7 +24,6 @@ NA
  - Added service port to values.yaml
  - Added comments in values.yaml
  - Created README.md inside charts/dapsreg-svc/
- 
 
 ### Changed
  - Upgrade the springboot Library
@@ -48,7 +55,3 @@ NA
 
 ### Removed
 - Controller has been removed
-
-### Known knowns
-- Cross side scripting (XSS) shall be mitigated (low risk)
-- Improving the validation of the input parameters (low risk)

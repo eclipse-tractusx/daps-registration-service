@@ -1,6 +1,6 @@
 #################################################################################
-# Copyright (c) 2021,2022 Catena-X
-# Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+# Copyright (c) 2022,2023 T-Systems International GmbH
+# Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
 #
 # See the NOTICE file(s) distributed with this work for additional
 # information regarding copyright ownership.
@@ -18,26 +18,24 @@
 # SPDX-License-Identifier: Apache-2.0
 ################################################################################
 
-
-
 name: DapsRegistrationService
 
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches:
       - main
+    # trigger events for SemVer like tags
     tags:
       - 'v*.*.*'
       - 'v*.*.*-*'
   pull_request:
     branches:
       - main
-  
+
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
   
+
 env:
   # Use GH Container Registry instead of docker
   # github.repository equals to <account|org>/<repo>
@@ -45,7 +43,7 @@ env:
   IMAGE_NAME: catenax-ng/tx-daps-registration-service/dapsreg
 
 jobs:
-  build:
+  docker:
     runs-on: ubuntu-latest
     permissions:
       packages: write
@@ -62,9 +60,11 @@ jobs:
           images: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=raw,value=latest,enable={{is_default_branch}}
-            type=semver,pattern={{version}},value=1.0.5-SNAPSHOT
-            
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}
+            type=semver,pattern={{major}}.{{minor}}
 
       - name: Log into registry ${{ env.REGISTRY }}
         if: github.event_name != 'pull_request'

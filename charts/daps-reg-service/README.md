@@ -1,6 +1,6 @@
 # daps-reg-service
 
-![Version: 1.0.6](https://img.shields.io/badge/Version-1.0.6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.0.5](https://img.shields.io/badge/AppVersion-1.0.5-informational?style=flat-square)
+![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.0.0](https://img.shields.io/badge/AppVersion-2.0.0-informational?style=flat-square)
 
 Daps regisgter service is used to register the EDC connector into DAPS
 
@@ -21,13 +21,14 @@ Daps regisgter service is used to register the EDC connector into DAPS
 | drs.secret.authServerUrl | string | `""` | Auth URL for keycloak |
 | drs.secret.clientId | string | `""` | Client id for DAPS |
 | drs.secret.clientSecret | string | `""` | Client Secret for DAPS |
+| drs.secret.jwkSetUri | string | `""` | JWK Set URI |
 | drs.secret.realm | string | `""` | Realm for portal keycloak  |
 | drs.secret.resource | string | `""` | Resource for portal keycloak |
 | drs.secret.tokenUri | string | `""` | DAPS token URL |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"Always"` | Set the Image Pull Policy |
 | image.repository | string | `"ghcr.io/catenax-ng/tx-daps-registration-service/dapsreg"` | Image to use for deploying an application |
-| image.tag | string | `"1.0.5-SNAPSHOT"` | Image tage is defined in chart appVersion. |
+| image.tag | string | `""` | Image tage is defined in chart appVersion. |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations."cert-manager.io/cluster-issuer" | string | `"letsencrypt-prod"` |  |
 | ingress.annotations."nginx.ingress.kubernetes.io/use-regex" | string | `"true"` |  |
@@ -49,7 +50,7 @@ Daps regisgter service is used to register the EDC connector into DAPS
 | resources.requests.memory | string | `"300Mi"` |  |
 | securityContext.allowPrivilegeEscalation | bool | `false` | Controls whether a process can gain more privileges |
 | securityContext.capabilities.drop[0] | string | `"ALL"` |  |
-| service.port | int | `8080` | Port details for sevice |
+| service.port | int | `80` | Port details for sevice |
 | service.targetPort | int | `8080` | Container Port details for sevice |
 | service.type | string | `"ClusterIP"` | Type of service |
 | serviceAccount.annotations | object | `{}` |  |
