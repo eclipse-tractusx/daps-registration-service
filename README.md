@@ -132,7 +132,7 @@ Please note the name of jar-file as it may differ if version is changed.
 
 ## Installation Steps
 
-<<<<<<< HEAD
+
 [INSTALL.md](INSTALL.md)
 
 
