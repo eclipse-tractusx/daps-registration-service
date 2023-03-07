@@ -129,7 +129,6 @@ java -jar target/dapsreg-2.0.0.jar
 Please note the name of jar-file as it may differ if version is changed.
 
 
-
 ## Installation Steps
 
 

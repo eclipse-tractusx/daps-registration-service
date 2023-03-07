@@ -105,7 +105,6 @@
 
 
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>

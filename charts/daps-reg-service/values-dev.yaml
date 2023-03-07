@@ -32,12 +32,11 @@ ingress:
         - path: /
           pathType: ImplementationSpecific
 
-
   tls:
     enabled: true
     secretName: tls-secret
     host: "drs.dev.demo.catena-x.net"
-      
+    
 # -- Pod resources requests and limits configuration
 resources:
   limits:
@@ -46,7 +45,7 @@ resources:
   requests:
     cpu: 200m
     memory: 300Mi
-    
+
 drs:
   secret:
     clientId: "<path:essential-services/data/daps#clientId>"

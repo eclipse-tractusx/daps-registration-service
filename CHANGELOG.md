@@ -38,7 +38,6 @@ NA
 - Created new helm charts for DAPS registration service
 - The latest version for daps registration service is 1.0.4
 
-
 ## [1.0.4] - 2022-02-13
 
 ### Added
