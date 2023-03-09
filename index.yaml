@@ -2,6 +2,19 @@ apiVersion: v1
 entries:
   daps-reg-service:
   - apiVersion: v2
+    appVersion: 2.0.0
+    created: "2023-03-09T11:44:11.105582409Z"
+    description: Daps regisgter service is used to register the EDC connector into
+      DAPS
+    digest: 96bdbfccd94b8af08e633067ab59b7c0058e7702d1b5a84f63cec9098f0dcff4
+    name: daps-reg-service
+    sources:
+    - https://github.com/eclipse-tractusx/daps-registration-service
+    type: application
+    urls:
+    - https://github.com/eclipse-tractusx/daps-registration-service/releases/download/daps-reg-service-2.0.0/daps-reg-service-2.0.0.tgz
+    version: 2.0.0
+  - apiVersion: v2
     appVersion: 1.0.5
     created: "2023-03-03T15:59:30.049183594Z"
     description: A Helm chart for Kubernetes
@@ -35,4 +48,4 @@ entries:
     urls:
     - https://github.com/eclipse-tractusx/daps-registration-service/releases/download/daps-reg-service-1.0.5/daps-reg-service-1.0.5.tgz
     version: 1.0.5
-generated: "2023-03-03T15:59:30.049193094Z"
+generated: "2023-03-09T11:44:11.10560041Z"
