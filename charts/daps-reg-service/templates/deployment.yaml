@@ -35,7 +35,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: 80
+              containerPort: {{ .Values.service.targetPort }}
               protocol: TCP
           env:          
           - name: APP_DAPS_CLIENTID
@@ -73,6 +73,13 @@ spec:
               secretKeyRef:
                 name: {{ include "daps-reg-service.applicationSecret.name" . }}
                 key: tokenUri
+          - name: SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK-SET-URI
+            valueFrom: 
+              secretKeyRef:
+                name: {{ include "daps-reg-service.applicationSecret.name" . }}
+                key: jwkSetUri
+                
+
           #livenessProbe:
           #  httpGet:
           #    path: /

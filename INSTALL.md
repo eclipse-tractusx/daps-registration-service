@@ -1,8 +1,8 @@
-## Installation Steps
+## Installation Steps:-
 
 Helm charts are provided inside https://github.com/eclipse-tractusx/daps-registration-service
 
-1.) Using helm commands <br />
+1.) Using helm commands:- <br />
 
 How to install application using helm:-
     helm install ReleaseName ChartName
@@ -15,7 +15,7 @@ How to install application using helm:-
            helm install daps-reg-service tractusx-dev/daps-reg-service
 
 
-2.) Local installation
+2.) Local installation:
 
     a.) git clone https://github.com/eclipse-tractusx/daps-registration-service.git <br />
     b.) Modify values file according to your requirement.  <br />
@@ -32,3 +32,4 @@ How to install application using helm:-
     d.) These secrets should be defined in Hashicorp vault. <br />
     e.) Deploy in a kubernetes cluster  <br />
         helm install daps-reg-svc charts/daps-reg-service/ -n NameSpace  <br />
+

@@ -1,8 +1,8 @@
 # daps-reg-service
 
-![Version: 1.0.6](https://img.shields.io/badge/Version-1.0.6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.0.4](https://img.shields.io/badge/AppVersion-1.0.4-informational?style=flat-square)
+![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.0.0](https://img.shields.io/badge/AppVersion-2.0.0-informational?style=flat-square)
 
-A Helm chart for Kubernetes
+Daps regisgter service is used to register the EDC connector into DAPS
 
 ## Source Code
 
@@ -21,13 +21,14 @@ A Helm chart for Kubernetes
 | drs.secret.authServerUrl | string | `""` | Auth URL for keycloak |
 | drs.secret.clientId | string | `""` | Client id for DAPS |
 | drs.secret.clientSecret | string | `""` | Client Secret for DAPS |
+| drs.secret.jwkSetUri | string | `""` | JWK Set URI |
 | drs.secret.realm | string | `""` | Realm for portal keycloak  |
 | drs.secret.resource | string | `""` | Resource for portal keycloak |
 | drs.secret.tokenUri | string | `""` | DAPS token URL |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"Always"` | Set the Image Pull Policy |
 | image.repository | string | `"ghcr.io/catenax-ng/tx-daps-registration-service/dapsreg"` | Image to use for deploying an application |
-| image.tag | string | `"1.0.4"` | Image tage is defined in chart appVersion. |
+| image.tag | string | `""` | Image tage is defined in chart appVersion. |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations."cert-manager.io/cluster-issuer" | string | `"letsencrypt-prod"` |  |
 | ingress.annotations."nginx.ingress.kubernetes.io/use-regex" | string | `"true"` |  |

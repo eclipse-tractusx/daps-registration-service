@@ -62,7 +62,7 @@ class DapsregE2eTest {
     }
 
     @Test
-    @WithMockUser(username = "fulladmin", roles={"create_daps_client", "update_daps_client", "delete_daps_client", "retrieve_daps_client"})
+    @WithMockUser(username = "fulladmin", authorities={"create_daps_client", "update_daps_client", "delete_daps_client", "retrieve_daps_client"})
     void createRetrieveChangeDeleteTest() throws Exception {
         String clientId = null;
         try (var pemStream = Resources.getResource("test.crt").openStream()) {
