@@ -41,8 +41,8 @@ ingress:
 # -- Pod resources requests and limits configuration
 resources:
   limits:
-    cpu: 200m
-    memory: 300Mi
+    cpu: 500m
+    memory: 400Mi
   requests:
     cpu: 200m
     memory: 300Mi
