@@ -14,7 +14,7 @@ NA
 - upgrade Spring Boot to 3.0.3
 - upgrade Snakeyaml to 2.0 as 1.33 has security issue
 - New application.properties changes
-- sprint boot upgrade, keycloak upgrade
+- spring boot upgrade, keycloak upgrade
 
 
 ## [1.0.6] - 2023-02-22
