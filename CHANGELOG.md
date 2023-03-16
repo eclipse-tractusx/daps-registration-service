@@ -8,13 +8,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 NA
 
-## [2.0.0] - 2023-03-07
+## [2.0.0] - 2023-03-16
 
 ### Changed
-- upgrade Spring Boot to 3.0.3
-- upgrade Snakeyaml to 2.0 as 1.33 has security issue
+- Upgrade Spring Boot to 3.0.3
+- Upgrade Snakeyaml to 2.0 as 1.33 has security issue
 - New application.properties changes
-- sprint boot upgrade, keycloak upgrade
+- Spring boot upgrade, keycloak upgrade
+- Changed base image
 
 
 ## [1.0.6] - 2023-02-22

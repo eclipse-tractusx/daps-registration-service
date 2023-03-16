@@ -1,6 +1,6 @@
 #################################################################################
-# Copyright (c) 2021,2022 T-Systems International GmbH
-# Copyright (c) 2021,2022 Contributors to the Eclipse Foundation
+# Copyright (c) 2022,2023 T-Systems International GmbH
+# Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
 #
 # See the NOTICE file(s) distributed with this work for additional
 # information regarding copyright ownership.
@@ -112,11 +112,12 @@ drs:
     
 resources:
   limits:
-    cpu: 200m
-    memory: 300Mi
+    cpu: 500m
+    memory: 400Mi
   requests:
     cpu: 200m
     memory: 300Mi
+    
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following

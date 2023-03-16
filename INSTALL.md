@@ -2,9 +2,7 @@
 
 Helm charts are provided inside https://github.com/eclipse-tractusx/daps-registration-service
 
-1.) Using helm commands:- <br />
-
-How to install application using helm:-
+1.) Using helm:  <br />
     helm install ReleaseName ChartName
     
     a.) Add helm repository in tractusx:-
@@ -18,18 +16,17 @@ How to install application using helm:-
 2.) Local installation:
 
     a.) git clone https://github.com/eclipse-tractusx/daps-registration-service.git <br />
-    b.) Modify values file according to your requirement.  <br />
-    c.) You need to define the secrets as well in values.yaml  <br />
-        secret:  <br />
+    b.) Modify values file according to your requirement.
+    c.) You need to define the secrets as well in values.yaml
+        secret:
           clientId:  -> Client id for DAPS.   
-          clientSecret:   -> Client Secret for DAPS  <br />
-          authServerUrl:   -> Auth URL for keycloak. <br />
-          realm:   -> Realm for portal keycloak    <br />
-          resource:   -> Resource for portal keycloak.   <br />
-          apiUri:  ->   DAPS API URL.  <br />
-          tokenUri:   -> DAPS token URL.  <br /> 
+          clientSecret:   -> Client Secret for DAPS
+          authServerUrl:   -> Auth URL for keycloak
+          realm:   -> Realm for portal keycloak
+          resource:   -> Resource for portal keycloak
+          apiUri:  ->   DAPS API URL
+          tokenUri:   -> DAPS token URL
 
-    d.) These secrets should be defined in Hashicorp vault. <br />
-    e.) Deploy in a kubernetes cluster  <br />
-        helm install daps-reg-svc charts/daps-reg-service/ -n NameSpace  <br />
-
+    d.) These secrets should be defined in Hashicorp vault
+    e.) Deploy in a kubernetes cluster
+        helm install daps-reg-svc charts/daps-reg-service/ -n NameSpace
