@@ -8,7 +8,7 @@ RUN mvn clean install -Dmaven.test.skip=true
 
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
-FROM eclipse-temurin:17-jdk-alpine
+FROM eclipse-temurin:17.0.6_10-jdk-alpine
 
 RUN apk update && apk upgrade
 ARG DEPENDENCY=/drs/target/dependency
@@ -23,3 +23,5 @@ USER drs
 ENTRYPOINT ["java", "-cp", "app:app/lib/*", "org.eclipse.tractusx.dapsreg.DapsregApplication"]
 
 EXPOSE 8080
+
+HEALTHCHECK CMD curl --fail http://localhost:8080 || exit 1   
