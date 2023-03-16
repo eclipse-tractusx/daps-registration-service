@@ -8,7 +8,7 @@ RUN mvn clean install -Dmaven.test.skip=true
 
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
-FROM eclipse-temurin:17.0.6_10-jdk
+FROM eclipse-temurin:17.0.6_10-jdk-alpine
 
 RUN apk update && apk upgrade
 ARG DEPENDENCY=/drs/target/dependency
