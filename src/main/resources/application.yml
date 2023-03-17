@@ -20,7 +20,7 @@ app:
     deleteRole: create_daps_client
     retrieveRole: create_daps_client
   static:
-    daps_jwks: https://daps1.int.demo.catena-x.net/jwks.json
+    #daps_jwks: https://daps1.int.demo.catena-x.net/jwks.json
 spring:
   security:
     oauth2:

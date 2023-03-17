@@ -1,4 +1,4 @@
-FROM maven:3.9.0-eclipse-temurin-19 as build
+FROM maven:3.8.7-eclipse-temurin-17 AS build
 
 COPY . /drs/
 
