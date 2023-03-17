@@ -26,9 +26,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.tractusx.dapsreg.api.DapsApiDelegate;
+import org.eclipse.tractusx.dapsreg.config.StaticJsonConfigurer.StaticJson;
 import org.eclipse.tractusx.dapsreg.util.Certutil;
 import org.eclipse.tractusx.dapsreg.util.JsonUtil;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
@@ -36,38 +38,44 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.net.URI;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
-import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 @Service
-@RequiredArgsConstructor
 @Slf4j
+@RequiredArgsConstructor
 public class DapsManager implements DapsApiDelegate {
 
     private final DapsClient dapsClient;
     private final ObjectMapper mapper;
     private final JsonUtil jsonUtil;
+    private final StaticJson staticJson;
 
     @SneakyThrows
     @Override
     @PreAuthorize("hasAuthority(@securityRoles.createRole)")
-    public ResponseEntity<Void> createClientPost(String clientName,
+    public ResponseEntity<Map<String, Object>> createClientPost(String clientName,
                                                  URI referringConnector,
                                                  MultipartFile file,
                                                  String securityProfile) {
         var cert = Certutil.loadCertificate(new String(file.getBytes()));
         var clientId = Certutil.getClientId(cert);
         var clientJson = jsonUtil.getClientJson(clientId, clientName, securityProfile, referringConnector.toString());
-        Optional.of(dapsClient.createClient(clientJson)).filter(Predicate.not(HttpStatus::is2xxSuccessful)).ifPresent(httpStatus -> {
-            throw new ResponseStatusException(httpStatus);
-        });
+        dapsClient.createClient(clientJson)
+                .map(ResponseEntity::getStatusCode)
+                .filter(Predicate.not(HttpStatusCode::is2xxSuccessful))
+                .ifPresent(httpStatus -> {
+                    throw new ResponseStatusException(httpStatus);
+                });
         dapsClient.uploadCert(cert, clientId);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        var result = new HashMap<>(staticJson);
+        result.put("clientId", clientId);
+        return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
     @Override
