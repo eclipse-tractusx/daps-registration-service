@@ -58,7 +58,7 @@ spec:
               secretKeyRef:
                 name: {{ include "daps-reg-service.applicationSecret.name" . }}
                 key: tokenUri
-           - name: APP_STATIC_DAPS_JWKS
+          - name: APP_STATIC_DAPS_JWKS
             valueFrom: 
               secretKeyRef:
                 name: {{ include "daps-reg-service.applicationSecret.name" . }}
