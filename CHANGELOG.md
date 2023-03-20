@@ -7,10 +7,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [Unreleased]
 
 
-## [2.0.1] - 2023-03-17
+## [2.0.1] - 2023-03-20
 
 ### Added
-- create request returns registration specific information, including clientID
+- Create request returns registration specific information, including clientID
 - Added new env token in deployment
 
 ### Changed
