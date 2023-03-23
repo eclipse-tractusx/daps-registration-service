@@ -97,16 +97,12 @@ drs:
     clientId: ""
     # -- Client Secret for DAPS
     clientSecret: ""
-    # -- Auth URL for keycloak
-    authServerUrl: ""
-    # -- Realm for portal keycloak 
-    realm: ""
-    # -- Resource for portal keycloak
-    resource: ""
     # -- DAPS API URL
     apiUri: ""
     # -- DAPS token URL
     tokenUri: ""
+    # -- DAPS JWKS URL
+    daps_jwks: ""
     # -- JWK Set URI
     jwkSetUri: ""
     

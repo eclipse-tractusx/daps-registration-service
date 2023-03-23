@@ -33,6 +33,7 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.Objects;
 import java.util.stream.StreamSupport;
@@ -70,11 +71,16 @@ class DapsregE2eTest {
             var cert = Certutil.loadCertificate(pem);
             clientId = Certutil.getClientId(cert);
             MockMultipartFile pemFile = new MockMultipartFile("file", "test.crt", "text/plain", pem.getBytes());
-            mockMvc.perform(MockMvcRequestBuilders.multipart("/api/v1/daps")
-                    .file(pemFile)
-                    .param("clientName", "bmw preprod")
-                    .param("referringConnector", "http://connector.cx-preprod.edc.aws.bmw.cloud/BPN1234567890")
-            ).andExpect(status().isCreated());
+            var createResultString = mockMvc.perform(MockMvcRequestBuilders.multipart("/api/v1/daps")
+                        .file(pemFile)
+                        .param("clientName", "bmw preprod")
+                        .param("referringConnector", "http://connector.cx-preprod.edc.aws.bmw.cloud/BPN1234567890"))
+                    .andExpect(status().isCreated())
+                    .andExpect(MockMvcResultMatchers.jsonPath("$.clientId").value(clientId))
+                    .andExpect(MockMvcResultMatchers.jsonPath("$.daps_jwks").value("https://daps1.int.demo.catena-x.net/jwks.json"))
+                    .andReturn().getResponse().getContentAsString();
+            var createResultJson = mapper.readTree(createResultString);
+            assertThat(createResultJson.get("clientId").asText()).isEqualTo(clientId);
             var orig = getClient(clientId);
             assertThat(orig.get("name").asText()).isEqualTo("bmw preprod");
             mockMvc.perform(put("/api/v1/daps/".concat(clientId))

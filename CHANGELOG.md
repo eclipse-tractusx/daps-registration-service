@@ -6,7 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
-NA
+
+## [2.0.1] - 2023-03-20
+
+### Added
+- Create request returns registration specific information, including clientID
+- Added new env token in deployment
+
+### Changed
+- Changed secrets
+- Changed the base image
+- Modified values in values.yaml
+
 
 ## [2.0.0] - 2023-03-16
 

@@ -1,6 +1,6 @@
 # daps-reg-service
 
-![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.0.0](https://img.shields.io/badge/AppVersion-2.0.0-informational?style=flat-square)
+![Version: 2.0.1](https://img.shields.io/badge/Version-2.0.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.0.1](https://img.shields.io/badge/AppVersion-2.0.1-informational?style=flat-square)
 
 Daps regisgter service is used to register the EDC connector into DAPS
 
@@ -18,12 +18,10 @@ Daps regisgter service is used to register the EDC connector into DAPS
 | autoscaling.minReplicas | int | `1` |  |
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
 | drs.secret.apiUri | string | `""` | DAPS API URL |
-| drs.secret.authServerUrl | string | `""` | Auth URL for keycloak |
 | drs.secret.clientId | string | `""` | Client id for DAPS |
 | drs.secret.clientSecret | string | `""` | Client Secret for DAPS |
+| drs.secret.daps_jwks | string | `""` | DAPS JWKS URL |
 | drs.secret.jwkSetUri | string | `""` | JWK Set URI |
-| drs.secret.realm | string | `""` | Realm for portal keycloak  |
-| drs.secret.resource | string | `""` | Resource for portal keycloak |
 | drs.secret.tokenUri | string | `""` | DAPS token URL |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"Always"` | Set the Image Pull Policy |
@@ -44,8 +42,8 @@ Daps regisgter service is used to register the EDC connector into DAPS
 | podAnnotations | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
 | replicaCount | int | `1` | Number of Replicas for pods |
-| resources.limits.cpu | string | `"200m"` |  |
-| resources.limits.memory | string | `"300Mi"` |  |
+| resources.limits.cpu | string | `"500m"` |  |
+| resources.limits.memory | string | `"400Mi"` |  |
 | resources.requests.cpu | string | `"200m"` |  |
 | resources.requests.memory | string | `"300Mi"` |  |
 | securityContext.allowPrivilegeEscalation | bool | `false` | Controls whether a process can gain more privileges |

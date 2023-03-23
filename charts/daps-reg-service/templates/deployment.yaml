@@ -48,21 +48,6 @@ spec:
               secretKeyRef:
                 name: {{ include "daps-reg-service.applicationSecret.name" . }}
                 key: ClientSecret
-          - name: KEYCLOAK_AUTH-SERVER-URL
-            valueFrom: 
-              secretKeyRef:
-                name: {{ include "daps-reg-service.applicationSecret.name" . }}
-                key: authServerUrl
-          - name: KEYCLOAK_REALM
-            valueFrom: 
-              secretKeyRef:
-                name: {{ include "daps-reg-service.applicationSecret.name" . }}
-                key: realm
-          - name: KEYCLOAK_RESOURCE
-            valueFrom: 
-              secretKeyRef:
-                name: {{ include "daps-reg-service.applicationSecret.name" . }}
-                key: resource
           - name: APP_DAPS_APIURI
             valueFrom: 
               secretKeyRef:
@@ -73,21 +58,17 @@ spec:
               secretKeyRef:
                 name: {{ include "daps-reg-service.applicationSecret.name" . }}
                 key: tokenUri
+          - name: APP_STATIC_DAPS_JWKS
+            valueFrom: 
+              secretKeyRef:
+                name: {{ include "daps-reg-service.applicationSecret.name" . }}
+                key: daps_jwks
           - name: SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK-SET-URI
             valueFrom: 
               secretKeyRef:
                 name: {{ include "daps-reg-service.applicationSecret.name" . }}
                 key: jwkSetUri
                 
-
-          #livenessProbe:
-          #  httpGet:
-          #    path: /
-          #    port: http
-          #readinessProbe:
-          #  httpGet:
-          #    path: /
-          #    port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

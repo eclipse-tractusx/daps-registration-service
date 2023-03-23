@@ -40,6 +40,11 @@ paths:
       responses:
         '201':
           description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: { }
 
   /daps/{client_id}:
     get:
