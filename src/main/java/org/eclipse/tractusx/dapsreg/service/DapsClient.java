@@ -29,14 +29,12 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.tractusx.dapsreg.util.JsonUtil;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.util.UriBuilder;
+import reactor.core.publisher.Mono;
 
 import java.io.IOException;
 import java.security.cert.X509Certificate;
@@ -122,14 +120,15 @@ public class DapsClient {
                 .blockOptional().orElseThrow().getStatusCode();
     }
 
-    public JsonNode getClient(String clientId) {
+    public Optional<JsonNode> getClient(String clientId) {
         return WebClient.create(dapsApiUri).get()
                 .uri(uriBuilder -> uriBuilder.pathSegment(PATH, clientId).build())
                 .headers(this::headersSetter)
                 .accept(MediaType.APPLICATION_JSON)
                 .retrieve()
+                .onRawStatus(code -> code == 404, clientResponse -> Mono.empty())
                 .bodyToMono(JsonNode.class)
-                .blockOptional().orElseThrow();
+                .blockOptional();
     }
 
     public HttpStatus deleteClient(String clientId) {

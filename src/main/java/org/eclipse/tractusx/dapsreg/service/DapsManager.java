@@ -59,12 +59,15 @@ public class DapsManager implements DapsApiDelegate {
     @SneakyThrows
     @Override
     @PreAuthorize("hasAuthority(@securityRoles.createRole)")
-    public ResponseEntity<Map<String, Object>> createClientPost(String clientName,
+    public synchronized ResponseEntity<Map<String, Object>> createClientPost(String clientName,
                                                  URI referringConnector,
                                                  MultipartFile file,
                                                  String securityProfile) {
         var cert = Certutil.loadCertificate(new String(file.getBytes()));
         var clientId = Certutil.getClientId(cert);
+        if (dapsClient.getClient(clientId).isPresent()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Client exists");
+        }
         var clientJson = jsonUtil.getClientJson(clientId, clientName, securityProfile, referringConnector.toString());
         dapsClient.createClient(clientJson)
                 .map(ResponseEntity::getStatusCode)
@@ -80,16 +83,16 @@ public class DapsManager implements DapsApiDelegate {
 
     @Override
     @PreAuthorize("hasAuthority(@securityRoles.retrieveRole)")
-    public ResponseEntity<Map<String, Object>> getClientGet(String clientId) {
-        var jsonNode = dapsClient.getClient(clientId);
+    public synchronized ResponseEntity<Map<String, Object>> getClientGet(String clientId) {
+        var jsonNode = dapsClient.getClient(clientId).orElseThrow();
         Map<String, Object> result = mapper.convertValue(jsonNode, new TypeReference<>() {});
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @Override
     @PreAuthorize("hasAuthority(@securityRoles.updateRole)")
-    public ResponseEntity<Void> updateClientPut(String clientId, Map<String, String> newAttr) {
-    var clientAttr = dapsClient.getClient(clientId).get("attributes");
+    public synchronized ResponseEntity<Void> updateClientPut(String clientId, Map<String, String> newAttr) {
+    var clientAttr = dapsClient.getClient(clientId).map(jsn-> jsn.get("attributes")).orElseThrow();
         var keys = new HashSet<>();
         var attr = Stream.concat(
                         newAttr.entrySet().stream(),
@@ -106,7 +109,7 @@ public class DapsManager implements DapsApiDelegate {
 
     @Override
     @PreAuthorize("hasAuthority(@securityRoles.deleteRole)")
-    public ResponseEntity<Void> deleteClientDelete(String clientId) {
+    public synchronized ResponseEntity<Void> deleteClientDelete(String clientId) {
         dapsClient.deleteCert(clientId);
         dapsClient.deleteClient(clientId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
