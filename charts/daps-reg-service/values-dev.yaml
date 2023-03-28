@@ -50,7 +50,8 @@ drs:
   secret:
     clientId: "<path:essential-services/data/daps#clientId>"
     clientSecret: "<path:essential-services/data/daps#clientSecret>"
-    apiUri: "<path:essential-services/data/daps-register-svc#apiUri>"
-    tokenUri: "<path:essential-services/data/daps-register-svc#tokenUri>"
-    daps_jwks: "<path:essential-services/data/daps-register-svc#daps_jwks>"
-    jwkSetUri: "<path:essential-services/data/daps-register-svc#jwk-set-uri>"
+    apiUri: "<path:essential-services/data/daps-register-svc-dev#apiUri>"
+    tokenUri: "<path:essential-services/data/daps-register-svc-dev#tokenUri>"
+    daps_jwks: "<path:essential-services/data/daps-register-svc-dev#daps_jwks>"
+    jwkSetUri: "<path:essential-services/data/daps-register-svc-dev#jwk-set-uri>"
+    
