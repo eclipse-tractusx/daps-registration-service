@@ -5,10 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
+NA
+
+## [2.0.2] - 2023-03-31
+
 ### Added
 - Added check to see if client exists before creating
+
 ### Changed
-- endpoints are now synchronized to prevent race condition and corruption of clients.yml file
+- Endpoints are now synchronized to prevent race condition and corruption of clients.yml file
 
 
 ## [2.0.1] - 2023-03-20
