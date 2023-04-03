@@ -27,6 +27,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+import org.w3c.dom.Attr;
 
 import java.io.IOException;
 import java.security.cert.X509Certificate;
@@ -40,6 +41,7 @@ public class JsonUtil {
     private final ObjectMapper mapper;
     private static final String KEY = "key";
     private static final String VALUE = "value";
+    private final AttributeValidator attributeValidator;
 
     public JsonNode getCertificateJson(X509Certificate x509Certificate) throws IOException {
         return mapper.createObjectNode().put("certificate", Certutil.getCertificate(x509Certificate));
@@ -47,6 +49,9 @@ public class JsonUtil {
 
     public JsonNode getClientJson(String clientId, String clientName,
                                     String securityProfile, String referringConnector) {
+        attributeValidator.validate(clientId);
+        attributeValidator.validate(clientName);
+        attributeValidator.validate(securityProfile);
         ObjectNode objectNode = mapper.createObjectNode();
         objectNode.put("client_id",
                         Optional.ofNullable(clientId)

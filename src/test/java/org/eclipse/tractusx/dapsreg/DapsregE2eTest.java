@@ -23,8 +23,15 @@ package org.eclipse.tractusx.dapsreg;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.io.Resources;
+import org.apache.commons.lang3.StringUtils;
 import org.eclipse.tractusx.dapsreg.util.Certutil;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.ArgumentsProvider;
+import org.junit.jupiter.params.provider.ArgumentsSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -36,6 +43,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.Objects;
+import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -60,6 +68,66 @@ class DapsregE2eTest {
         var response = mapper.readValue(contentAsString, JsonNode.class);
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(response));
         return response;
+    }
+
+
+    @WithMockUser(username = "fulladmin", authorities={"create_daps_client", "update_daps_client", "delete_daps_client", "retrieve_daps_client"})
+    @ParameterizedTest
+    @ValueSource(strings = {"</>", "hello\t", "hello\n", "?test", "#test"})
+    void createClientBadSymbolsInClientNameTest(String attrValue) throws Exception {
+        try (var pemStream = Resources.getResource("test.crt").openStream()) {
+            var pem = new String(pemStream.readAllBytes());
+            MockMultipartFile pemFile = new MockMultipartFile("file", "test.crt", "text/plain", pem.getBytes());
+            mockMvc.perform(MockMvcRequestBuilders.multipart("/api/v1/daps")
+                            .file(pemFile)
+                            .param("clientName", attrValue)
+                            .param("referringConnector", "http://connector.cx-preprod.edc.aws.bmw.cloud/BPN1234567890"))
+                    .andExpect(status().is4xxClientError());
+        }
+    }
+
+    static class MyArgumentsProvider implements ArgumentsProvider {
+        @Override
+        public Stream<? extends Arguments> provideArguments(ExtensionContext context) {
+            return Stream.of(
+                    Arguments.of("test\n" ,"TEST#"),
+                    Arguments.of("</>", "www"),
+                    Arguments.of("#aaa", "bbb"),
+                    Arguments.of("longAttr", StringUtils.repeat('A', 1024))
+            );
+        }
+    }
+
+    @WithMockUser(username = "fulladmin", authorities={"create_daps_client", "update_daps_client", "delete_daps_client", "retrieve_daps_client"})
+    @ParameterizedTest
+    @ArgumentsSource(MyArgumentsProvider.class)
+    void updateClientAttrBadSymbolsTest(String attrName, String attrValue) throws Exception {
+        String clientId = null;
+        try (var pemStream = Resources.getResource("test.crt").openStream()) {
+            var pem = new String(pemStream.readAllBytes());
+            var cert = Certutil.loadCertificate(pem);
+            clientId = Certutil.getClientId(cert);
+            MockMultipartFile pemFile = new MockMultipartFile("file", "test.crt", "text/plain", pem.getBytes());
+            var createResultString = mockMvc.perform(MockMvcRequestBuilders.multipart("/api/v1/daps")
+                            .file(pemFile)
+                            .param("clientName", "bmw preprod")
+                            .param("referringConnector", "http://connector.cx-preprod.edc.aws.bmw.cloud/BPN1234567890"))
+                    .andExpect(status().isCreated())
+                    .andExpect(MockMvcResultMatchers.jsonPath("$.clientId").value(clientId))
+                    .andExpect(MockMvcResultMatchers.jsonPath("$.daps_jwks").value("https://daps1.int.demo.catena-x.net/jwks.json"))
+                    .andReturn().getResponse().getContentAsString();
+            var createResultJson = mapper.readTree(createResultString);
+            assertThat(createResultJson.get("clientId").asText()).isEqualTo(clientId);
+            var orig = getClient(clientId);
+            assertThat(orig.get("name").asText()).isEqualTo("bmw preprod");
+            mockMvc.perform(put("/api/v1/daps/".concat(clientId))
+                    .param(attrName, attrValue)
+            ).andExpect(status().is4xxClientError());
+        } finally {
+            if (!Objects.isNull(clientId)) {
+                mockMvc.perform(delete("/api/v1/daps/".concat(clientId))).andExpect(status().is2xxSuccessful());
+            }
+        }
     }
 
     @Test
