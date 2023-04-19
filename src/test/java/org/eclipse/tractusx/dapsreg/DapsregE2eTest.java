@@ -63,10 +63,12 @@ class DapsregE2eTest {
     private ObjectMapper mapper;
 
     private JsonNode getClient(String client_id) throws Exception {
-        var contentAsString = mockMvc.perform(get("/api/v1/daps/".concat(client_id))).andDo(print()).andExpect(status().isOk())
+        var contentAsString = mockMvc.perform(get("/api/v1/daps/".concat(client_id)))
+                .andDo(print())
+                .andExpect(status().isOk())
                 .andReturn().getResponse().getContentAsString();
         var response = mapper.readValue(contentAsString, JsonNode.class);
-        System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(response));
+        //System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(response));
         return response;
     }
 
@@ -82,6 +84,7 @@ class DapsregE2eTest {
                             .file(pemFile)
                             .param("clientName", attrValue)
                             .param("referringConnector", "http://connector.cx-preprod.edc.aws.bmw.cloud/BPN1234567890"))
+                    .andDo(print())
                     .andExpect(status().is4xxClientError());
         }
     }
@@ -112,6 +115,7 @@ class DapsregE2eTest {
                             .file(pemFile)
                             .param("clientName", "bmw preprod")
                             .param("referringConnector", "http://connector.cx-preprod.edc.aws.bmw.cloud/BPN1234567890"))
+                    .andDo(print())
                     .andExpect(status().isCreated())
                     .andExpect(MockMvcResultMatchers.jsonPath("$.clientId").value(clientId))
                     .andExpect(MockMvcResultMatchers.jsonPath("$.daps_jwks").value("https://daps1.int.demo.catena-x.net/jwks.json"))
@@ -121,11 +125,14 @@ class DapsregE2eTest {
             var orig = getClient(clientId);
             assertThat(orig.get("name").asText()).isEqualTo("bmw preprod");
             mockMvc.perform(put("/api/v1/daps/".concat(clientId))
-                    .param(attrName, attrValue)
-            ).andExpect(status().is4xxClientError());
+                            .param(attrName, attrValue))
+                    .andDo(print())
+                    .andExpect(status().is4xxClientError());
         } finally {
             if (!Objects.isNull(clientId)) {
-                mockMvc.perform(delete("/api/v1/daps/".concat(clientId))).andExpect(status().is2xxSuccessful());
+                mockMvc.perform(delete("/api/v1/daps/".concat(clientId)))
+                        .andDo(print())
+                        .andExpect(status().is2xxSuccessful());
             }
         }
     }
@@ -143,6 +150,7 @@ class DapsregE2eTest {
                         .file(pemFile)
                         .param("clientName", "bmw preprod")
                         .param("referringConnector", "http://connector.cx-preprod.edc.aws.bmw.cloud/BPN1234567890"))
+                    .andDo(print())
                     .andExpect(status().isCreated())
                     .andExpect(MockMvcResultMatchers.jsonPath("$.clientId").value(clientId))
                     .andExpect(MockMvcResultMatchers.jsonPath("$.daps_jwks").value("https://daps1.int.demo.catena-x.net/jwks.json"))
@@ -152,9 +160,10 @@ class DapsregE2eTest {
             var orig = getClient(clientId);
             assertThat(orig.get("name").asText()).isEqualTo("bmw preprod");
             mockMvc.perform(put("/api/v1/daps/".concat(clientId))
-                    .param("referringConnector", "http://connector.cx-preprod.edc.aws.bmw.cloud/BPN0987654321")
-                    .param("email", "admin@test.com")
-            ).andExpect(status().isOk());
+                        .param("referringConnector", "http://connector.cx-preprod.edc.aws.bmw.cloud/BPN0987654321")
+                        .param("email", "admin@test.com"))
+                    .andDo(print())
+                    .andExpect(status().isOk());
             var changed = getClient(clientId);
             var referringConnector = StreamSupport.stream(changed.get("attributes").spliterator(), false)
                     .filter(jsonNode -> jsonNode.get("key").asText().equals("referringConnector")).findAny().orElseThrow();
@@ -164,7 +173,9 @@ class DapsregE2eTest {
             assertThat(email.get("value").asText()).isEqualTo("admin@test.com");
         } finally {
             if (!Objects.isNull(clientId)) {
-                mockMvc.perform(delete("/api/v1/daps/".concat(clientId))).andExpect(status().is2xxSuccessful());
+                mockMvc.perform(delete("/api/v1/daps/".concat(clientId)))
+                        .andDo(print())
+                        .andExpect(status().is2xxSuccessful());
             }
         }
     }
@@ -182,6 +193,7 @@ class DapsregE2eTest {
                             .file(pemFile)
                             .param("clientName", "bmw preprod")
                             .param("referringConnector", "http://connector.cx-preprod.edc.aws.bmw.cloud/BPN1234567890"))
+                    .andDo(print())
                     .andExpect(status().isCreated())
                     .andExpect(MockMvcResultMatchers.jsonPath("$.clientId").value(clientId))
                     .andExpect(MockMvcResultMatchers.jsonPath("$.daps_jwks").value("https://daps1.int.demo.catena-x.net/jwks.json"))
@@ -194,10 +206,13 @@ class DapsregE2eTest {
                             .file(pemFile)
                             .param("clientName", "bmw preprod")
                             .param("referringConnector", "http://connector.cx-preprod.edc.aws.bmw.cloud/BPN1234567890"))
+                    .andDo(print())
                     .andExpect(status().is(400));
         } finally {
             if (!Objects.isNull(clientId)) {
-                mockMvc.perform(delete("/api/v1/daps/".concat(clientId))).andExpect(status().is2xxSuccessful());
+                mockMvc.perform(delete("/api/v1/daps/".concat(clientId)))
+                        .andDo(print())
+                        .andExpect(status().is2xxSuccessful());
             }
         }
     }
