@@ -16,6 +16,12 @@ NA
 - Endpoints are now synchronized to prevent race condition and corruption of clients.yml file
 
 
+## [2.0.2] - 2023-04-11
+
+### Changed
+- Upgrade Spring Boot to 3.0.5
+
+
 ## [2.0.1] - 2023-03-20
 
 ### Added
