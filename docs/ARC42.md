@@ -123,15 +123,23 @@ POST /api/v1/daps
 here is the interface definition in java:
 
 ```
-public void createClient(
-		@RequestParam String clientName,
-		@RequestParam(required = false) String securityProfile,
-		@RequestParam(required = false) String referringConnector,
-		@RequestPart("file") MultipartFile file)
+    Map<String, Object> createClientPost(
+        @Parameter(name = "clientName", description = "Name of a client we create a record for", required = true) @Valid @RequestParam(value = "clientName", required = true) String clientName,
+        @Parameter(name = "referringConnector", description = "URL of a connector with BPN at the end", required = true) @Valid @RequestParam(value = "referringConnector", required = true) URI referringConnector,
+        @Parameter(name = "file", description = "Certificate of a Connector in PEM format", required = true) @RequestPart(value = "file", required = true) MultipartFile file,
+        @Parameter(name = "securityProfile", description = "The profile. Default value is idsc:BASE_SECURITY_PROFILE") @Valid @RequestParam(value = "securityProfile", required = false) String securityProfile
+    )
 ```
-parameters securityProfile and referringConnector are optional, for
-securityProfile the default value is used, if referringConnector is
-missed than it is not included in DAT
+parameter securityProfile is optional if missed then the default value is used.
+The response includes a static data given in `application.yml` and `clientId` inferred from the client 
+certificate. Static data contains JWKS url by default. Here is an example:
+
+```
+    {
+        "daps_jwks": "https://daps.int.demo.catena-x.net/jwks.json",
+        "clientId" : "65:FA:DE:C2:6A..."
+    }
+```
 
 OpenAPI documentation for the service is given bellow:
 
@@ -180,6 +188,11 @@ paths:
       responses:
         '201':
           description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: { }
 
   /daps/{client_id}:
     get:
@@ -251,7 +264,7 @@ security:
 ```
 
 Human-readable render of that documentation is available at
-https://drs-pen.int.demo.catena-x.net/swagger-ui/index.html
+https://drs.int.demo.catena-x.net/swagger-ui/index.html
 
 ## Solution Strategy
 
@@ -287,7 +300,7 @@ plugin of the DAPS.
 In Catena-X we use [ARGO-CD](https://confluence.catena-x.net/display/ARTI/ArgoCD+deployment+tool)
 for deployment
 
-[README.md](README.md) describe the deployment process
+[README.md](../README.md) describe the deployment process
 
 # Quality Requirements
 
