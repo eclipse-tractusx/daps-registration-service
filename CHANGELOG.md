@@ -7,6 +7,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [Unreleased]
 
 
+## [2.0.3] - 2023-04-20
+
+### Added
+- Added Spring expression 6.0.8
+
+### Changed
+- Updated ARC42 document
+
+
 ## [2.0.2] - 2023-04-11
 
 ### Changed
