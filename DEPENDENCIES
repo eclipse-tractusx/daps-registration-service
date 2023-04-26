@@ -116,7 +116,7 @@ maven/mavencentral/org.springframework.security/spring-security-oauth2-core/6.0.
 maven/mavencentral/org.springframework.security/spring-security-oauth2-jose/6.0.2, Apache-2.0, approved, #7337
 maven/mavencentral/org.springframework.security/spring-security-oauth2-resource-server/6.0.2, Apache-2.0, approved, #7335
 maven/mavencentral/org.springframework.security/spring-security-test/6.0.2, Apache-2.0, approved, #7402
-maven/mavencentral/org.springframework.security/spring-security-web/6.0.2, Apache-2.0, approved, #7328
+maven/mavencentral/org.springframework.security/spring-security-web/6.0.3, Apache-2.0, approved, #7328
 maven/mavencentral/org.springframework/spring-aop/6.0.7, Apache-2.0, approved, #5940
 maven/mavencentral/org.springframework/spring-beans/6.0.7, Apache-2.0, approved, #5937
 maven/mavencentral/org.springframework/spring-context/6.0.7, Apache-2.0, approved, #5936
