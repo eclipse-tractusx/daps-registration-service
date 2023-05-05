@@ -6,11 +6,11 @@ Helm charts are provided inside https://github.com/eclipse-tractusx/daps-registr
     helm install ReleaseName ChartName
     
     a.) Add helm repository in tractusx:
-           helm repo add daps-reg-service https://eclipse-tractusx.github.io/charts/dev
+           helm repo add drs https://eclipse-tractusx.github.io/charts/dev
     b.) To search the specific repo in helm repositories 
-           helm search repo tractusx-dev
+           helm search repo drs/daps-reg-service
     c.) To install using helm command: 
-           helm install daps-reg-service tractusx-dev/daps-reg-service
+           helm install drs drs/daps-reg-service
 
 
 2.) Local installation:
