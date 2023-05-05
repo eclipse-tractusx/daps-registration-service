@@ -59,7 +59,7 @@ maven/mavencentral/org.bouncycastle/bcutil-jdk18on/1.72, MIT, approved, #3790
 maven/mavencentral/org.checkerframework/checker-qual/3.12.0, MIT, approved, clearlydefined
 maven/mavencentral/org.hibernate.validator/hibernate-validator/8.0.0.Final, Apache-2.0, approved, clearlydefined
 maven/mavencentral/org.jboss.logging/jboss-logging/3.5.0.Final, Apache-2.0, approved, clearlydefined
-maven/mavencentral/org.keycloak/keycloak-common/21.1.1, Apache-2.0 AND LicenseRef-scancode-public-domain-disclaimer, restricted, #8195
+maven/mavencentral/org.keycloak/keycloak-common/21.1.1, Apache-2.0 AND LicenseRef-public-domain, approved, #8195
 maven/mavencentral/org.keycloak/keycloak-core/21.1.1, Apache-2.0, approved, #8194
 maven/mavencentral/org.projectlombok/lombok/1.18.24, MIT AND LicenseRef-Public-Domain, approved, CQ23907
 maven/mavencentral/org.reactivestreams/reactive-streams/1.0.4, CC0-1.0, approved, CQ16332
