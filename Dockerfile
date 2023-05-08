@@ -10,13 +10,6 @@ RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
 FROM eclipse-temurin:17.0.6_10-jdk-alpine
 
-RUN apk update && apk upgrade
-ARG DEPENDENCY=/drs/target/dependency
-
-COPY --from=build ${DEPENDENCY}/BOOT-INF/lib /app/lib
-COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
-COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
-
 ARG USERNAME=drsuser
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
@@ -26,6 +19,16 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME 
 
 USER $USERNAME
+
+WORKDIR /drs
+
+RUN apk update && apk upgrade
+ARG DEPENDENCY=/drs/target/dependency
+
+COPY --from=build ${DEPENDENCY}/BOOT-INF/lib /app/lib
+COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
+COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
+
 
 ENTRYPOINT ["java", "-cp", "app:app/lib/*", "org.eclipse.tractusx.dapsreg.DapsregApplication"]
 
