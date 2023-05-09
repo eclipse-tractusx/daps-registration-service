@@ -2,6 +2,19 @@ apiVersion: v1
 entries:
   daps-reg-service:
   - apiVersion: v2
+    appVersion: 2.0.6
+    created: "2023-05-09T17:05:37.043937671Z"
+    description: Daps regisgter service is used to register the EDC connector into
+      DAPS
+    digest: 9390fb3b70ce89f0e2cb9126f2a3a72740cf150da26b15992b1d97d5274a9983
+    name: daps-reg-service
+    sources:
+    - https://github.com/eclipse-tractusx/daps-registration-service
+    type: application
+    urls:
+    - https://github.com/eclipse-tractusx/daps-registration-service/releases/download/daps-reg-service-2.0.6/daps-reg-service-2.0.6.tgz
+    version: 2.0.6
+  - apiVersion: v2
     appVersion: 2.0.5
     created: "2023-05-05T10:00:01.80209922Z"
     description: Daps regisgter service is used to register the EDC connector into
@@ -113,4 +126,4 @@ entries:
     urls:
     - https://github.com/eclipse-tractusx/daps-registration-service/releases/download/daps-reg-service-1.0.5/daps-reg-service-1.0.5.tgz
     version: 1.0.5
-generated: "2023-05-05T10:00:01.802300923Z"
+generated: "2023-05-09T17:05:37.043971771Z"
