@@ -17,11 +17,25 @@ COPY --from=build ${DEPENDENCY}/BOOT-INF/lib /app/lib
 COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
 COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
 
-RUN adduser -DH drs && addgroup drs drs
-USER drs
+ENV USER=drsuser
+ENV UID=1000
+ENV GID=1000
+
+RUN addgroup --gid $GID $USER
+
+RUN adduser \
+    --disabled-password \
+    --gecos "" \
+    --home "$(pwd)" \
+    --ingroup "$USER" \
+    --no-create-home \
+    --uid "$UID" \
+    "$USER"
+    
+USER drsuser
 
 ENTRYPOINT ["java", "-cp", "app:app/lib/*", "org.eclipse.tractusx.dapsreg.DapsregApplication"]
 
 EXPOSE 8080
 
-HEALTHCHECK CMD curl --fail http://localhost:8080 || exit 1   
+HEALTHCHECK CMD curl --fail http://localhost:8080 || exit 1

@@ -7,6 +7,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [Unreleased]
 NA
 
+## [2.0.6] - 2023-05-08
+
+### Changed
+- Specified USER in Dockerfile using IDs instead of name
+- Specify runAsUser for deployment
+
+### Removed
+- Remove ingress controller sepecific annnotations from default config
+
 ## [2.0.5] - 2023-05-02
 
 ### Changed
