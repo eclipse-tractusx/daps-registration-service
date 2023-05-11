@@ -37,6 +37,7 @@ import jakarta.annotation.PostConstruct;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -60,12 +61,14 @@ class DapsUtilTests {
 	}
 
 	@Test
-	void utilTest() throws IOException, CertificateException {
+	void utilTest() throws IOException, CertificateException, NoSuchAlgorithmException {
 		try (var pemStream = Resources.getResource("test.crt").openStream()) {
 			var pem = new String(pemStream.readAllBytes());
 			var cert = Certutil.loadCertificate(pem);
 			var clientId = Certutil.getClientId(cert);
+			var ski = Certutil.createSki(cert);
 			assertThat(clientId).isEqualTo("65:FA:DE:C2:6A:58:98:D8:EA:FC:70:27:76:A0:75:D5:A1:C4:89:F9:keyid:65:FA:DE:C2:6A:58:98:D8:EA:FC:70:27:76:A0:75:D5:A1:C4:89:F9");
+			assertThat(ski).isEqualTo(Certutil.getSki(cert));
 			var certPem = Certutil.getCertificate(cert);
 			System.out.println(certPem);
 			var certJson = jsonUtil.getCertificateJson(cert);
