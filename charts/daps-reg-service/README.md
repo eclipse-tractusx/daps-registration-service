@@ -1,6 +1,6 @@
 # daps-reg-service
 
-![Version: 2.0.3](https://img.shields.io/badge/Version-2.0.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.0.3](https://img.shields.io/badge/AppVersion-2.0.3-informational?style=flat-square)
+![Version: 2.0.6](https://img.shields.io/badge/Version-2.0.6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.0.6](https://img.shields.io/badge/AppVersion-2.0.6-informational?style=flat-square)
 
 Daps regisgter service is used to register the EDC connector into DAPS
 
@@ -28,8 +28,7 @@ Daps regisgter service is used to register the EDC connector into DAPS
 | image.repository | string | `"ghcr.io/catenax-ng/tx-daps-registration-service/dapsreg"` | Image to use for deploying an application |
 | image.tag | string | `""` | Image tage is defined in chart appVersion. |
 | imagePullSecrets | list | `[]` |  |
-| ingress.annotations."cert-manager.io/cluster-issuer" | string | `"letsencrypt-prod"` |  |
-| ingress.annotations."nginx.ingress.kubernetes.io/use-regex" | string | `"true"` |  |
+| ingress.annotations | string | `nil` |  |
 | ingress.className | string | `""` | a reference to an Ingress Class resource that contains additional configuration including the name of the controller that should implement the class. |
 | ingress.enabled | bool | `false` | If you want to enable or disable the ingress |
 | ingress.hosts[0] | object | `{"host":"","paths":[{"path":"/","pathType":"ImplementationSpecific"}]}` | Host of the application on which application runs |
@@ -48,6 +47,7 @@ Daps regisgter service is used to register the EDC connector into DAPS
 | resources.requests.memory | string | `"300Mi"` |  |
 | securityContext.allowPrivilegeEscalation | bool | `false` | Controls whether a process can gain more privileges |
 | securityContext.capabilities.drop[0] | string | `"ALL"` |  |
+| securityContext.runAsUser | int | `1000` |  |
 | service.port | int | `80` | Port details for sevice |
 | service.targetPort | int | `8080` | Container Port details for sevice |
 | service.type | string | `"ClusterIP"` | Type of service |

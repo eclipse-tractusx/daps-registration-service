@@ -5,23 +5,36 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
-### Changed
-- Upgrade Spring Expression Language (SpEL) » 6.0.8
+NA
 
-
-## [2.0.2] - 2023-03-31
-
-### Added
-- Added check to see if client exists before creating
+## [2.0.6] - 2023-05-08
 
 ### Changed
-- Endpoints are now synchronized to prevent race condition and corruption of clients.yml file
+- Specified USER in Dockerfile using IDs instead of name
+- Specify runAsUser for deployment
+
+### Removed
+- Remove ingress controller sepecific annnotations from default config
+
+## [2.0.5] - 2023-05-02
+
+### Changed
+- Updated librabries and upgrade spring boot
 
 
-## [2.0.3] - 2023-04-19
+## [2.0.4] - 2023-04-24
+
+### Fixed
+- Fixed spring security web veracode security by upgrading its version to 6.0.3
+
+
+## [2.0.3] - 2023-04-20
 
 ### Added
 - Added Spring expression 6.0.8
+
+### Changed
+- Updated ARC42 document
 
 
 ## [2.0.2] - 2023-04-11
