@@ -59,7 +59,7 @@ public class DapsManager implements DapsApiDelegate {
     @SneakyThrows
     @Override
     @PreAuthorize("hasAuthority(@securityRoles.createRole)")
-    public ResponseEntity<Map<String, Object>> createClientPost(String clientName,
+    public synchronized ResponseEntity<Map<String, Object>> createClientPost(String clientName,
                                                  URI referringConnector,
                                                  MultipartFile file,
                                                  String securityProfile) {
@@ -80,7 +80,7 @@ public class DapsManager implements DapsApiDelegate {
 
     @Override
     @PreAuthorize("hasAuthority(@securityRoles.retrieveRole)")
-    public ResponseEntity<Map<String, Object>> getClientGet(String clientId) {
+    public synchronized ResponseEntity<Map<String, Object>> getClientGet(String clientId) {
         var jsonNode = dapsClient.getClient(clientId);
         Map<String, Object> result = mapper.convertValue(jsonNode, new TypeReference<>() {});
         return new ResponseEntity<>(result, HttpStatus.OK);
@@ -88,7 +88,7 @@ public class DapsManager implements DapsApiDelegate {
 
     @Override
     @PreAuthorize("hasAuthority(@securityRoles.updateRole)")
-    public ResponseEntity<Void> updateClientPut(String clientId, Map<String, String> newAttr) {
+    public synchronized ResponseEntity<Void> updateClientPut(String clientId, Map<String, String> newAttr) {
     var clientAttr = dapsClient.getClient(clientId).get("attributes");
         var keys = new HashSet<>();
         var attr = Stream.concat(
@@ -106,7 +106,7 @@ public class DapsManager implements DapsApiDelegate {
 
     @Override
     @PreAuthorize("hasAuthority(@securityRoles.deleteRole)")
-    public ResponseEntity<Void> deleteClientDelete(String clientId) {
+    public synchronized ResponseEntity<Void> deleteClientDelete(String clientId) {
         dapsClient.deleteCert(clientId);
         dapsClient.deleteClient(clientId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
