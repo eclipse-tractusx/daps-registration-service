@@ -29,6 +29,7 @@ springdoc:
 app:
   build:
     version: ^project.version^
+  maxAttrLen: 512
   daps:
     apiUri: http://localhost:4567/api/v1
     tokenUri: http://localhost:4567/token
@@ -57,4 +58,3 @@ logging:
         security:
           web:
             csrf: INFO
-
