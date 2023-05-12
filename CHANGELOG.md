@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed 
 - make DapsManager methods synchronized
 - check if a client was registered before creating new registration
+- check if SKI was spoofed before creating a new registration
 
 ### Added
 - add attributes validation

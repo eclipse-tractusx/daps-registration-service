@@ -25,11 +25,13 @@ import com.google.common.io.BaseEncoding;
 import org.bouncycastle.asn1.ASN1OctetString;
 import org.bouncycastle.asn1.x509.AuthorityKeyIdentifier;
 import org.bouncycastle.asn1.x509.SubjectKeyIdentifier;
+import org.bouncycastle.cert.jcajce.JcaX509ExtensionUtils;
 import org.bouncycastle.openssl.jcajce.JcaPEMWriter;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.StringWriter;
+import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
@@ -54,6 +56,12 @@ public class Certutil {
         SubjectKeyIdentifier subjectKeyIdentifier = SubjectKeyIdentifier.getInstance(octets);
         var keyIdentifier = subjectKeyIdentifier.getKeyIdentifier();
         return BaseEncoding.base16().upperCase().withSeparator(":", 2).encode(keyIdentifier);
+    }
+
+    public static String createSki(X509Certificate cert) throws NoSuchAlgorithmException {
+        var publicKey = cert.getPublicKey();
+        var r = new JcaX509ExtensionUtils().createSubjectKeyIdentifier(publicKey).getKeyIdentifier();
+        return BaseEncoding.base16().upperCase().withSeparator(":", 2).encode(r);
     }
 
     public static X509Certificate loadCertificate(String pem) throws IOException, CertificateException {
