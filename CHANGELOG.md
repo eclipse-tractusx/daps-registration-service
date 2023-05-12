@@ -9,6 +9,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed 
 - make DapsManager methods synchronized
 
+### Added
+- add attributes validation
+
 ## [2.0.6] - 2023-05-08
 
 ### Changed

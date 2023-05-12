@@ -27,6 +27,7 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.tractusx.dapsreg.api.DapsApiDelegate;
 import org.eclipse.tractusx.dapsreg.config.StaticJsonConfigurer.StaticJson;
+import org.eclipse.tractusx.dapsreg.util.AttributeValidator;
 import org.eclipse.tractusx.dapsreg.util.Certutil;
 import org.eclipse.tractusx.dapsreg.util.JsonUtil;
 import org.springframework.http.HttpStatus;
@@ -55,6 +56,8 @@ public class DapsManager implements DapsApiDelegate {
     private final ObjectMapper mapper;
     private final JsonUtil jsonUtil;
     private final StaticJson staticJson;
+    private final AttributeValidator attributeValidator;
+
 
     @SneakyThrows
     @Override
@@ -89,7 +92,10 @@ public class DapsManager implements DapsApiDelegate {
     @Override
     @PreAuthorize("hasAuthority(@securityRoles.updateRole)")
     public synchronized ResponseEntity<Void> updateClientPut(String clientId, Map<String, String> newAttr) {
-    var clientAttr = dapsClient.getClient(clientId).get("attributes");
+        newAttr.entrySet().stream()
+                .flatMap(entry -> Stream.of(entry.getKey(), entry.getValue()))
+                .forEach(attributeValidator::validate);
+        var clientAttr = dapsClient.getClient(clientId).map(jsn-> jsn.get("attributes")).orElseThrow();
         var keys = new HashSet<>();
         var attr = Stream.concat(
                         newAttr.entrySet().stream(),

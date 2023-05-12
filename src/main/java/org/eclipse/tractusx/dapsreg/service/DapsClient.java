@@ -29,14 +29,12 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.tractusx.dapsreg.util.JsonUtil;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.util.UriBuilder;
+import reactor.core.publisher.Mono;
 
 import java.io.IOException;
 import java.security.cert.X509Certificate;
@@ -53,7 +51,7 @@ import static java.util.Objects.isNull;
 public class DapsClient {
 
     private static final long REFRESH_GAP = 100L;
-    private static final String PATH = "config/clients";
+    private static final String[] PATH = "config/clients".split("/");
 
     @Value("${app.daps.apiUri}")
     @Setter
@@ -113,7 +111,7 @@ public class DapsClient {
 
     public HttpStatus updateClient(JsonNode json, String clientId) {
         return (HttpStatus) WebClient.create(dapsApiUri).put()
-                .uri(uriBuilder -> uriBuilder.pathSegment(PATH, clientId).build())
+                .uri(uriBuilder -> uriBuilder.pathSegment(PATH).pathSegment(clientId).build())
                 .headers(this::headersSetter)
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(json)
@@ -122,22 +120,23 @@ public class DapsClient {
                 .blockOptional().orElseThrow().getStatusCode();
     }
 
-    public JsonNode getClient(String clientId) {
+    public Optional<JsonNode> getClient(String clientId) {
         return WebClient.create(dapsApiUri).get()
-                .uri(uriBuilder -> uriBuilder.pathSegment(PATH, clientId).build())
+                .uri(uriBuilder -> uriBuilder.pathSegment(PATH).pathSegment(clientId).build())
                 .headers(this::headersSetter)
                 .accept(MediaType.APPLICATION_JSON)
                 .retrieve()
+                .onRawStatus(code -> code == 404, clientResponse -> Mono.empty())
                 .bodyToMono(JsonNode.class)
-                .blockOptional().orElseThrow();
+                .blockOptional();
     }
 
     public HttpStatus deleteClient(String clientId) {
-        return deleteSomething(uriBuilder -> uriBuilder.pathSegment(PATH, clientId));
+        return deleteSomething(uriBuilder -> uriBuilder.pathSegment(PATH).pathSegment(clientId));
     }
 
     public HttpStatus deleteCert(String clientId) {
-        return deleteSomething(uriBuilder -> uriBuilder.pathSegment(PATH, clientId, "keys"));
+        return deleteSomething(uriBuilder -> uriBuilder.pathSegment(PATH).pathSegment(clientId, "keys"));
     }
 
     private HttpStatus deleteSomething(UnaryOperator<UriBuilder> pathBuilder) {
@@ -152,7 +151,7 @@ public class DapsClient {
     public HttpStatus uploadCert(X509Certificate certificate, String clientId) throws IOException {
         var body = jsonUtil.getCertificateJson(certificate);
         return (HttpStatus) WebClient.create(dapsApiUri).post()
-                .uri(uriBuilder -> uriBuilder.pathSegment(PATH, "{client_id}", "keys").build(clientId))
+                .uri(uriBuilder -> uriBuilder.pathSegment(PATH).pathSegment( clientId, "keys").build())
                 .headers(this::headersSetter)
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(body)

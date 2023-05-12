@@ -9,6 +9,7 @@ springdoc:
 app:
   build:
     version: ^project.version^
+  maxAttrLen: 512
   daps:
     #apiUri:
     #tokenUri:
