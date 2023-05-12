@@ -178,4 +178,41 @@ class DapsregE2eTest {
         }
     }
 
+    @Test
+    @WithMockUser(username = "fulladmin", authorities={"create_daps_client", "update_daps_client", "delete_daps_client", "retrieve_daps_client"})
+    void createTwoSameExpectErrorTest() throws Exception {
+        String clientId = null;
+        try (var pemStream = Resources.getResource("test.crt").openStream()) {
+            var pem = new String(pemStream.readAllBytes());
+            var cert = Certutil.loadCertificate(pem);
+            clientId = Certutil.getClientId(cert);
+            MockMultipartFile pemFile = new MockMultipartFile("file", "test.crt", "text/plain", pem.getBytes());
+            var createResultString = mockMvc.perform(MockMvcRequestBuilders.multipart("/api/v1/daps")
+                            .file(pemFile)
+                            .param("clientName", "bmw preprod")
+                            .param("referringConnector", "http://connector.cx-preprod.edc.aws.bmw.cloud/BPN1234567890"))
+                    .andDo(print())
+                    .andExpect(status().isCreated())
+                    .andExpect(MockMvcResultMatchers.jsonPath("$.clientId").value(clientId))
+                    .andExpect(MockMvcResultMatchers.jsonPath("$.daps_jwks").value("https://daps1.int.demo.catena-x.net/jwks.json"))
+                    .andReturn().getResponse().getContentAsString();
+            var createResultJson = mapper.readTree(createResultString);
+            assertThat(createResultJson.get("clientId").asText()).isEqualTo(clientId);
+            var orig = getClient(clientId);
+            assertThat(orig.get("name").asText()).isEqualTo("bmw preprod");
+            mockMvc.perform(MockMvcRequestBuilders.multipart("/api/v1/daps")
+                            .file(pemFile)
+                            .param("clientName", "bmw preprod")
+                            .param("referringConnector", "http://connector.cx-preprod.edc.aws.bmw.cloud/BPN1234567890"))
+                    .andDo(print())
+                    .andExpect(status().is(400));
+        } finally {
+            if (!Objects.isNull(clientId)) {
+                mockMvc.perform(delete("/api/v1/daps/".concat(clientId)))
+                        .andDo(print())
+                        .andExpect(status().is2xxSuccessful());
+            }
+        }
+    }
+
 }
