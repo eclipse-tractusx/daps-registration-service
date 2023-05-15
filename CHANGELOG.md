@@ -15,6 +15,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - fix #33 - SKI and AKI validated as user input @dvasunin (#53)
 
 
+## [2.0.7] - 2023-05-12
+
+### Fixed
+- Fixed potential dataloss on concurrent database access
+- Possible multi-registration of clients
+- Fixed user input not validated
+- SKI and AKI validated as user input
+
 ## [2.0.6] - 2023-05-08
 
 ### Changed
