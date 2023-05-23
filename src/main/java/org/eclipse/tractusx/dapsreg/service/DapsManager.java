@@ -91,8 +91,13 @@ public class DapsManager implements DapsApiDelegate {
     @PreAuthorize("hasAuthority(@securityRoles.retrieveRole)")
     public synchronized ResponseEntity<Map<String, Object>> getClientGet(String clientId) {
         var jsonNode = dapsClient.getClient(clientId);
-        Map<String, Object> result = mapper.convertValue(jsonNode, new TypeReference<>() {});
-        return new ResponseEntity<>(result, HttpStatus.OK);
+        if (jsonNode.isPresent()) {
+            Map<String, Object> result = mapper.convertValue(jsonNode, new TypeReference<>() {
+            });
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @Override

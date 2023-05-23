@@ -45,7 +45,15 @@ paths:
               schema:
                 type: object
                 additionalProperties: { }
-
+        '400':
+          description: certificate problem (if was tampered), 
+            attributes did not pass validation (wrong character or too long)
+        '401':
+          description: not authorized
+        '409':
+          description: certificate was already used for the registration
+        '500':
+          description: on any unexpected service problem
   /daps/{client_id}:
     get:
       summary: Gets a client by ID.
@@ -67,6 +75,12 @@ paths:
               schema:
                 type: object
                 additionalProperties: {}
+        '401':
+          description: not authorized
+        '404':
+          description: client not found
+        '500':
+          description: on any unexpected service problem
     put:
       summary: Updates a client by ID.
       operationId: updateClientPut
@@ -90,6 +104,12 @@ paths:
       responses:
         '200':
           description: Client updated
+        '400':
+          description: attributes did not pass validation (wrong character or too long)
+        '401':
+          description: not authorized
+        '500':
+          description: on any unexpected service problem
     delete:
       summary: Delete a client by ID.
       operationId: deleteClientDelete
@@ -105,6 +125,10 @@ paths:
       responses:
         '204':
           description: Client deleted
+        '401':
+          description: not authorized
+        '500':
+          description: on any unexpected service problem
 components:
   securitySchemes:
     bearerAuth: # arbitrary name for the security scheme
