@@ -205,7 +205,7 @@ class DapsregE2eTest {
                             .param("clientName", "bmw preprod")
                             .param("referringConnector", "http://connector.cx-preprod.edc.aws.bmw.cloud/BPN1234567890"))
                     .andDo(print())
-                    .andExpect(status().is(400));
+                    .andExpect(status().is(409));
         } finally {
             if (!Objects.isNull(clientId)) {
                 mockMvc.perform(delete("/api/v1/daps/".concat(clientId)))
