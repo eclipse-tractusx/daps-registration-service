@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Fixed
+- returns 409 instead of 400 if a client was already registered with given certificate
+- update OpenAPI by adding return codes
+
+
 ## [2.0.7] - 2023-05-12
 
 ### Fixed

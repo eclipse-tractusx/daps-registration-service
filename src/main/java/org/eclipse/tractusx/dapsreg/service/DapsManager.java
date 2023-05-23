@@ -72,7 +72,7 @@ public class DapsManager implements DapsApiDelegate {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Certificate problem");
         }
         if (dapsClient.getClient(clientId).isPresent()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Client exists");
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Client exists");
         }
         var clientJson = jsonUtil.getClientJson(clientId, clientName, securityProfile, referringConnector.toString());
         dapsClient.createClient(clientJson)
@@ -91,8 +91,13 @@ public class DapsManager implements DapsApiDelegate {
     @PreAuthorize("hasAuthority(@securityRoles.retrieveRole)")
     public synchronized ResponseEntity<Map<String, Object>> getClientGet(String clientId) {
         var jsonNode = dapsClient.getClient(clientId);
-        Map<String, Object> result = mapper.convertValue(jsonNode, new TypeReference<>() {});
-        return new ResponseEntity<>(result, HttpStatus.OK);
+        if (jsonNode.isPresent()) {
+            Map<String, Object> result = mapper.convertValue(jsonNode, new TypeReference<>() {
+            });
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @Override
