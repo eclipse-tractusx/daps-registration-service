@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [2.0.8] - 2023-06-02
+
+### Added
+- Addition of Lint and Test Chart
+
 ## [2.0.7] - 2023-05-12
 
 ### Fixed
