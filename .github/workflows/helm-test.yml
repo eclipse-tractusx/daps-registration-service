@@ -82,15 +82,15 @@ jobs:
           fi
       # run chart linting 
       - name: Run chart-testing (lint)
-        run: ct lint --charts charts/daps-reg-service --config charts/chart-testing-config.yaml
+        run: ct lint --charts charts/daps-reg-service
 
       # install the chart to the kind cluster and run helm test
       # define charts to test with the --charts parameter
       - name: Run chart-testing (install)
-        run: ct install --charts charts/portal --config charts/chart-testing-config.yaml
+        run: ct install --charts charts/daps-reg-service
         if: github.event_name != 'pull_request' || steps.list-changed.outputs.changed == 'true'
 
-        # Upgrade the released portal chart version with the locally available chart
+        # Upgrade the released daps-reg-service chart version with the locally available chart
       - name: Run helm upgrade
         run: |
           helm upgrade dapsregservice charts/daps-reg-service
