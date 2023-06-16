@@ -11,16 +11,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 - Changed the secret values
 
-
-## [2.0.7] - 2023-05-12
-
-### Fixed
-- fix #47 - potential dataloss on concurrent database access @dvasunin (#50)
-- fix #48 - possible multi-registration of clients @dvasunin (#52)
-- fix #49 - user input not validated @dvasunin (#51)
-- fix #33 - SKI and AKI validated as user input @dvasunin (#53)
-
-
 ## [2.0.7] - 2023-05-12
 
 ### Fixed
