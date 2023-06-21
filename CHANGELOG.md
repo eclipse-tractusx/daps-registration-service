@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+
+## [2.0.9] - 2023-06-21
+
+### Changed
+- Upgraded spring boot libraries to fix security issues
+
 ## [2.0.8] - 2023-06-16
 
 ### Changed
