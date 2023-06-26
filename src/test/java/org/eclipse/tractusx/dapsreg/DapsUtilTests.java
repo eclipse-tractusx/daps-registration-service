@@ -25,13 +25,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.common.io.Resources;
 import org.eclipse.tractusx.dapsreg.util.Certutil;
+import org.eclipse.tractusx.dapsreg.util.AttributeValidator;
 import org.eclipse.tractusx.dapsreg.util.JsonUtil;
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 
 import jakarta.annotation.PostConstruct;
+import org.springframework.web.server.ResponseStatusException;
+
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
@@ -47,6 +51,9 @@ class DapsUtilTests {
 
 	@Autowired
 	ObjectMapper mapper;
+
+	@Autowired
+	AttributeValidator attributeValidator;
 
 	@PostConstruct
 	public void init() {
@@ -69,6 +76,16 @@ class DapsUtilTests {
 			var clientRegJson = jsonUtil.getClientJson(clientId, "bmw preprod", "idsc:BASE_SECURITY_PROFILE", "http://connector.cx-preprod.edc.aws.bmw.cloud/BPN1234567890");
 			System.out.println(toString(clientRegJson));
 		}
+	}
+
+	@Test
+	void testPatternPositive() {
+		attributeValidator.validate("https://asdfg.qwe.com/VVV@p_pp1234()+-;");
+	}
+
+	@Test
+	void testPatternNegative() {
+		Assert.assertThrows(ResponseStatusException.class, () -> attributeValidator.validate("</>\\aa"));
 	}
 
 	private String toString(JsonNode json) throws IOException {

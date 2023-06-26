@@ -5,11 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
+N/A
 
-## [2.0.8] - 2023-06-02
+## [2.1.0] - 2023-06-27
 
 ### Added
 - Addition of Lint and Test Chart
+
+## [2.0.9] - 2023-06-21
+
+### Changed
+- Upgraded spring boot libraries to fix security issues
+
+## [2.0.8] - 2023-06-16
+
+### Changed
+- Changed the secret values
 
 ## [2.0.7] - 2023-05-12
 
@@ -18,7 +29,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - fix #48 - possible multi-registration of clients @dvasunin (#52)
 - fix #49 - user input not validated @dvasunin (#51)
 - fix #33 - SKI and AKI validated as user input @dvasunin (#53)
-
 
 ## [2.0.6] - 2023-05-08
 
