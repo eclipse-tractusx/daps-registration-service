@@ -38,9 +38,9 @@ on:
         required: false
         type: string
       upgrade_from:
-        description: 'Daps Registration service chart version to upgrade from'
-        # DRS version from 3.1 release
-        default: '2.0.7'
+        description: 'portal chart version to upgrade from'
+        # portal version from 3.1 release
+        default: '1.3.0'
         required: false
         type: string
 
@@ -78,20 +78,19 @@ jobs:
         run: |
           changed=$(ct list-changed --target-branch ${{ github.event.repository.default_branch }})
           if [[ -n "$changed" ]]; then
-            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "CHART_CHANGED=true" >> $GITHUB_ENV
           fi
       # run chart linting 
       - name: Run chart-testing (lint)
-        run: ct lint --charts charts/daps-reg-service
+        run: ct lint --charts charts/daps-reg-service --config charts/chart-testing-config.yaml
+
+      # Preparing a kind cluster to install and test charts on
+      - name: Create kind cluster
+        uses: helm/kind-action@v1.4.0
+        if: ${{ env.CHART_CHANGED == 'true' }}
 
       # install the chart to the kind cluster and run helm test
       # define charts to test with the --charts parameter
       - name: Run chart-testing (install)
-        run: ct install --charts charts/daps-reg-service
-        if: github.event_name != 'pull_request' || steps.list-changed.outputs.changed == 'true'
-
-        # Upgrade the released daps-reg-service chart version with the locally available chart
-      - name: Run helm upgrade
-        run: |
-          helm upgrade dapsregservice charts/daps-reg-service
-        if: github.event_name != 'pull_request' || steps.list-changed.outputs.changed == 'true'
+        run: ct install --charts charts/daps-reg-service --config charts/chart-testing-config.yaml
+        if: ${{ env.CHART_CHANGED == 'true' }}
