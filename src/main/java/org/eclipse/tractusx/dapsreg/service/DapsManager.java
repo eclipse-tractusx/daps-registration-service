@@ -72,7 +72,7 @@ public class DapsManager implements DapsApiDelegate {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Certificate problem");
         }
         if (dapsClient.getClient(clientId).isPresent()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Client exists");
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Client exists");
         }
         var clientJson = jsonUtil.getClientJson(clientId, clientName, securityProfile, referringConnector.toString());
         dapsClient.createClient(clientJson)

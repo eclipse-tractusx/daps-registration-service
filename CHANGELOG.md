@@ -22,6 +22,10 @@ N/A
 ### Changed
 - Changed the secret values
 
+### Fixed
+- returns 409 instead of 400 if a client was already registered with given certificate
+
+
 ## [2.0.7] - 2023-05-12
 
 ### Fixed
