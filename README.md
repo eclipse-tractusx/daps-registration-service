@@ -1,5 +1,10 @@
 # <a id="introduction"></a>Catena-X DAPS Registration Service
 
+[![status: archive](https://github.com/GIScience/badges/raw/master/status/archive.svg)](https://github.com/GIScience/badges#archive)
+
+>❗**Note**❗
+> This repository is currently not under active maintenance and therefore archived. If you plan on picking up this product again, feel free to reach out ot the Eclipse Tractus-X projects leads via [mailing list](https://accounts.eclipse.org/mailing-list/tractusx-dev).
+
 DAPS Registration Service is a security mediator sitting 
 between DAPS service and an admin user responsible for registering 
 new clients (EDCs) to the DAPS. The admin user is protected with
